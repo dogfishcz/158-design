@@ -4,10 +4,7 @@ import React from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Homepage } from "./Homepage";
-import { ProductDetail } from "./ProductDetail";
 import { ReferencesScreen } from "./References";
-import { DownloadsScreen } from "./Downloads";
-import { AboutScreen } from "./About";
 import { ContactStub } from "./Contact";
 
 const DEFAULT_TWEAKS = {
@@ -16,6 +13,13 @@ const DEFAULT_TWEAKS = {
   accent: "#26d07c",
 };
 
+// SPA-style routing pro homepage. Reálné Next.js stránky (např. /vyroba/[category],
+// /ke-stazeni, /certifikace-a-dokumenty, /o-nas) běží mimo tento App komponent —
+// navigace se vždy provádí přes <a href> a browser provede full-page navigaci.
+//
+// Tady zůstávají jen SPA stuby pro routy, které ještě nemají vlastní Next.js stránku:
+//   - references (otevřeno z homepage RefMap "Otevřít všechny reference")
+//   - contact    (otevřeno z Header "Kontakt" a tlačítka "Poptávka")
 export const App = ({ categories = [] }) => {
   const [route, setRoute] = React.useState("home");
   const [lang, setLang] = React.useState("cs");
@@ -34,11 +38,7 @@ export const App = ({ categories = [] }) => {
 
       <main key={route} className="flex-1">
         {route === "home" && <Homepage onNav={onNav} tweaks={tweaks} />}
-        {route === "product" && <ProductDetail onNav={onNav} />}
         {route === "references" && <ReferencesScreen onNav={onNav} />}
-        {route === "downloads" && <DownloadsScreen onNav={onNav} />}
-        {route === "about" && <AboutScreen onNav={onNav} />}
-        {route === "category" && <ProductDetail onNav={onNav} />}
         {route === "contact" && <ContactStub onNav={onNav} />}
       </main>
 

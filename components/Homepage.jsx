@@ -94,27 +94,27 @@ const Hero = ({ onNav, mediaStyle = "video", parallax = true }) => {
       <div className="absolute inset-0 hero-tint" />
       <div className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(26,26,26,0.55), transparent)" }} />
 
-      <div className="relative h-full max-w-[1320px] mx-auto px-10 flex flex-col justify-end pb-20 text-white">
-        <div className="grid grid-cols-12 gap-10 items-end">
-          <div className="col-span-7">
-            <div className="flex items-center gap-3 mb-7">
+      <div className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col justify-end pb-12 sm:pb-20 text-white">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-3 mb-5 lg:mb-7 flex-wrap">
               <span className="block h-[2px] w-10 bg-accent" />
-              <span className="h-label text-[11px] text-white/80">Výrobce — 1990</span>
+              <span className="h-label text-[11px] text-white/80">Výrobce — od 1990</span>
               <span className="block h-[2px] w-10 bg-accent" />
               <span className="h-label text-[11px] text-white/80">Hostomice · Česká republika</span>
             </div>
-            <h1 className="h-display text-[64px] leading-[1.0] text-white">
+            <h1 className="h-display text-[36px] sm:text-[48px] lg:text-[64px] leading-[1.05] lg:leading-[1.0] text-white">
               Jsme největší český výrobce komponent pro větrání a&nbsp;požární bezpečnost budov
             </h1>
-            <p className="mt-7 text-white/80 text-[18px] max-w-xl leading-relaxed">
+            <p className="mt-5 lg:mt-7 text-white/80 text-[15px] sm:text-[17px] lg:text-[18px] max-w-xl leading-relaxed">
               Česká rodinná firma. Klapky, AHU jednotky a&nbsp;průmyslové topné systémy pro výškové budovy, jaderné elektrárny a&nbsp;technologické kampusy.
             </p>
-            <div className="mt-9 flex items-center gap-3">
-              <Button variant="primary" onClick={(e) => { e.preventDefault(); onNav("product"); }}>Prozkoumat výrobu</Button>
-              <Button variant="invertGhost" onClick={(e) => { e.preventDefault(); onNav("downloads"); }}>Centrum dokumentace</Button>
+            <div className="mt-6 lg:mt-9 flex items-center gap-3 flex-wrap">
+              <Button variant="primary" href="#vyrobky">Prohlédnout výrobky</Button>
+              <Button variant="invertGhost" href="/o-nas">Naše společnost</Button>
             </div>
           </div>
-          <div className="col-span-5">
+          <div className="hidden lg:block lg:col-span-5">
             <div className="hairline bg-mandik-steel/40 backdrop-blur p-6 text-white">
               <div className="h-label text-[11px] text-white/65 mb-4">Aktuální zakázky</div>
               <ul className="space-y-3 text-[13px]">
@@ -136,9 +136,6 @@ const Hero = ({ onNav, mediaStyle = "video", parallax = true }) => {
         </div>
       </div>
 
-      <div className="absolute top-[80px] right-10 hidden md:flex flex-col items-end gap-2 mono text-[10px] text-white/55 uppercase tracking-wider">
-        <div>49°51′23″N · 14°02′16″E</div>
-      </div>
     </section>
   );
 };
@@ -148,29 +145,29 @@ const StatsStrip = () => {
   const inView = useInView(ref);
   return (
     <section ref={ref} className="bg-white border-y border-mandik-rule">
-      <div className="max-w-[1320px] mx-auto px-10 py-16 grid grid-cols-4 gap-px bg-mandik-rule">
-        <div className="bg-white p-8"><Stat value={33} suffix="+" label="Let na trhu" sub="Od založení 1990" inView={inView} /></div>
-        <div className="bg-white p-8"><Stat value={32} suffix="" label="Zemí dodávek" sub="Z Hostomic do celé Evropy" inView={inView} /></div>
-        <div className="bg-white p-8"><Stat value={372} suffix="" label="Zaměstnanců" sub="Výroba · vývoj · servis" inView={inView} /></div>
-        <div className="bg-white p-8"><Stat value={48700} suffix="+" label="Dokončených projektů" sub="Včetně 14 jaderných elektráren" inView={inView} /></div>
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 lg:py-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-mandik-rule">
+        <div className="bg-white p-5 sm:p-6 lg:p-8"><Stat value={33} suffix="+" label="Let na trhu" sub="Od založení 1990" inView={inView} /></div>
+        <div className="bg-white p-5 sm:p-6 lg:p-8"><Stat value={32} suffix="" label="Zemí dodávek" sub="Z Hostomic do celé Evropy" inView={inView} /></div>
+        <div className="bg-white p-5 sm:p-6 lg:p-8"><Stat value={372} suffix="" label="Zaměstnanců" sub="Výroba · vývoj · servis" inView={inView} /></div>
+        <div className="bg-white p-5 sm:p-6 lg:p-8"><Stat value={48700} suffix="+" label="Dokončených projektů" sub="Včetně 14 jaderných elektráren" inView={inView} /></div>
       </div>
     </section>
   );
 };
 
 const CategoryGrid = ({ onNav }) => (
-  <section className="bg-mandik-paper-soft">
-    <div className="max-w-[1320px] mx-auto px-10 py-24">
-      <div className="grid grid-cols-12 gap-10 items-end mb-12">
-        <div className="col-span-8">
+  <section id="vyrobky" className="bg-mandik-paper-soft scroll-mt-24">
+    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-10 lg:mb-12">
+        <div className="lg:col-span-8">
           <SectionLabel>Čtyři výrobní oblasti</SectionLabel>
           <SectionTitle>Od ⌀100 mm do 100&nbsp;000 m³/h.<br/>Vlastní vývoj. Hostomická výroba.</SectionTitle>
         </div>
-        <div className="col-span-4 text-mandik-steel-80 text-sm">
+        <div className="lg:col-span-4 text-mandik-steel-80 text-sm">
           „Komplexní portfolio výrobků pro větrání, klimatizaci, vytápění a požární bezpečnost“
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-px bg-mandik-rule">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-mandik-rule">
         {HOMEPAGE_TILES.map((t) => (
           <a
             key={t.code}
@@ -191,10 +188,9 @@ const CategoryGrid = ({ onNav }) => (
               <span className="block h-1 w-8" style={{ background: t.color }} />
               <span className="h-label text-[14px]" style={{ color: t.color }}>{t.code}</span>
             </div>
-            <div className="h-display text-[18px] leading-tight whitespace-nowrap">{t.title}</div>
+            <div className="h-display text-[18px] leading-tight">{t.title}</div>
             <div className="text-sm text-mandik-steel-80 mt-2">{t.sub}</div>
-            <div className="mt-6 pt-4 border-t border-mandik-rule mono text-[11px] text-mandik-steel-70">{t.spec}</div>
-            <div className="mt-5 h-label text-[11px] text-mandik-steel transition-colors group-hover:text-[var(--tile-color)]">Otevřít →</div>
+            <div className="mt-6 pt-4 border-t border-mandik-rule h-label text-[11px] text-mandik-steel transition-colors group-hover:text-[var(--tile-color)]">Otevřít →</div>
           </a>
         ))}
       </div>
@@ -208,33 +204,33 @@ const RefMapPreview = ({ onNav }) => {
   const [selected, setSelected] = React.useState(PINS[3]);
   const accentColor = selected.special ? "#ffd700" : (AREA_COLOR[selected.area] || "#26d07c");
   return (
-    <section ref={ref} className="bg-mandik-ink text-white">
-      <div className="max-w-[1320px] mx-auto px-10 py-24">
-        <div className="grid grid-cols-12 gap-10 items-end mb-10">
-          <div className="col-span-7">
+    <section ref={ref} className="bg-mandik-paper-soft text-mandik-ink">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
+          <div className="lg:col-span-7">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-2 h-2 bg-accent" />
               <span className="h-label text-xs text-accent">Reference</span>
             </div>
-            <h2 className="h-display text-[44px] leading-[1.05]">Naše komponenty<br/>v 1 280 budovách napříč Evropou.</h2>
+            <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-mandik-ink">Naše komponenty<br/>v 1 280 budovách napříč Evropou.</h2>
           </div>
-          <div className="col-span-5 text-white/65 text-sm">
+          <div className="lg:col-span-5 text-mandik-steel-80 text-sm">
             „Naše výrobky a&nbsp;řešení jsou součástí tisíců projektů po celém světě – od průmyslových hal přes nemocnice a&nbsp;datová centra až po administrativní budovy.“
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-px bg-white/10 hairline">
-          <div className="col-span-8 bg-mandik-ink">
-            <EuropeMap revealed={inView} selectedId={selected?.id} onSelect={setSelected} height={560} variant="dark" />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-mandik-rule hairline">
+          <div className="lg:col-span-8 bg-mandik-paper-soft">
+            <EuropeMap revealed={inView} selectedId={selected?.id} onSelect={setSelected} height={560} variant="light" />
           </div>
-          <div className="col-span-4 bg-mandik-steel p-7 flex flex-col">
+          <div className="lg:col-span-4 bg-white p-6 lg:p-7 flex flex-col">
             <div className="flex items-center justify-between mb-4">
-              <div className="h-label text-[11px] text-white/55">Vybraná reference</div>
-              <div className="mono text-[11px] text-white/55">#{String(selected.id).padStart(3, "0")} / 1 280</div>
+              <div className="h-label text-[11px] text-mandik-steel-70">Vybraná reference</div>
+              <div className="mono text-[11px] text-mandik-steel-70">#{String(selected.id).padStart(3, "0")} / 1 280</div>
             </div>
 
-            <div className="h-display text-[28px] leading-tight">{selected.project}</div>
-            <div className="mt-2 flex items-center gap-2 mono text-[12px] text-white/70">
+            <div className="h-display text-[28px] leading-tight text-mandik-ink">{selected.project}</div>
+            <div className="mt-2 flex items-center gap-2 mono text-[12px] text-mandik-steel-80">
               <span>{selected.city}, {selected.country}</span>
               <span className="opacity-50">·</span>
               <span>{selected.year}</span>
@@ -242,41 +238,40 @@ const RefMapPreview = ({ onNav }) => {
               <span className="tabular-nums">{selected.lat.toFixed(2)}° {selected.lat >= 0 ? "N" : "S"}, {selected.lon.toFixed(2)}° {selected.lon >= 0 ? "E" : "W"}</span>
             </div>
 
-            <div className="mt-7 grid grid-cols-2 gap-px bg-white/10">
-              <div className="bg-mandik-steel p-4">
-                <div className="mono text-[10px] text-white/55 uppercase tracking-wider">Dodáno</div>
-                <div className="h-display text-[28px] mt-1 tabular-nums">{selected.units}</div>
-                <div className="text-[11px] text-white/65">jednotek</div>
+            <div className="mt-7 grid grid-cols-2 gap-px bg-mandik-rule">
+              <div className="bg-white p-4">
+                <div className="mono text-[10px] text-mandik-steel-70 uppercase tracking-wider">Dodáno</div>
+                <div className="h-display text-[28px] mt-1 tabular-nums text-mandik-ink">{selected.units}</div>
+                <div className="text-[11px] text-mandik-steel-80">jednotek</div>
               </div>
-              <div className="bg-mandik-steel p-4">
-                <div className="mono text-[10px] text-white/55 uppercase tracking-wider">Sektor</div>
-                <div className="h-display text-[18px] mt-1 leading-tight">{selected.sector}</div>
+              <div className="bg-white p-4">
+                <div className="mono text-[10px] text-mandik-steel-70 uppercase tracking-wider">Sektor</div>
+                <div className="h-display text-[18px] mt-1 leading-tight text-mandik-ink">{selected.sector}</div>
                 <div className="h-1 w-6 mt-2" style={{ background: accentColor }} />
               </div>
-              <div className="bg-mandik-steel p-4 col-span-2">
-                <div className="mono text-[10px] text-white/55 uppercase tracking-wider">Výrobní oblast</div>
+              <div className="bg-white p-4 col-span-2">
+                <div className="mono text-[10px] text-mandik-steel-70 uppercase tracking-wider">Výrobní oblast</div>
                 <div className="flex items-center gap-3 mt-2">
                   <span className="block h-2 w-8" style={{ background: accentColor }} />
-                  <span className="h-display text-[18px] leading-tight">{selected.area}</span>
+                  <span className="h-display text-[18px] leading-tight text-mandik-ink">{selected.area}</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 mono text-[11px] text-white/60 leading-relaxed">
+            <div className="mt-6 mono text-[11px] text-mandik-steel-80 leading-relaxed">
               {selected.special
                 ? "Speciální zakázka s certifikací KTA 1401 / 10CFR APP10. Detail dostupný na vyžádání."
                 : "Standardní dodávka — kompletní balíček dokumentace v centru ke stažení."}
             </div>
 
-            <div className="mt-auto pt-7 flex flex-col gap-2">
+            <div className="mt-auto pt-7">
               <Button variant="primary" onClick={(e) => { e.preventDefault(); onNav("references"); }}>Otevřít všechny reference</Button>
-              <Button variant="invertGhost" href="#">Stáhnout případovou studii (PDF)</Button>
             </div>
           </div>
         </div>
 
         <div className="mt-6 flex items-center gap-2 flex-wrap">
-          <span className="h-label text-[10px] text-white/45 mr-2">Rychlý výběr:</span>
+          <span className="h-label text-[10px] text-mandik-steel-70 mr-2">Rychlý výběr:</span>
           {[10, 7, 33, 35, 18, 12, 34, 13, 9].map((id) => {
             const p = PINS.find((x) => x.id === id);
             if (!p) return null;
@@ -286,7 +281,7 @@ const RefMapPreview = ({ onNav }) => {
               <button
                 key={id}
                 onClick={() => setSelected(p)}
-                className={`px-3 py-1.5 hairline flex items-center gap-2 mono text-[11px] transition-colors ${isSel ? "bg-white text-mandik-ink" : "bg-mandik-ink text-white/70 hover:text-white"}`}
+                className={`px-3 py-1.5 hairline flex items-center gap-2 mono text-[11px] transition-colors ${isSel ? "bg-mandik-ink text-white" : "bg-white text-mandik-steel-80 hover:text-mandik-ink"}`}
               >
                 <span className="block w-1.5 h-1.5" style={{ background: c }} />
                 {p.city} — {p.project.split("—")[0].trim()}
@@ -318,21 +313,27 @@ const CERT_LOGOS = [
 
 const Certifications = () => (
   <section className="bg-white border-t border-mandik-rule">
-    <div className="max-w-[1320px] mx-auto px-10 py-20">
-      <div className="grid grid-cols-12 gap-10 items-end mb-10">
-        <div className="col-span-7">
+    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-14 lg:py-20">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
+        <div className="lg:col-span-7">
           <SectionLabel>Certifikace & partneři</SectionLabel>
           <SectionTitle>Standardy, které <br />vyžadují naši zákazníci.</SectionTitle>
         </div>
-        <div className="col-span-5 text-sm text-mandik-steel-80">
+        <div className="lg:col-span-5 text-sm text-mandik-steel-80">
           Pravidelné audity, harmonizované evropské normy, oborové certifikace pro jadernou techniku a hygienické provedení. Klikem na logo otevřete domovskou stránku partnera.
         </div>
       </div>
 
-      {/* Wrapper s clip-path "ořezává" 1-2px sub-pixel přesah bg-mandik-rule na pravé hraně.
-          Vnitřní mezery (gap-px) zůstávají jako separátory mezi buňkami. */}
+      {/* Mřížka: bg-mandik-rule + gap-px tvoří separátory mezi buňkami.
+          14 log se nedělí beze zbytku všemi breakpointy (3 / 4 / 5 / 7 col),
+          proto přidáme dva white "fillery", které se zobrazí jen tam, kde je potřeba:
+            - mobile (3 col): 14 + filler A    = 15 ✓ (5 × 3)
+            - sm     (4 col): 14 + A + B       = 16 ✓ (4 × 4)
+            - md     (5 col): 14 + A           = 15 ✓ (3 × 5)
+            - lg     (7 col): 14 cells         = 14 ✓ (2 × 7)
+          Tím nikde nevznikne šedé okno na konci posledního řádku. */}
       <div className="overflow-hidden">
-       <div className="grid grid-cols-7 gap-px bg-mandik-rule">
+       <div className="group/grid grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-px bg-mandik-rule">
         {CERT_LOGOS.map((c) => (
           <a
             key={c.alt}
@@ -340,14 +341,14 @@ const Certifications = () => (
             target="_blank"
             rel="noopener noreferrer"
             title={c.alt}
-            className="group bg-white aspect-[3/2] flex flex-col items-center justify-center p-4"
+            className="group/cell bg-white h-[160px] flex flex-col items-center justify-center p-4"
           >
             <div className="flex-1 w-full flex items-center justify-center">
               <img
                 src={c.src}
                 alt={c.alt}
                 loading="lazy"
-                className="max-h-[56px] max-w-full object-contain transition-[filter,opacity] duration-150 grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100"
+                className="max-h-[56px] max-w-full object-contain transition-[filter,opacity] duration-150 group-hover/grid:grayscale group-hover/grid:opacity-60 group-hover/cell:!grayscale-0 group-hover/cell:!opacity-100"
               />
             </div>
             <div className="mt-3 mono text-[10px] uppercase tracking-wider text-mandik-steel-70 text-center leading-tight">
@@ -355,6 +356,10 @@ const Certifications = () => (
             </div>
           </a>
         ))}
+        {/* Filler A — mobile + sm + md (hidden lg) */}
+        <div aria-hidden="true" className="bg-white h-[160px] block lg:hidden" />
+        {/* Filler B — jen sm */}
+        <div aria-hidden="true" className="bg-white h-[160px] hidden sm:block md:hidden" />
        </div>
       </div>
     </div>
@@ -363,17 +368,17 @@ const Certifications = () => (
 
 const News = () => (
   <section className="bg-mandik-paper-soft">
-    <div className="max-w-[1320px] mx-auto px-10 py-24">
-      <div className="grid grid-cols-12 gap-10 items-end mb-10">
-        <div className="col-span-7">
+    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
+        <div className="lg:col-span-7">
           <SectionLabel>Novinky</SectionLabel>
           <SectionTitle>Vývoj výrobků,<br/>dokončené dodávky, akce.</SectionTitle>
         </div>
-        <div className="col-span-5 flex items-end justify-end">
+        <div className="lg:col-span-5 flex items-end lg:justify-end">
           <Button variant="ghost" href="#">Otevřít archiv (216 článků)</Button>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-px bg-mandik-rule hairline">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-mandik-rule hairline">
         {NEWS.map((n) => (
           <a key={n.title} href="#" className="tile relative bg-white">
             <span className="tile-bar" style={{ background: "#26d07c" }} />
@@ -394,22 +399,21 @@ const News = () => (
 );
 
 const ManselBlock = () => (
-  <section className="bg-mandik-paper-soft border-t border-mandik-rule">
-    <div className="max-w-[1320px] mx-auto px-10 py-24 grid grid-cols-12 gap-10 items-center">
-      <div className="col-span-6">
+  <section className="bg-white border-t border-mandik-rule">
+    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      <div className="lg:col-span-6">
         <SectionLabel color="#74d1ea">Selekční program · MANSEL</SectionLabel>
-        <h2 className="h-display text-[44px] leading-[1.05] text-mandik-ink">
+        <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-mandik-ink">
           Navrhněte AHC komponenty<br/>online — výběr, výpočet, výkres.
         </h2>
         <p className="mt-5 text-mandik-steel-80 max-w-md text-[15px] leading-relaxed">
           MANSEL je oficiální selekční program MANDÍK. Vyberete typ klapky, zadáte rozměry a&nbsp;průtok — dostanete kompletní dokumentaci včetně DWG / IFC modelu a&nbsp;protokolu o&nbsp;tlakové ztrátě.
         </p>
         <div className="mt-7 flex gap-3">
-          <Button variant="primary" href="https://mansel.online">Otevřít MANSEL</Button>
-          <Button variant="ghost" href="#">Uživatelská příručka</Button>
+          <Button variant="vzt" href="https://mansel.online">Otevřít MANSEL</Button>
         </div>
       </div>
-      <div className="col-span-6 relative">
+      <div className="lg:col-span-6 relative">
         <div className="relative bg-white hairline" style={{ aspectRatio: "4 / 3" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -426,54 +430,20 @@ const ManselBlock = () => (
   </section>
 );
 
-const AhumanBlock = () => (
-  <section className="bg-white border-t border-mandik-rule">
-    <div className="max-w-[1320px] mx-auto px-10 py-24 grid grid-cols-12 gap-10 items-center">
-      <div className="col-span-6">
-        <SectionLabel color="#26d07c">Konfigurátor · AHUman</SectionLabel>
-        <h2 className="h-display text-[44px] leading-[1.05] text-mandik-ink">
-          Návrh AHU jednotky<br/>od&nbsp;průtoku po&nbsp;cenovou nabídku.
-        </h2>
-        <p className="mt-5 text-mandik-steel-80 max-w-md text-[15px] leading-relaxed">
-          AHUman je online konfigurátor sestavných vzduchotechnických jednotek MANDÍK. Zadáte průtok, externí tlak a&nbsp;hygienické požadavky — dostanete schéma sestavy, akustický protokol a&nbsp;cenovou indikaci.
-        </p>
-        <div className="mt-7 flex gap-3">
-          <Button variant="primary" href="https://ahuman.mandik.cloud/">Otevřít AHUman</Button>
-          <Button variant="ghost" href="#">Uživatelská příručka</Button>
-        </div>
-      </div>
-      <div className="col-span-6 relative">
-        <div className="relative bg-mandik-ink hairline" style={{ aspectRatio: "4 / 3" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/ahuman-preview.png"
-            alt="AHUman — náhled konfigurátoru"
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => { e.currentTarget.style.display = "none"; }}
-          />
-        </div>
-        <div className="absolute top-4 left-4 bg-accent text-mandik-ink h-label text-[10px] px-2 py-1 pointer-events-none">AHUMAN</div>
-        <div className="absolute bottom-4 right-4 mono text-[10px] text-white/80 bg-mandik-ink/70 px-2 py-1 pointer-events-none">ahuman.mandik.cloud</div>
-      </div>
-    </div>
-  </section>
-);
-
 const Showroom = ({ onNav }) => (
   <section className="bg-mandik-steel-90 text-white relative overflow-hidden">
-    <div className="max-w-[1320px] mx-auto px-10 py-24 grid grid-cols-12 gap-10 items-center">
-      <div className="col-span-6">
+    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      <div className="lg:col-span-6">
         <SectionLabel color="#26d07c"><span className="text-accent">Nově · virtuální showroom</span></SectionLabel>
-        <h2 className="h-display text-[44px] leading-[1.05] text-white">Prohlédněte si naše<br/>výrobky a&nbsp;řešení zblízka odkudkoliv.</h2>
+        <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-white">Prohlédněte si naše<br/>výrobky a&nbsp;řešení zblízka odkudkoliv.</h2>
         <p className="mt-5 text-white/75 max-w-md text-[15px]">
           Projděte si náš showroom plný výrobků Mandík ve 360°, aniž byste museli cestovat do Hostomic. Prohlídka je dostupná kdykoliv a&nbsp;snadno ji sdílíte s&nbsp;kolegy.
         </p>
         <div className="mt-7 flex gap-3">
           <Button variant="primary" href="https://my.matterport.com/show/?m=MW8NFZmbZoo">Otevřít showroom</Button>
-          <Button variant="invertGhost" href="#">Domluvit fyzickou prohlídku</Button>
         </div>
       </div>
-      <div className="col-span-6 relative">
+      <div className="lg:col-span-6 relative">
         <div className="relative bg-mandik-ink hairline" style={{ aspectRatio: "4 / 3" }}>
           <iframe
             src="https://my.matterport.com/show/?m=MW8NFZmbZoo"
@@ -501,7 +471,6 @@ export const Homepage = ({ onNav, tweaks = { heroMedia: "video", parallax: true 
     <Reveal><Certifications /></Reveal>
     <Reveal><RefMapPreview onNav={onNav} /></Reveal>
     <Reveal><ManselBlock /></Reveal>
-    <Reveal><AhumanBlock /></Reveal>
     <Reveal><News /></Reveal>
     <Reveal><Showroom onNav={onNav} /></Reveal>
   </div>

@@ -75,6 +75,7 @@ export const Button = ({ children, variant = "primary", href = "#", icon, onClic
   const styles = {
     primary: "bg-accent text-mandik-ink hover:bg-[#1ec170]",
     secondary: "bg-mandik-steel text-white hover:bg-[#3e4d61]",
+    vzt: "bg-cat-vzt text-mandik-ink hover:bg-[#5fc0d8]",
     ghost: "bg-transparent text-mandik-ink ring-1 ring-mandik-rule hover:ring-mandik-steel hover:text-mandik-steel",
     invertGhost: "bg-transparent text-white ring-1 ring-white/40 hover:ring-white",
   };
