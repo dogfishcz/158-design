@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SectionLabel, SectionTitle, Button, Stat, useInView, Reveal } from "./Primitives";
+import { SectionTitle, Button, useInView, Reveal } from "./Primitives";
 import { EuropeMap, PINS, AREA_COLOR } from "./EuropeMap";
 
 const HERO_VIDEO = "/assets/hero.webm";
@@ -26,12 +26,12 @@ const HOMEPAGE_TILES = [
     color: "#26d07c",
     code: "AHU",
     title: "Vzduchotechnické jednotky",
-    sub: "Sestavné vzduchotechnické jednotky MANDÍK, RLT certifikace.",
+    sub: "Sestavné a kompaktní vzduchotechnické jednotky, měření a regulace",
     spec: "do 100 000 m³/h · VDI 6022",
     qty: "9 řad · OEM",
     photo: "VZDUCHOTECHNICKÉ JEDNOTKY",
     img: "/assets/division-ahu.jpg",
-    href: "/vyroba/klimatizacni-jednotky",
+    href: "/vyroba/vzduchotechnicke-jednotky",
   },
   {
     color: "#f2a900",
@@ -97,46 +97,59 @@ const Hero = ({ onNav, mediaStyle = "video", parallax = true }) => {
       <div className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col justify-end pb-12 sm:pb-20 text-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-3 mb-5 lg:mb-7 flex-wrap">
-              <span className="block h-[2px] w-10 bg-accent" />
-              <span className="h-label text-[11px] text-white/80">Výrobce — od 1990</span>
-              <span className="block h-[2px] w-10 bg-accent" />
-              <span className="h-label text-[11px] text-white/80">Hostomice · Česká republika</span>
-            </div>
             <h1 className="h-display text-[36px] sm:text-[48px] lg:text-[64px] leading-[1.05] lg:leading-[1.0] text-white">
               Jsme největší český výrobce komponent pro větrání a&nbsp;požární bezpečnost budov
             </h1>
             <p className="mt-5 lg:mt-7 text-white/80 text-[15px] sm:text-[17px] lg:text-[18px] max-w-xl leading-relaxed">
-              Česká rodinná firma. Klapky, AHU jednotky a&nbsp;průmyslové topné systémy pro výškové budovy, jaderné elektrárny a&nbsp;technologické kampusy.
+              Od vlastního vývoje a&nbsp;výroby až po globální obchod. Propojujeme špičkové technologie s&nbsp;náročnými požadavky kritické infrastruktury, high-tech budov a&nbsp;jaderné energetiky.
             </p>
             <div className="mt-6 lg:mt-9 flex items-center gap-3 flex-wrap">
-              <Button variant="primary" href="#vyrobky">Prohlédnout výrobky</Button>
+              <Button variant="primary" href="#vyrobky" onClick={(e) => { const el = document.getElementById("vyrobky"); if (el) { e.preventDefault(); el.scrollIntoView({ behavior: "smooth", block: "start" }); } }}>Prohlédnout výrobky</Button>
               <Button variant="invertGhost" href="/o-nas">Naše společnost</Button>
-            </div>
-          </div>
-          <div className="hidden lg:block lg:col-span-5">
-            <div className="hairline bg-mandik-steel/40 backdrop-blur p-6 text-white">
-              <div className="h-label text-[11px] text-white/65 mb-4">Aktuální zakázky</div>
-              <ul className="space-y-3 text-[13px]">
-                <li className="flex justify-between border-b border-white/15 pb-2">
-                  <span>Elbtower, Hamburk — AHU 9.6</span>
-                  <span className="mono text-white/65">Q3 / 2026</span>
-                </li>
-                <li className="flex justify-between border-b border-white/15 pb-2">
-                  <span>Paks II — speciální aplikace</span>
-                  <span className="mono text-white/65">2026—2031</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Karolinska, Stockholm — PKI-EI 530 ks</span>
-                  <span className="mono text-white/65">Q2 / 2026</span>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
       </div>
 
     </section>
+  );
+};
+
+const HOMEPAGE_STATS = [
+  { value: 33, suffix: "+", label: "Let na trhu" },
+  { value: 32, suffix: "", label: "Zemí dodávek" },
+  { value: 372, suffix: "", label: "Zaměstnanců" },
+  { value: 60, suffix: " mil.", label: "EUR obrat" },
+];
+
+// Jedna statistika = obdélník v šedém pruhu. Hover: zesvětlení pozadí,
+// zelená linka vyjede zespodu, číslo se zvětší, popisek se projasní.
+const StatBox = ({ value, suffix, label, inView }) => {
+  const [n, setN] = React.useState(0);
+  React.useEffect(() => {
+    if (!inView) return;
+    const start = performance.now();
+    const dur = 1600;
+    let raf;
+    const tick = (t) => {
+      const p = Math.min(1, (t - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 4);
+      setN(Math.round(value * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, value]);
+  return (
+    <div className="group relative bg-mandik-steel flex flex-col items-center justify-center text-center px-6 py-9 overflow-hidden transition-colors duration-300 hover:bg-mandik-steel-90">
+      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] w-0 bg-accent transition-all duration-300 ease-out group-hover:w-1/2" />
+      <div className="h-display text-[40px] lg:text-[52px] leading-none text-white tabular-nums transition-transform duration-300 group-hover:scale-110">
+        {n.toLocaleString("cs-CZ")}<span className="text-accent">{suffix}</span>
+      </div>
+      <div className="mt-3 h-label text-[11px] text-white/55 transition-colors duration-300 group-hover:text-white/85">
+        {label}
+      </div>
+    </div>
   );
 };
 
@@ -144,27 +157,28 @@ const StatsStrip = () => {
   const ref = React.useRef(null);
   const inView = useInView(ref);
   return (
-    <section ref={ref} className="bg-white border-y border-mandik-rule">
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-12 lg:py-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-mandik-rule">
-        <div className="bg-white p-5 sm:p-6 lg:p-8"><Stat value={33} suffix="+" label="Let na trhu" sub="Od založení 1990" inView={inView} /></div>
-        <div className="bg-white p-5 sm:p-6 lg:p-8"><Stat value={32} suffix="" label="Zemí dodávek" sub="Z Hostomic do celé Evropy" inView={inView} /></div>
-        <div className="bg-white p-5 sm:p-6 lg:p-8"><Stat value={372} suffix="" label="Zaměstnanců" sub="Výroba · vývoj · servis" inView={inView} /></div>
-        <div className="bg-white p-5 sm:p-6 lg:p-8"><Stat value={48700} suffix="+" label="Dokončených projektů" sub="Včetně 14 jaderných elektráren" inView={inView} /></div>
+    <section ref={ref} className="bg-mandik-steel border-b-4 border-accent">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+          {HOMEPAGE_STATS.map((s) => (
+            <StatBox key={s.label} {...s} inView={inView} />
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
 const CategoryGrid = ({ onNav }) => (
-  <section id="vyrobky" className="bg-mandik-paper-soft scroll-mt-24">
+  <section id="vyrobky" className="bg-mandik-paper-soft scroll-mt-[120px]">
     <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-10 lg:mb-12">
         <div className="lg:col-span-8">
-          <SectionLabel>Čtyři výrobní oblasti</SectionLabel>
-          <SectionTitle>Od ⌀100 mm do 100&nbsp;000 m³/h.<br/>Vlastní vývoj. Hostomická výroba.</SectionTitle>
+          <SectionTitle>Výrobky</SectionTitle>
+          <div className="mt-4 h-1 w-16 bg-accent" />
         </div>
         <div className="lg:col-span-4 text-mandik-steel-80 text-sm">
-          „Komplexní portfolio výrobků pro větrání, klimatizaci, vytápění a požární bezpečnost“
+          Komplexní portfolio výrobků pro větrání, klimatizaci, vytápění a požární bezpečnost
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-mandik-rule">
@@ -184,12 +198,9 @@ const CategoryGrid = ({ onNav }) => (
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>
-            <div className="flex items-center gap-3 mb-3">
-              <span className="block h-1 w-8" style={{ background: t.color }} />
-              <span className="h-label text-[14px]" style={{ color: t.color }}>{t.code}</span>
-            </div>
             <div className="h-display text-[18px] leading-tight">{t.title}</div>
-            <div className="text-sm text-mandik-steel-80 mt-2">{t.sub}</div>
+            <span className="block h-1 w-8 mt-3" style={{ background: t.color }} />
+            <div className="text-sm text-mandik-steel-80 mt-3">{t.sub}</div>
             <div className="mt-6 pt-4 border-t border-mandik-rule h-label text-[11px] text-mandik-steel transition-colors group-hover:text-[var(--tile-color)]">Otevřít →</div>
           </a>
         ))}
@@ -208,14 +219,11 @@ const RefMapPreview = ({ onNav }) => {
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-2 h-2 bg-accent" />
-              <span className="h-label text-xs text-accent">Reference</span>
-            </div>
-            <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-mandik-ink">Naše komponenty<br/>v 1 280 budovách napříč Evropou.</h2>
+            <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-mandik-ink">Reference</h2>
+            <div className="mt-4 h-1 w-16 bg-accent" />
           </div>
           <div className="lg:col-span-5 text-mandik-steel-80 text-sm">
-            „Naše výrobky a&nbsp;řešení jsou součástí tisíců projektů po celém světě – od průmyslových hal přes nemocnice a&nbsp;datová centra až po administrativní budovy.“
+            Naše výrobky a&nbsp;řešení jsou součástí tisíců projektů po celém světě. Od průmyslových hal přes nemocnice a&nbsp;datová centra až po administrativní budovy.
           </div>
         </div>
 
@@ -265,7 +273,7 @@ const RefMapPreview = ({ onNav }) => {
             </div>
 
             <div className="mt-auto pt-7">
-              <Button variant="primary" onClick={(e) => { e.preventDefault(); onNav("references"); }}>Otevřít všechny reference</Button>
+              <Button variant="primary" href="/reference">Otevřít všechny reference</Button>
             </div>
           </div>
         </div>
@@ -316,8 +324,8 @@ const Certifications = () => (
     <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-14 lg:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
         <div className="lg:col-span-7">
-          <SectionLabel>Certifikace & partneři</SectionLabel>
-          <SectionTitle>Standardy, které <br />vyžadují naši zákazníci.</SectionTitle>
+          <SectionTitle>Certifikace & partneři</SectionTitle>
+          <div className="mt-4 h-1 w-16 bg-accent" />
         </div>
         <div className="lg:col-span-5 text-sm text-mandik-steel-80">
           Pravidelné audity, harmonizované evropské normy, oborové certifikace pro jadernou techniku a hygienické provedení. Klikem na logo otevřete domovskou stránku partnera.
@@ -367,12 +375,12 @@ const Certifications = () => (
 );
 
 const News = () => (
-  <section className="bg-mandik-paper-soft">
+  <section className="bg-white border-t border-mandik-rule">
     <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
         <div className="lg:col-span-7">
-          <SectionLabel>Novinky</SectionLabel>
-          <SectionTitle>Vývoj výrobků,<br/>dokončené dodávky, akce.</SectionTitle>
+          <SectionTitle>Novinky</SectionTitle>
+          <div className="mt-4 h-1 w-16 bg-accent" />
         </div>
         <div className="lg:col-span-5 flex items-end lg:justify-end">
           <Button variant="ghost" href="#">Otevřít archiv (216 článků)</Button>
@@ -398,45 +406,13 @@ const News = () => (
   </section>
 );
 
-const ManselBlock = () => (
-  <section className="bg-white border-t border-mandik-rule">
-    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-      <div className="lg:col-span-6">
-        <SectionLabel color="#74d1ea">Selekční program · MANSEL</SectionLabel>
-        <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-mandik-ink">
-          Navrhněte AHC komponenty<br/>online — výběr, výpočet, výkres.
-        </h2>
-        <p className="mt-5 text-mandik-steel-80 max-w-md text-[15px] leading-relaxed">
-          MANSEL je oficiální selekční program MANDÍK. Vyberete typ klapky, zadáte rozměry a&nbsp;průtok — dostanete kompletní dokumentaci včetně DWG / IFC modelu a&nbsp;protokolu o&nbsp;tlakové ztrátě.
-        </p>
-        <div className="mt-7 flex gap-3">
-          <Button variant="vzt" href="https://mansel.online">Otevřít MANSEL</Button>
-        </div>
-      </div>
-      <div className="lg:col-span-6 relative">
-        <div className="relative bg-white hairline" style={{ aspectRatio: "4 / 3" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/mansel-preview.png"
-            alt="MANSEL — náhled selekčního programu"
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => { e.currentTarget.style.display = "none"; }}
-          />
-        </div>
-        <div className="absolute top-4 left-4 bg-cat-vzt text-mandik-ink h-label text-[10px] px-2 py-1 pointer-events-none">MANSEL</div>
-        <div className="absolute bottom-4 right-4 mono text-[10px] text-mandik-steel-70 bg-white/90 px-2 py-1 pointer-events-none">mansel.online</div>
-      </div>
-    </div>
-  </section>
-);
-
 const Showroom = ({ onNav }) => (
-  <section className="bg-mandik-steel-90 text-white relative overflow-hidden">
+  <section id="showroom" className="bg-mandik-paper-soft text-mandik-ink relative overflow-hidden scroll-mt-[120px]">
     <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
       <div className="lg:col-span-6">
-        <SectionLabel color="#26d07c"><span className="text-accent">Nově · virtuální showroom</span></SectionLabel>
-        <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-white">Prohlédněte si naše<br/>výrobky a&nbsp;řešení zblízka odkudkoliv.</h2>
-        <p className="mt-5 text-white/75 max-w-md text-[15px]">
+        <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-mandik-ink">Virtuální showroom</h2>
+        <div className="mt-4 h-1 w-16 bg-accent" />
+        <p className="mt-5 text-mandik-steel-80 max-w-md text-[15px]">
           Projděte si náš showroom plný výrobků Mandík ve 360°, aniž byste museli cestovat do Hostomic. Prohlídka je dostupná kdykoliv a&nbsp;snadno ji sdílíte s&nbsp;kolegy.
         </p>
         <div className="mt-7 flex gap-3">
@@ -470,7 +446,6 @@ export const Homepage = ({ onNav, tweaks = { heroMedia: "video", parallax: true 
     <Reveal><CategoryGrid onNav={onNav} /></Reveal>
     <Reveal><Certifications /></Reveal>
     <Reveal><RefMapPreview onNav={onNav} /></Reveal>
-    <Reveal><ManselBlock /></Reveal>
     <Reveal><News /></Reveal>
     <Reveal><Showroom onNav={onNav} /></Reveal>
   </div>

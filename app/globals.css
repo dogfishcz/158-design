@@ -18,7 +18,7 @@ body { font-family: Arial, "Helvetica Neue", sans-serif; }
 /* tile-hover bar — vertical slide in from left edge */
 .tile-bar {
   position: absolute; left: 0; top: 0; bottom: 0;
-  width: 6px; transform: scaleY(0); transform-origin: top;
+  width: 4px; transform: scaleY(0); transform-origin: top;
   transition: transform 220ms ease-out;
 }
 .tile:hover .tile-bar, .tile:focus-visible .tile-bar { transform: scaleY(1); }

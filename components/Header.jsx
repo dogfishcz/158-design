@@ -2,11 +2,12 @@
 
 import React from "react";
 import { Logo } from "./Primitives";
+import { DIVISIONS } from "@/lib/divisions";
 
 // --- Statická data pro Naše společnost (struktura z v5) ---
 const COMPANY_ITEMS = [
   { slug: "o-nas",       label: "O nás",                    href: "/o-nas",                    photo: "/assets/header-o-nas.jpg" },
-  { slug: "reference",   label: "Reference",                href: "/",                         photo: "/assets/header-reference.jpg" },
+  { slug: "reference",   label: "Reference",                href: "/reference",                photo: "/assets/header-reference.jpg" },
   { slug: "novinky",     label: "Novinky",                  href: "/",                         photo: "/assets/header-novinky.jpg" },
   { slug: "kariera",     label: "Kariéra",                  href: "/",                         photo: "/assets/header-kariera.jpg" },
   { slug: "certifikaty", label: "Certifikace a dokumenty",  href: "/certifikace-a-dokumenty",  photo: "/assets/header-certifikaty.jpg" },
@@ -23,10 +24,10 @@ const LOCALES = [
 ];
 
 const NAV_LABELS = {
-  cs: { company: "Naše společnost", products: "Výrobky", service: "Servis", downloads: "Ke stažení", contact: "Kontakt", inquiry: "Poptávka", placeholder: "Hledat výrobek, kód, dokument…", distrib: "Pro distributory" },
-  en: { company: "Our Company",     products: "Products", service: "Service", downloads: "Downloads",  contact: "Contact", inquiry: "Inquiry",  placeholder: "Search product, code, document…", distrib: "For distributors" },
-  de: { company: "Unser Unternehmen", products: "Produkte", service: "Service", downloads: "Downloads", contact: "Kontakt", inquiry: "Anfrage", placeholder: "Produkt, Code, Dokument suchen…", distrib: "Für Vertriebspartner" },
-  uk: { company: "Наша компанія",    products: "Продукти", service: "Сервіс", downloads: "Завантаження", contact: "Контакти", inquiry: "Запит", placeholder: "Шукати продукт, код, документ…", distrib: "Для дистриб’юторів" },
+  cs: { company: "Naše společnost", products: "Výrobky", service: "Servis", downloads: "Ke stažení", contact: "Kontakt", inquiry: "Poptávka", placeholder: "Hledat…", distrib: "Pro distributory" },
+  en: { company: "Our Company",     products: "Products", service: "Service", downloads: "Downloads",  contact: "Contact", inquiry: "Inquiry",  placeholder: "Search…", distrib: "For distributors" },
+  de: { company: "Unser Unternehmen", products: "Produkte", service: "Service", downloads: "Downloads", contact: "Kontakt", inquiry: "Anfrage", placeholder: "Suchen…", distrib: "Für Vertriebspartner" },
+  uk: { company: "Наша компанія",    products: "Продукти", service: "Сервіс", downloads: "Завантаження", contact: "Контакти", inquiry: "Запит", placeholder: "Пошук…", distrib: "Для дистриб’юторів" },
 };
 
 // --- LangSwitcher (z v5, beze změn) ---
@@ -59,7 +60,7 @@ const LangSwitcher = ({ value = "cs", onChange }) => {
       </button>
 
       <ul
-        className={`absolute top-full right-0 mt-2 bg-mandik-steel shadow-2xl border border-white/10 py-1 w-[7rem] z-50
+        className={`absolute top-full -left-3 mt-2 bg-mandik-steel shadow-2xl border border-white/10 py-1 w-20 z-50
           transition-all duration-200 origin-top
           ${open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}
       >
@@ -67,7 +68,7 @@ const LangSwitcher = ({ value = "cs", onChange }) => {
           <li key={code}>
             <button
               onClick={() => { onChange?.(code); setOpen(false); }}
-              className={`w-full flex items-center gap-2.5 px-4 py-2.5 h-label text-[13px] transition-colors ${
+              className={`w-full flex items-center gap-1.5 px-3 py-2.5 h-label text-[13px] transition-colors ${
                 value === code ? "text-accent" : "text-white/70 hover:text-white hover:bg-white/10"
               }`}
             >
@@ -111,10 +112,10 @@ const MegaMenu = ({
     >
       <div
         className={`overflow-hidden transition-[max-height] duration-300 ease-out ${
-          open ? "max-h-[420px] pointer-events-auto" : "max-h-0"
+          open ? "max-h-[560px] pointer-events-auto" : "max-h-0"
         }`}
       >
-        <div className="bg-mandik-steel border-t border-white/20 shadow-2xl">
+        <div className="bg-mandik-steel border border-white/20 shadow-2xl">
           <div
             className="grid grid-cols-[1fr_2px_1fr_2px_1fr] min-h-[320px]"
             onMouseMove={(e) => {
@@ -125,9 +126,11 @@ const MegaMenu = ({
           >
             {/* Sloupec 1: popis */}
             <div className="p-10 flex flex-col justify-center">
-              <p className="text-[12px] uppercase tracking-[0.2em] text-accent mb-4 font-bold h-label">
-                {label}
-              </p>
+              {label && (
+                <p className="text-[12px] uppercase tracking-[0.2em] text-accent mb-4 font-bold h-label">
+                  {label}
+                </p>
+              )}
               <p className="text-white/70 text-sm leading-relaxed">{desc}</p>
             </div>
 
@@ -145,20 +148,27 @@ const MegaMenu = ({
 
             {/* Sloupec 2: seznam */}
             <div className="py-8 px-6 flex flex-col justify-center">
-              <ul className="space-y-0.5">
+              <ul>
                 {items.map((item) => {
                   const isActive = activeSlug === item.slug;
-                  const className = `group flex items-center gap-3 w-full px-3 py-2.5 text-[11px] tracking-widest uppercase font-medium h-label transition-all duration-200 text-left ${
-                    isActive ? "text-white translate-x-2" : "text-white/60 hover:text-white hover:translate-x-2"
+                  const isSub = item.level === 1;       // odsazená podkategorie
+                  const isHeader = item.level === 0;    // hlavička divize
+                  const indent = isSub ? "pl-9 pr-3" : "px-3";
+                  const restColor = isSub ? "text-white/45" : isHeader ? "text-white/85" : "text-white/60";
+                  const className = `group flex items-center gap-3 w-full ${indent} py-2 leading-tight text-[11px] tracking-wider uppercase font-medium h-label transition-all duration-200 text-left ${
+                    isActive ? "text-white translate-x-2" : `${restColor} hover:text-white hover:translate-x-2`
                   }`;
                   const inner = (
                     <>
-                      <span className={`h-0.5 bg-accent flex-shrink-0 transition-all duration-200 ${isActive ? "w-5" : "w-0 group-hover:w-5"}`} />
+                      <span
+                        className={`h-0.5 flex-shrink-0 transition-all duration-200 ${isActive ? "w-5" : "w-0 group-hover:w-5"}`}
+                        style={{ background: item.color || "#26d07c" }}
+                      />
                       {item.label}
                     </>
                   );
                   return (
-                    <li key={item.slug}>
+                    <li key={item.slug} className={isHeader ? "mt-3 first:mt-0" : "mt-0.5"}>
                       {item.href ? (
                         <a
                           href={item.href}
@@ -253,6 +263,8 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [mobileExpanded, setMobileExpanded] = React.useState(null); // "company" | "products" | null
   const searchInputRef = React.useRef(null);
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const searchRef = React.useRef(null);
 
   const companyTimer = React.useRef(null);
   const productsTimer = React.useRef(null);
@@ -270,6 +282,19 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
 
   React.useEffect(() => {
     if (searchOpen) setTimeout(() => searchInputRef.current?.focus(), 320);
+  }, [searchOpen]);
+
+  // Zavři vyhledávání při kliknutí mimo
+  React.useEffect(() => {
+    if (!searchOpen) return;
+    const onClick = (e) => {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setSearchOpen(false);
+        setSearchQuery("");
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
   }, [searchOpen]);
 
   // Top utility row schovává při scroll > 0 (uživatel mimo hero).
@@ -323,15 +348,77 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
     closeAll();
   };
 
-  // Pro mega-menu kategorií: namapuj API odpovědi na formát očekávaný MegaMenu.
-  // Položky mají reálné `href` na /vyroba/[slug], aby fungovaly jako Next.js routy.
-  const productsItems = categories.map((c) => ({
+  // Mega-menu Výrobky: seskupení do 4 výrobních divizí.
+  //  - Vzduchotechnické komponenty (AHC) = hlavička divize + odsazené podkategorie (level 1).
+  //  - Ostatní 3 divize = jediná kategorie, vede přímo na stránku kategorie (level 0).
+  // `color` barví pomlčku položky podle barvy divize, `level` (0/1) řídí odsazení.
+  const catBySlug = Object.fromEntries(categories.map((c) => [c.slug, c]));
+  const toItem = (c, color, level) => ({
     slug: c.slug,
     label: c.name,
     href: `/vyroba/${c.slug}`,
+    color,
+    level,
     description: c.description,
     imageUrl: c.gallery?.[0]?.url || c.icons?.[0]?.url,
-  }));
+  });
+  const productsItems = [];
+  ["vzduchotechnicke-komponenty", "vzduchotechnicke-jednotky", "prumyslove-vytapeni", "specialni-aplikace"].forEach((dkey) => {
+    const d = DIVISIONS[dkey];
+    if (!d) return;
+    const memberCats = d.categorySlugs.map((s) => catBySlug[s]).filter(Boolean);
+    if (dkey === "vzduchotechnicke-komponenty") {
+      productsItems.push({
+        slug: `divize-${d.slug}`,
+        label: d.name,
+        href: `/vyroba/divize/${d.slug}`,
+        color: d.color,
+        level: 0,
+        description: d.description,
+        imageUrl: memberCats[0]?.gallery?.[0]?.url || memberCats[0]?.icons?.[0]?.url,
+      });
+      memberCats.forEach((c) => productsItems.push(toItem(c, d.color, 1)));
+    } else if (memberCats[0]) {
+      productsItems.push(toItem(memberCats[0], d.color, 0));
+    }
+  });
+
+  // Vyhledávání: ploché položky (kategorie + výrobky z API + statické stránky).
+  const searchItems = React.useMemo(() => {
+    const flat = [];
+    for (const cat of categories) {
+      flat.push({ name: cat.name, breadcrumb: "Výrobky", imageUrl: cat.gallery?.[0]?.url || cat.icons?.[0]?.url, href: `/vyroba/${cat.slug}` });
+      for (const group of cat.groups ?? []) {
+        flat.push({ name: group.name, breadcrumb: cat.name, subtitle: group.subtitle, imageUrl: group.gallery?.[0]?.url, href: `/vyroba/${cat.slug}/${group.slug}` });
+      }
+      for (const sub of cat.subcategories ?? []) {
+        for (const group of sub.groups ?? []) {
+          flat.push({ name: group.name, breadcrumb: `${cat.name} › ${sub.name}`, subtitle: group.subtitle, imageUrl: group.gallery?.[0]?.url, href: `/vyroba/${cat.slug}/${group.slug}` });
+        }
+      }
+    }
+    const pages = [
+      { name: "O nás", breadcrumb: "Společnost", href: "/o-nas" },
+      { name: "Reference", breadcrumb: "Společnost", href: "/reference" },
+      { name: "Certifikace a dokumenty", breadcrumb: "Společnost", href: "/certifikace-a-dokumenty" },
+      { name: "Servis", breadcrumb: "Podpora", href: "/servis" },
+      { name: "Kontakt", breadcrumb: "Podpora", href: "/kontakt" },
+      { name: "Ke stažení", breadcrumb: "Dokumenty", href: "/ke-stazeni" },
+    ];
+    return [...flat, ...pages];
+  }, [categories]);
+
+  const searchResults = React.useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (q.length < 2) return [];
+    return searchItems
+      .filter((i) =>
+        i.name.toLowerCase().includes(q) ||
+        i.breadcrumb.toLowerCase().includes(q) ||
+        (i.subtitle && i.subtitle.toLowerCase().includes(q))
+      )
+      .slice(0, 12);
+  }, [searchQuery, searchItems]);
 
   // Header je průhledný (header-blur) v klidovém stavu a stane se zcela neprůhledným
   // (bg-mandik-steel) když na něj uživatel najede myší nebo když je otevřené mega menu.
@@ -362,15 +449,30 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
       >
        <div className="border-b border-white/15">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 h-9 flex items-center justify-between text-white/70 text-[11px] gap-3">
-          <div className="hidden lg:flex items-center gap-3 mono">
-            <span className="h-label text-[10px] text-white/55">Dodací termíny:</span>
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5" style={{ background: "#74d1ea" }} /><span className="h-label text-[10px]" style={{ color: "#74d1ea" }}>AHC</span> 14 dní</span>
-            <span className="opacity-50">·</span>
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5" style={{ background: "#26d07c" }} /><span className="h-label text-[10px]" style={{ color: "#26d07c" }}>AHU</span> 8 týdnů</span>
-            <span className="opacity-50">·</span>
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5" style={{ background: "#f2a900" }} /><span className="h-label text-[10px]" style={{ color: "#f2a900" }}>HEAT</span> 2 týdny</span>
-            <span className="opacity-50">·</span>
-            <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5" style={{ background: "#ffd700" }} /><span className="h-label text-[10px]" style={{ color: "#ffd700" }}>SPEC</span> individual</span>
+          <div className="flex items-center gap-5">
+            <a
+              href="/#showroom"
+              onClick={(e) => { const el = document.getElementById("showroom"); if (el) { e.preventDefault(); el.scrollIntoView({ behavior: "smooth", block: "start" }); } }}
+              className="hidden md:flex items-center gap-2 hover:text-white transition-colors mono"
+            >
+              <svg className="w-3.5 h-3.5 text-accent flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z" />
+                <path d="M3 7l9 5 9-5" />
+                <path d="M12 12v10" />
+              </svg>
+              Virtuální showroom
+            </a>
+            <a
+              href="https://www.linkedin.com/company/mandik-as"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="text-accent hover:text-white transition-colors"
+            >
+              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
           </div>
           <div className="flex items-center gap-6">
             <a href="tel:+420318697111" className="flex items-center gap-2 hover:text-white mono">
@@ -465,38 +567,78 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
           </ul>
 
           {/* Pravá strana: search + lang + Poptávka */}
-          <div className="hidden md:flex items-center gap-4">
+          <div ref={searchRef} className="hidden md:flex items-center gap-4 relative">
             {/* Search */}
-            <div className={`relative h-20 overflow-hidden flex items-center transition-[width] duration-300 ease-out ${searchOpen ? "w-64" : "w-7"}`}>
-              <button
-                onClick={() => setSearchOpen(true)}
-                className={`absolute right-0 p-1.5 text-white/70 hover:text-white transition-all duration-200 ${searchOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
-                aria-label="Vyhledávání"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </button>
-              <div className={`absolute inset-0 flex items-center gap-2 transition-all duration-300 ease-out ${searchOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"}`}>
-                <svg className="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder={t.placeholder}
-                  className="flex-1 min-w-0 bg-transparent text-white text-sm placeholder:text-white/35 outline-none tracking-wide mono"
-                />
+            <div>
+              <div className={`relative h-20 overflow-hidden flex items-center transition-[width] duration-300 ease-out ${searchOpen ? "w-48" : "w-7"}`}>
                 <button
-                  onClick={() => setSearchOpen(false)}
-                  className="text-white/50 hover:text-white transition-colors flex-shrink-0"
-                  aria-label="Zavřít"
+                  onClick={() => setSearchOpen(true)}
+                  className={`absolute right-0 p-1.5 text-white/70 hover:text-white transition-all duration-200 ${searchOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+                  aria-label="Vyhledávání"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </button>
+                <div className={`absolute inset-0 flex items-center gap-2 transition-all duration-300 ease-out ${searchOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"}`}>
+                  <svg className="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder={t.placeholder}
+                    className="flex-1 min-w-0 bg-transparent text-white text-sm placeholder:text-white/35 outline-none focus:outline-none focus-visible:outline-none tracking-wide mono"
+                  />
+                  <button
+                    onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+                    className="text-white/50 hover:text-white transition-colors flex-shrink-0"
+                    aria-label="Zavřít"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
               </div>
+
+              {/* Výsledky vyhledávání */}
+              {searchOpen && searchQuery.trim().length > 1 && (
+                <div className="absolute top-full -right-6 lg:-right-10 w-[420px] max-h-[70vh] overflow-y-auto bg-mandik-steel border-t-2 border-x border-b border-t-accent border-x-white/20 border-b-white/20 shadow-2xl z-50">
+                  {searchResults.length === 0 ? (
+                    <p className="px-5 py-5 text-white/50 text-sm">Žádné výsledky pro „{searchQuery.trim()}".</p>
+                  ) : (
+                    <ul>
+                      {searchResults.map((item, i) => (
+                        <li key={item.href + i} className="border-b border-white/10 last:border-0">
+                          <a
+                            href={item.href}
+                            onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+                            className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition-colors"
+                          >
+                            <div className="w-11 h-11 flex-shrink-0 bg-white/10 overflow-hidden flex items-center justify-center">
+                              {item.imageUrl ? (
+                                /* eslint-disable-next-line @next/next/no-img-element */
+                                <img src={item.imageUrl} alt={item.name} className="w-full h-full object-contain p-1" />
+                              ) : (
+                                <svg className="w-5 h-5 text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                              )}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-white text-sm leading-snug truncate">{item.name}</div>
+                              <div className="mono text-[11px] text-white/45 mt-0.5 truncate">{item.breadcrumb}</div>
+                            </div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              )}
             </div>
 
             <LangSwitcher value={lang} onChange={onLang} />
@@ -547,7 +689,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
         {/* Mega-menu: Výrobky (z mandik.online API) */}
         <MegaMenu
           open={productsOpen && productsItems.length > 0}
-          label={t.products}
+          label={null}
           description="Vyberte výrobkovou řadu pro zobrazení jejího popisu a obrázku."
           items={productsItems}
           activeSlug={activeCategorySlug}
@@ -630,16 +772,21 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              {mobileExpanded === "products" && categories.length > 0 && (
-                <ul className="pb-4 pl-4 space-y-1">
-                  {categories.map((c) => (
-                    <li key={c.slug}>
+              {mobileExpanded === "products" && productsItems.length > 0 && (
+                <ul className="pb-4 pl-4 space-y-0.5">
+                  {productsItems.map((item) => (
+                    <li key={item.href}>
                       <a
-                        href={`/vyroba/${c.slug}`}
+                        href={item.href}
                         onClick={() => setMobileOpen(false)}
-                        className="block text-sm text-white/80 py-2 hover:text-white transition-colors"
+                        className={`flex items-center gap-2.5 py-2 transition-colors ${
+                          item.level === 1
+                            ? "pl-5 text-white/65 hover:text-white"
+                            : "text-white/90 font-semibold hover:text-white"
+                        }`}
                       >
-                        {c.name}
+                        <span className="h-0.5 w-3 flex-shrink-0" style={{ background: item.color }} />
+                        <span className="text-sm">{item.label}</span>
                       </a>
                     </li>
                   ))}

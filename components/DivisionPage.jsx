@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { SectionLabel } from "./Primitives";
 
 const CategoryCard = ({ category, division }) => {
   const img = category.gallery?.[0];
@@ -28,7 +27,7 @@ const CategoryCard = ({ category, division }) => {
         )}
       </div>
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="h-display text-[18px] text-mandik-ink group-hover:text-accent transition-colors leading-tight">
+        <h3 className="h-display text-[20px] text-mandik-ink leading-tight">
           {category.name}
         </h3>
         {category.description && (
@@ -53,18 +52,9 @@ export const DivisionPage = ({ division, categories }) => (
 
       {/* Hlavička divize */}
       <div className="mb-14">
-        <SectionLabel color={division.color}>Výrobní oblast</SectionLabel>
-        <div className="flex flex-wrap items-baseline gap-4 mb-3">
-          <h1 className="h-display text-[48px] leading-[1.05] text-mandik-ink">
-            {division.name}
-          </h1>
-          <span
-            className="h-display text-[22px] tracking-wider"
-            style={{ color: division.color }}
-          >
-            {division.code}
-          </span>
-        </div>
+        <h1 className="h-display text-[48px] leading-[1.05] text-mandik-ink mb-3">
+          {division.name}
+        </h1>
         <div className="w-16 h-1 mb-6" style={{ backgroundColor: division.color }} />
         {division.description && (
           <p className="text-mandik-steel-80 leading-relaxed max-w-3xl text-[15px]">

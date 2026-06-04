@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { SectionLabel } from "./Primitives";
 
 // Vykresluje stránku kategorie výrobků (např. /vyroba/pozarni-technika).
 // Data odpovídají odpovědi mandik.info/api/v1/ltu/portfolio (jeden item z pole).
@@ -12,7 +11,6 @@ const GroupCard = ({ group, categorySlug, accentColor }) => {
   return (
     <a
       href={`/vyroba/${categorySlug}/${group.slug}`}
-      style={{ "--division-color": accentColor }}
       className="tile group relative bg-white hairline overflow-hidden flex flex-col transition-shadow hover:shadow-lg"
     >
       <span className="tile-bar" style={{ background: accentColor }} />
@@ -31,7 +29,7 @@ const GroupCard = ({ group, categorySlug, accentColor }) => {
         )}
       </div>
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="h-display text-[18px] text-mandik-ink transition-colors leading-tight group-hover:text-[var(--division-color)]">
+        <h3 className="h-display text-[20px] text-mandik-ink leading-tight">
           {group.name}
         </h3>
         {group.subtitle && (
@@ -43,7 +41,7 @@ const GroupCard = ({ group, categorySlug, accentColor }) => {
 };
 
 const GroupGrid = ({ groups = [], categorySlug, accentColor }) => (
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
     {groups.map((g) => (
       <GroupCard key={g.public_id} group={g} categorySlug={categorySlug} accentColor={accentColor} />
     ))}
@@ -65,7 +63,6 @@ export const CategoryPage = ({ category, accentColor = "#26d07c" }) => {
 
         {/* Hlavička kategorie */}
         <div className="mb-14">
-          <SectionLabel color={accentColor}>Výrobky</SectionLabel>
           <h1 className="h-display text-[48px] leading-[1.05] text-mandik-ink mb-5">
             {category.name}
           </h1>
@@ -82,17 +79,9 @@ export const CategoryPage = ({ category, accentColor = "#26d07c" }) => {
           <div className="space-y-14">
             {category.subcategories.map((sub) => (
               <section key={sub.public_id}>
-                <div className="flex items-center gap-4 mb-6">
-                  {sub.gallery?.[0] && (
-                    <div className="relative w-12 h-12 overflow-hidden shrink-0 hairline">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={sub.gallery[0].url} alt={sub.name} className="w-full h-full object-cover" />
-                    </div>
-                  )}
-                  <div>
-                    <h2 className="h-display text-[26px] text-mandik-ink">{sub.name}</h2>
-                    <div className="mt-1 w-10 h-0.5" style={{ background: accentColor }} />
-                  </div>
+                <div className="mb-6">
+                  <h2 className="h-display text-[26px] text-mandik-ink">{sub.name}</h2>
+                  <div className="mt-1 w-10 h-1" style={{ background: accentColor }} />
                 </div>
                 <GroupGrid groups={sub.groups} categorySlug={category.slug} accentColor={accentColor} />
               </section>

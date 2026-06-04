@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { SectionLabel } from "./Primitives";
 
 // Opravy odkazů — přebijí špatné URL z API (převzato z v5).
 const LINK_OVERRIDES = [
@@ -36,12 +35,12 @@ const ResourceCard = ({ item }) => (
         <img
           src={item.image_link}
           alt={item.title}
-          className="absolute inset-0 w-full h-full object-contain p-4"
+          className="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
         />
       </div>
     )}
     <div className="p-4 flex flex-col flex-1">
-      <h3 className="h-display text-[14px] text-mandik-ink group-hover:text-accent transition-colors leading-tight">
+      <h3 className="h-display text-[16px] text-mandik-ink leading-tight">
         {item.title}
       </h3>
       {item.subtitle && (
@@ -60,35 +59,6 @@ const ResourceCard = ({ item }) => (
   </a>
 );
 
-const CertBadge = ({ item }) => (
-  <a
-    href={item.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group flex flex-col items-center gap-3 p-4 bg-white hairline hover:shadow-md transition-shadow"
-  >
-    {item.image_link ? (
-      <div className="relative w-24 h-24">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={item.image_link}
-          alt={item.title}
-          className="w-full h-full object-contain transition-[filter] duration-150 grayscale group-hover:grayscale-0"
-        />
-      </div>
-    ) : (
-      <div className="w-24 h-24 bg-mandik-paper-soft flex items-center justify-center">
-        <svg className="w-10 h-10 text-mandik-steel/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      </div>
-    )}
-    <span className="mono text-[10px] uppercase tracking-wider text-center font-medium text-mandik-steel-70 group-hover:text-mandik-ink transition-colors leading-tight">
-      {item.title}
-    </span>
-  </a>
-);
-
 export const CertificatesPage = ({ certificates: rawCertificates = [], documents = [], epd = [] }) => {
   const certificates = applyOverrides(rawCertificates);
 
@@ -104,7 +74,6 @@ export const CertificatesPage = ({ certificates: rawCertificates = [], documents
 
         {/* Hlavička */}
         <div className="mb-14">
-          <SectionLabel>Naše společnost</SectionLabel>
           <h1 className="h-display text-[48px] leading-[1.05] text-mandik-ink mb-5">
             Certifikace a dokumenty
           </h1>
@@ -141,9 +110,9 @@ export const CertificatesPage = ({ certificates: rawCertificates = [], documents
         {/* EPD sekce */}
         {epd.length > 0 && (
           <section className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-1 h-8 bg-accent inline-block" />
+            <div className="mb-6">
               <h2 className="h-display text-[26px] text-mandik-ink">EPD</h2>
+              <div className="mt-2 h-1 w-12 bg-accent" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {epd.map((item, i) => <ResourceCard key={i} item={item} />)}
@@ -154,12 +123,12 @@ export const CertificatesPage = ({ certificates: rawCertificates = [], documents
         {/* Certifikace sekce */}
         {certificates.length > 0 && (
           <section className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-1 h-8 bg-accent inline-block" />
+            <div className="mb-6">
               <h2 className="h-display text-[26px] text-mandik-ink">Certifikace</h2>
+              <div className="mt-2 h-1 w-12 bg-accent" />
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {certificates.map((item, i) => <CertBadge key={i} item={item} />)}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              {certificates.map((item, i) => <ResourceCard key={i} item={item} />)}
             </div>
           </section>
         )}
@@ -167,9 +136,9 @@ export const CertificatesPage = ({ certificates: rawCertificates = [], documents
         {/* Dokumenty sekce */}
         {documents.length > 0 && (
           <section className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-1 h-8 bg-accent inline-block" />
+            <div className="mb-6">
               <h2 className="h-display text-[26px] text-mandik-ink">Dokumenty</h2>
+              <div className="mt-2 h-1 w-12 bg-accent" />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {documents.map((item, i) => <ResourceCard key={i} item={item} />)}
