@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ImageGallery } from "./ImageGallery";
+import { getDivisionByCategorySlug } from "@/lib/divisions";
 
 // Helper: characteristic může být buď string, nebo objekt { characteristic: "..." }
 const charText = (c) => {
@@ -40,6 +41,9 @@ const DownloadLink = ({ file }) => (
 );
 
 export const GroupPage = ({ category, group, subcategoryName, accentColor = "#26d07c" }) => {
+  const division = getDivisionByCategorySlug(category.slug);
+  // Divizi ukazujeme jen u divize s více kategoriemi (AHC), jinak by vznikla duplicita.
+  const showDivision = division && division.categorySlugs.length > 1;
   // Downloads grouped by type
   const downloadsByType = {};
   for (const d of group.downloads ?? []) {
@@ -54,6 +58,12 @@ export const GroupPage = ({ category, group, subcategoryName, accentColor = "#26
         <nav className="flex flex-wrap items-center gap-2 mono text-[11px] text-mandik-steel-70 mb-10">
           <a href="/" className="hover:text-mandik-ink transition-colors">Domů</a>
           <span>/</span>
+          {showDivision && (
+            <>
+              <a href={`/vyroba/divize/${division.slug}`} className="hover:text-mandik-ink transition-colors">{division.name}</a>
+              <span>/</span>
+            </>
+          )}
           <a href={`/vyroba/${category.slug}`} className="hover:text-mandik-ink transition-colors">{category.name}</a>
           {subcategoryName && (
             <>
@@ -62,7 +72,7 @@ export const GroupPage = ({ category, group, subcategoryName, accentColor = "#26
             </>
           )}
           <span>/</span>
-          <span className="text-mandik-ink">{group.name}</span>
+          <span className="text-mandik-ink font-medium">{group.name}</span>
         </nav>
 
         {/* Galerie + info */}

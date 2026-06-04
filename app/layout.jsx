@@ -1,4 +1,5 @@
 import "./globals.css";
+import { CookieBanner } from "@/components/CookieBanner";
 
 export const metadata = {
   title: "MANDÍK a.s. — výroba AHC komponentů, AHU jednotek a průmyslových topných systémů",
@@ -22,7 +23,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="bg-white text-mandik-ink">{children}</body>
+      <body className="bg-white text-mandik-ink">
+        {children}
+        <CookieBanner />
+      </body>
     </html>
   );
 }

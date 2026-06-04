@@ -117,8 +117,8 @@ const Hero = ({ onNav, mediaStyle = "video", parallax = true }) => {
 
 const HOMEPAGE_STATS = [
   { value: 33, suffix: "+", label: "Let na trhu" },
-  { value: 32, suffix: "", label: "Zemí dodávek" },
-  { value: 372, suffix: "", label: "Zaměstnanců" },
+  { value: 30, suffix: "+", label: "Zemí dodávek" },
+  { value: 350, suffix: "+", label: "Zaměstnanců" },
   { value: 60, suffix: " mil.", label: "EUR obrat" },
 ];
 

@@ -22,7 +22,7 @@ export const ReferencesScreen = ({ onNav }) => {
   );
 
   return (
-    <div data-screen-label="References" className="page-enter pt-[108px]">
+    <div data-screen-label="References" className="page-enter pt-[100px] lg:pt-[116px]">
       <section className="bg-mandik-ink text-white">
         <div className="max-w-[1320px] mx-auto px-10 py-16">
           <div className="grid grid-cols-12 gap-10 items-end">

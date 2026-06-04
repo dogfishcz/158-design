@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { getDivisionByCategorySlug } from "@/lib/divisions";
 
 // Vykresluje stránku kategorie výrobků (např. /vyroba/pozarni-technika).
 // Data odpovídají odpovědi mandik.info/api/v1/ltu/portfolio (jeden item z pole).
@@ -50,15 +51,25 @@ const GroupGrid = ({ groups = [], categorySlug, accentColor }) => (
 
 export const CategoryPage = ({ category, accentColor = "#26d07c" }) => {
   const hasSubcategories = (category.subcategories?.length ?? 0) > 0;
+  const division = getDivisionByCategorySlug(category.slug);
+  // Divizi v drobečkové navigaci ukazujeme jen u divize s více kategoriemi (AHC).
+  // U divizí s jedinou kategorií by vznikla duplicita (např. Vzduchotechnické jednotky / Vzduchotechnické jednotky).
+  const showDivision = division && division.categorySlugs.length > 1;
 
   return (
     <div className="bg-white">
       <div className="max-w-[1320px] mx-auto px-10 py-16">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 mono text-[11px] text-mandik-steel-70 mb-10">
+        <nav className="flex flex-wrap items-center gap-2 mono text-[11px] text-mandik-steel-70 mb-10">
           <a href="/" className="hover:text-mandik-ink transition-colors">Domů</a>
           <span>/</span>
-          <span className="text-mandik-ink">{category.name}</span>
+          {showDivision && (
+            <>
+              <a href={`/vyroba/divize/${division.slug}`} className="hover:text-mandik-ink transition-colors">{division.name}</a>
+              <span>/</span>
+            </>
+          )}
+          <span className="text-mandik-ink font-medium">{category.name}</span>
         </nav>
 
         {/* Hlavička kategorie */}

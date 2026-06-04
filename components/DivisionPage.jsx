@@ -45,9 +45,9 @@ export const DivisionPage = ({ division, categories }) => (
     <div className="max-w-[1320px] mx-auto px-10 py-16">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 mono text-[11px] text-mandik-steel-70 mb-10">
-        <a href="/" className="hover:text-accent transition-colors">Domů</a>
+        <a href="/" className="hover:text-mandik-ink transition-colors">Domů</a>
         <span>/</span>
-        <span style={{ color: division.color }} className="font-medium">{division.name}</span>
+        <span className="font-medium text-mandik-ink">{division.name}</span>
       </nav>
 
       {/* Hlavička divize */}

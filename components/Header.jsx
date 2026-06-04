@@ -20,7 +20,7 @@ const LOCALES = [
   { code: "cs", label: "CZ", flag: "https://flagcdn.com/w20/cz.png" },
   { code: "en", label: "EN", flag: "https://flagcdn.com/w20/gb.png" },
   { code: "de", label: "DE", flag: "https://flagcdn.com/w20/de.png" },
-  { code: "uk", label: "UK", flag: "https://flagcdn.com/w20/ua.png" },
+  { code: "uk", label: "UA", flag: "https://flagcdn.com/w20/ua.png" },
 ];
 
 const NAV_LABELS = {
@@ -580,7 +580,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </button>
-                <div className={`absolute inset-0 flex items-center gap-2 transition-all duration-300 ease-out ${searchOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"}`}>
+                <div className={`absolute inset-0 flex items-center gap-2 pl-8 transition-all duration-300 ease-out ${searchOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"}`}>
                   <svg className="w-4 h-4 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>

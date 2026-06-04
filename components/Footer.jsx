@@ -135,11 +135,11 @@ export const Footer = ({ onNav, categories = [] }) => {
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-white/45">
           <p>© 1990–{year} MANDÍK, a.s. Všechna práva vyhrazena.</p>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-white/70 transition-colors">Zásady zpracování osobních údajů</a>
+            <a href="/ochrana-osobnich-udaju" className="hover:text-white/70 transition-colors">Zásady zpracování osobních údajů</a>
             <span className="text-white/25">|</span>
-            <a href="#" className="hover:text-white/70 transition-colors">Cookies</a>
+            <a href="/cookies" className="hover:text-white/70 transition-colors">Cookies</a>
             <span className="text-white/25">|</span>
-            <a href="#" className="hover:text-white/70 transition-colors">Whistleblowing</a>
+            <a href="/whistleblowing" className="hover:text-white/70 transition-colors">Whistleblowing</a>
           </div>
         </div>
       </div>
