@@ -26,7 +26,7 @@ const HOMEPAGE_TILES = [
     color: "#26d07c",
     code: "AHU",
     title: "Vzduchotechnické jednotky",
-    sub: "Sestavné a kompaktní vzduchotechnické jednotky, měření a regulace",
+    sub: "Sestavné a kompaktní vzduchotechnické\njednotky, měření a regulace.",
     spec: "do 100 000 m³/h · VDI 6022",
     qty: "9 řad · OEM",
     photo: "VZDUCHOTECHNICKÉ JEDNOTKY",
@@ -181,7 +181,7 @@ const CategoryGrid = ({ onNav }) => (
           Komplexní portfolio výrobků pro větrání, klimatizaci, vytápění a požární bezpečnost
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {HOMEPAGE_TILES.map((t) => (
           <a
             key={t.code}
@@ -201,10 +201,12 @@ const CategoryGrid = ({ onNav }) => (
             <div className="p-5 flex flex-col flex-1">
               <div className="h-display text-[18px] leading-tight">{t.title}</div>
               <span className="block h-1 w-8 mt-3" style={{ background: t.color }} />
-              <div className="text-sm text-mandik-steel-80 mt-3">{t.sub}</div>
+              <div className="text-sm text-mandik-steel-80 mt-3 whitespace-pre-line">{t.sub}</div>
               <div className="mt-6 pt-4 border-t border-mandik-rule flex items-center gap-2">
                 <span className="h-label text-[11px] text-mandik-steel transition-colors group-hover:text-[var(--tile-color)]">Otevřít</span>
-                <span className="text-[20px] leading-none text-mandik-steel-70 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[var(--tile-color)]" aria-hidden="true">→</span>
+                <svg className="w-4 h-4 text-mandik-steel-70 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[var(--tile-color)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
               </div>
             </div>
           </a>
@@ -218,7 +220,8 @@ const RefMapPreview = ({ onNav }) => {
   const ref = React.useRef(null);
   const inView = useInView(ref, { threshold: 0.15 });
   const [selected, setSelected] = React.useState(PINS[3]);
-  const accentColor = selected.special ? "#ffd700" : (AREA_COLOR[selected.area] || "#26d07c");
+  // dočasně vše zelené; návrat k barvám divizí: selected.special ? "#ffd700" : (AREA_COLOR[selected.area] || "#26d07c")
+  const accentColor = "#26d07c";
   return (
     <section ref={ref} className="bg-mandik-paper-soft text-mandik-ink">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
@@ -289,7 +292,7 @@ const RefMapPreview = ({ onNav }) => {
             const p = PINS.find((x) => x.id === id);
             if (!p) return null;
             const isSel = selected.id === id;
-            const c = p.special ? "#ffd700" : (AREA_COLOR[p.area] || "#26d07c");
+            const c = "#26d07c"; // dočasně vše zelené; návrat: p.special ? "#ffd700" : (AREA_COLOR[p.area] || "#26d07c")
             return (
               <button
                 key={id}

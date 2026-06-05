@@ -155,7 +155,7 @@ export const EuropeMap = ({
 
         {projectedPins.filter((p) => !p.featured).map((p, i) => {
           const isSel = selectedId === p.id;
-          const fill = p.special ? "#ffd700" : (AREA_COLOR[p.area] || "#26d07c");
+          const fill = "#26d07c";
           return (
             <g
               key={p.id}
@@ -192,7 +192,7 @@ export const EuropeMap = ({
 
         {projectedPins.filter((p) => p.featured).map((p, i) => {
           const isSel = selectedId === p.id;
-          const fill = p.special ? "#ffd700" : (AREA_COLOR[p.area] || "#26d07c");
+          const fill = "#26d07c";
           const labelOnLeft = p.x > W - 120;
           const labelOnTop = p.y > H - 60;
           const labelX = labelOnLeft ? -10 : 10;
@@ -249,12 +249,6 @@ export const EuropeMap = ({
         })}
       </svg>
 
-      <div className={`absolute left-5 bottom-12 hairline px-4 py-3 flex items-center gap-5 mono text-[11px] ${variant === "dark" ? "bg-mandik-ink text-white/85" : "bg-white text-mandik-steel"}`}>
-        <div className="flex items-center gap-2"><span className="w-2.5 h-2.5" style={{ background: "#74d1ea" }} />AHC</div>
-        <div className="flex items-center gap-2"><span className="w-2.5 h-2.5" style={{ background: "#26d07c" }} />AHU</div>
-        <div className="flex items-center gap-2"><span className="w-2.5 h-2.5" style={{ background: "#f2a900" }} />Topení</div>
-        <div className="flex items-center gap-2"><span className="w-2.5 h-2.5" style={{ background: "#ffd700" }} />Speciální</div>
-      </div>
       <div className={`absolute right-5 top-5 hairline px-4 py-3 mono text-[11px] ${variant === "dark" ? "bg-mandik-ink text-white/85" : "bg-white text-mandik-steel"}`}>
         <div className="h-label text-[11px] mb-1" style={{ color: variant === "dark" ? "#ffffff" : "#1a1a1a" }}>vlajkové reference</div>
         <div>{pins.filter((p) => p.featured).length} z {pins.length} bodů · 1 280 celkem</div>
