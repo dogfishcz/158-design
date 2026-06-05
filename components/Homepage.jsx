@@ -181,16 +181,16 @@ const CategoryGrid = ({ onNav }) => (
           Komplexní portfolio výrobků pro větrání, klimatizaci, vytápění a požární bezpečnost
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-mandik-rule">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {HOMEPAGE_TILES.map((t) => (
           <a
             key={t.code}
             href={t.href}
             style={{ "--tile-color": t.color }}
-            className="tile relative bg-white p-5 group transition-colors hover:bg-mandik-paper-soft"
+            className="tile group relative flex flex-col bg-white overflow-hidden shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[color:var(--tile-color)]"
           >
-            <span className="tile-bar" style={{ background: t.color }} />
-            <div className="aspect-square relative overflow-hidden mb-6 bg-mandik-paper-soft">
+            <span className="tile-bar z-10" style={{ background: t.color }} />
+            <div className="aspect-square relative overflow-hidden bg-mandik-paper-soft">
               <img
                 src={t.img}
                 alt={t.title}
@@ -198,10 +198,15 @@ const CategoryGrid = ({ onNav }) => (
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               />
             </div>
-            <div className="h-display text-[18px] leading-tight">{t.title}</div>
-            <span className="block h-1 w-8 mt-3" style={{ background: t.color }} />
-            <div className="text-sm text-mandik-steel-80 mt-3">{t.sub}</div>
-            <div className="mt-6 pt-4 border-t border-mandik-rule h-label text-[11px] text-mandik-steel transition-colors group-hover:text-[var(--tile-color)]">Otevřít →</div>
+            <div className="p-5 flex flex-col flex-1">
+              <div className="h-display text-[18px] leading-tight">{t.title}</div>
+              <span className="block h-1 w-8 mt-3" style={{ background: t.color }} />
+              <div className="text-sm text-mandik-steel-80 mt-3">{t.sub}</div>
+              <div className="mt-6 pt-4 border-t border-mandik-rule flex items-center gap-2">
+                <span className="h-label text-[11px] text-mandik-steel transition-colors group-hover:text-[var(--tile-color)]">Otevřít</span>
+                <span className="text-[20px] leading-none text-mandik-steel-70 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[var(--tile-color)]" aria-hidden="true">→</span>
+              </div>
+            </div>
           </a>
         ))}
       </div>

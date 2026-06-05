@@ -204,7 +204,7 @@ export function CookieBanner() {
         <span className="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-full bg-[#6b7f92]">
           <CookieIcon className="w-5 h-5 text-white" />
         </span>
-        <span className="pr-5 h-label text-[11px] text-white whitespace-nowrap">Nastavení cookies</span>
+        <span className="pl-3 pr-5 h-label text-[11px] text-white whitespace-nowrap">Nastavení cookies</span>
       </button>
 
       {/* Banner při prvním načtení */}
