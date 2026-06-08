@@ -92,7 +92,7 @@ const sluzbaWord = (n) => (n === 1 ? "služba" : n >= 2 && n <= 4 ? "služby" : 
 
 // --- Karta jedné služby ---
 const ServiceCard = ({ index, title, desc, color }) => (
-  <div className="tile group relative bg-white hairline p-6 pl-7 transition-shadow duration-200 hover:shadow-md">
+  <div style={{ "--tile-color": color }} className="tile group relative bg-white p-6 pl-7 shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[color:var(--tile-color)]">
     <span className="tile-bar" style={{ background: color }} />
     <div className="flex items-start gap-3.5">
       <span className="mono text-[11px] leading-none mt-1 tabular-nums" style={{ color }}>

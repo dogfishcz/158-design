@@ -3,190 +3,191 @@
 import React from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import {
+  NUTS_TO_LAND,
+  REGION_TO_ISO,
+  regionKeyForCountry,
+  LAND_KEYS,
+  DE_LAND,
+  deIdsForSelection,
+} from "@/lib/contacts";
 
 const ACCENT = "#26d07c";
+const NEUTRAL = "#8aa0bd";
+const NONE = "__NONE__";
 const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY;
 
-// Styl mapy: MapTiler dataviz-dark (ladí s tmavou steel sekcí). Když chybí klíč,
-// spadne na prázdné tmavé pozadí — polygony krajů se vykreslí i tak.
 const STYLE = MAPTILER_KEY
   ? `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${MAPTILER_KEY}`
-  : {
-      version: 8,
-      sources: {},
-      layers: [{ id: "bg", type: "background", paint: { "background-color": "#222b36" } }],
-    };
+  : { version: 8, sources: {}, layers: [{ id: "bg", type: "background", paint: { "background-color": "#222b36" } }] };
 
-// bbox [w,s,e,n] z GeoJSON geometrie (Polygon | MultiPolygon)
-function bboxOf(geometry) {
-  let w = 180, s = 90, e = -180, n = -90;
-  const scan = (ring) => ring.forEach(([x, y]) => {
-    if (x < w) w = x; if (x > e) e = x;
-    if (y < s) s = y; if (y > n) n = y;
-  });
-  const polys = geometry.type === "MultiPolygon" ? geometry.coordinates : [geometry.coordinates];
-  polys.forEach((poly) => poly.forEach(scan));
-  return [w, s, e, n];
-}
+// match: nuts kód kraje → historická země
+const LAND_EXPR = ["match", ["get", "nuts"], ...Object.entries(NUTS_TO_LAND).flatMap(([n, l]) => [n, l]), ""];
 
-export function ContactsMap({ country, selected, onSelect, className = "" }) {
+// Zvýraznění je řešené POUZE výplní (fill) nad hranicemi základní mapy —
+// nekreslíme vlastní obrysové čáry, aby nevznikaly zdvojené hranice.
+const worldColor = (hoverIso, selIso) => ["case",
+  ["==", ["get", "iso"], hoverIso || NONE], ACCENT,
+  ["in", ["get", "iso"], ["literal", selIso]], ACCENT,
+  NEUTRAL];
+const worldOpacity = (hoverIso, selIso) => ["case",
+  ["==", ["get", "iso"], hoverIso || NONE], 0.45,
+  ["in", ["get", "iso"], ["literal", selIso]], 0.72,
+  0.04];
+
+const czColor = (hoverLand, selLand) => ["case",
+  ["==", LAND_EXPR, hoverLand || NONE], ACCENT,
+  ["==", LAND_EXPR, selLand || NONE], ACCENT,
+  NEUTRAL];
+const czOpacity = (hoverLand, selLand) => ["case",
+  ["==", LAND_EXPR, hoverLand || NONE], 0.45,
+  ["==", LAND_EXPR, selLand || NONE], 0.72,
+  0.06];
+
+const deColor = (hoverId, selIds) => ["case",
+  ["==", ["get", "id"], hoverId || NONE], ACCENT,
+  ["in", ["get", "id"], ["literal", selIds]], ACCENT,
+  NEUTRAL];
+const deOpacity = (hoverId, selIds) => ["case",
+  ["==", ["get", "id"], hoverId || NONE], 0.45,
+  ["in", ["get", "id"], ["literal", selIds]], 0.72,
+  0.06];
+
+const selIsoOf = (key) => REGION_TO_ISO[key] || [];
+const selLandOf = (key) => (LAND_KEYS.includes(key) ? key : "");
+
+export function ContactsMap({ selected, onSelect, className = "" }) {
   const containerRef = React.useRef(null);
   const mapRef = React.useRef(null);
   const loadedRef = React.useRef(false);
-  const hoveredRef = React.useRef(null);
-  const bboxRef = React.useRef({}); // id -> bbox
   const onSelectRef = React.useRef(onSelect);
-  const prevSelectedRef = React.useRef(null);
+  const selectedRef = React.useRef(selected);
+  const hoverIso = React.useRef("");
+  const hoverLand = React.useRef("");
+  const hoverDe = React.useRef("");
 
-  // držíme aktuální onSelect bez re-inicializace mapy
   React.useEffect(() => { onSelectRef.current = onSelect; }, [onSelect]);
+  React.useEffect(() => { selectedRef.current = selected; }, [selected]);
 
-  // inicializace mapy (jednou)
+  const repaint = React.useCallback(() => {
+    const map = mapRef.current;
+    if (!map || !loadedRef.current || !map.getLayer("world-fill")) return;
+    const selIso = selIsoOf(selectedRef.current);
+    const selLand = selLandOf(selectedRef.current);
+    const selDe = deIdsForSelection(selectedRef.current);
+    map.setPaintProperty("world-fill", "fill-color", worldColor(hoverIso.current, selIso));
+    map.setPaintProperty("world-fill", "fill-opacity", worldOpacity(hoverIso.current, selIso));
+    map.setPaintProperty("cz-fill", "fill-color", czColor(hoverLand.current, selLand));
+    map.setPaintProperty("cz-fill", "fill-opacity", czOpacity(hoverLand.current, selLand));
+    map.setPaintProperty("de-fill", "fill-color", deColor(hoverDe.current, selDe));
+    map.setPaintProperty("de-fill", "fill-opacity", deOpacity(hoverDe.current, selDe));
+  }, []);
+
   React.useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: STYLE,
-      center: country.center ?? [15.34, 49.8],
-      zoom: country.zoom ?? 6.4,
+      center: [13, 49],
+      zoom: 3.3,
       attributionControl: true,
-      cooperativeGestures: true, // scroll-zoom až s Ctrl/dvěma prsty — neukradne scroll stránky
-      preserveDrawingBuffer: true, // umožní zachytit WebGL plátno do screenshotu/exportu
+      cooperativeGestures: false, // scroll-zoom přímo kolečkem nad mapou (bez Ctrl)
+      preserveDrawingBuffer: true,
     });
     mapRef.current = map;
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
 
-    const setHover = (id, on) => {
-      if (id == null) return;
-      map.setFeatureState({ source: "regions", id }, { hover: on });
-    };
-
     map.on("load", async () => {
-      let data;
+      let world, cz, de;
       try {
-        data = await fetch(country.geojson).then((r) => r.json());
-      } catch {
-        return;
-      }
-      // bbox index pro fitBounds při výběru
-      data.features.forEach((f) => {
-        const id = f.properties[country.regionKey];
-        if (id) bboxRef.current[id] = bboxOf(f.geometry);
-      });
+        [world, cz, de] = await Promise.all([
+          fetch("/geo/world-countries.geojson").then((r) => r.json()),
+          fetch("/geo/cz-kraje.geojson").then((r) => r.json()),
+          fetch("/geo/de-bundeslander.geojson").then((r) => r.json()),
+        ]);
+      } catch { return; }
 
-      map.addSource("regions", { type: "geojson", data, promoteId: country.regionKey });
+      map.addSource("world", { type: "geojson", data: world });
+      map.addSource("cz", { type: "geojson", data: cz });
+      map.addSource("de", { type: "geojson", data: de });
 
-      map.addLayer({
-        id: "regions-fill",
-        type: "fill",
-        source: "regions",
-        paint: {
-          "fill-color": [
-            "case",
-            ["boolean", ["feature-state", "selected"], false], ACCENT,
-            ["boolean", ["feature-state", "hover"], false], ACCENT,
-            "#8aa0bd",
-          ],
-          "fill-opacity": [
-            "case",
-            ["boolean", ["feature-state", "selected"], false], 0.78,
-            ["boolean", ["feature-state", "hover"], false], 0.42,
-            0.16,
-          ],
-        },
-      });
+      const selIso = selIsoOf(selectedRef.current);
+      const selLand = selLandOf(selectedRef.current);
+      const selDe = deIdsForSelection(selectedRef.current);
 
-      map.addLayer({
-        id: "regions-line",
-        type: "line",
-        source: "regions",
-        paint: {
-          "line-color": [
-            "case",
-            ["boolean", ["feature-state", "selected"], false], ACCENT,
-            "rgba(255,255,255,0.5)",
-          ],
-          "line-width": [
-            "case",
-            ["boolean", ["feature-state", "selected"], false], 2.4,
-            0.8,
-          ],
-        },
-      });
+      // Výplň vkládáme POD hranice a popisky základní mapy → ostré hranice i popisky
+      // se vykreslí nad zeleným zvýrazněním (jediný zdroj hranic = základní mapa).
+      const layers = map.getStyle().layers || [];
+      const beforeId = (
+        layers.find((l) => l["source-layer"] === "boundary") ||
+        layers.find((l) => l.type === "symbol") ||
+        {}
+      ).id;
 
-      // popisky krajů (jen s MapTiler stylem, který má glyphs)
-      if (MAPTILER_KEY) {
-        map.addLayer({
-          id: "regions-label",
-          type: "symbol",
-          source: "regions",
-          layout: {
-            "text-field": ["get", "name"],
-            "text-font": ["Open Sans Semibold", "Noto Sans Bold"],
-            "text-size": 11,
-            "text-letter-spacing": 0.02,
-          },
-          paint: {
-            "text-color": "rgba(255,255,255,0.82)",
-            "text-halo-color": "rgba(0,0,0,0.65)",
-            "text-halo-width": 1.2,
-          },
-        });
-      }
+      map.addLayer({ id: "world-fill", type: "fill", source: "world",
+        paint: { "fill-color": worldColor("", selIso), "fill-opacity": worldOpacity("", selIso) } }, beforeId);
+      map.addLayer({ id: "cz-fill", type: "fill", source: "cz",
+        paint: { "fill-color": czColor("", selLand), "fill-opacity": czOpacity("", selLand) } }, beforeId);
+      map.addLayer({ id: "de-fill", type: "fill", source: "de",
+        paint: { "fill-color": deColor("", selDe), "fill-opacity": deOpacity("", selDe) } }, beforeId);
 
-      // kurzor + hover
-      map.on("mousemove", "regions-fill", (e) => {
-        if (!e.features?.length) return;
+      // hover svět
+      map.on("mousemove", "world-fill", (e) => {
+        const iso = e.features?.[0]?.properties?.iso;
+        if (!iso || iso === "CZ" || iso === "DE") return; // ČR/DE řeší vlastní vrstvy
         map.getCanvas().style.cursor = "pointer";
-        const id = e.features[0].id;
-        if (hoveredRef.current !== id) {
-          setHover(hoveredRef.current, false);
-          hoveredRef.current = id;
-          setHover(id, true);
-        }
+        if (hoverIso.current !== iso) { hoverIso.current = iso; repaint(); }
       });
-      map.on("mouseleave", "regions-fill", () => {
+      map.on("mouseleave", "world-fill", () => {
         map.getCanvas().style.cursor = "";
-        setHover(hoveredRef.current, false);
-        hoveredRef.current = null;
+        if (hoverIso.current) { hoverIso.current = ""; repaint(); }
+      });
+      // hover ČR
+      map.on("mousemove", "cz-fill", (e) => {
+        const land = NUTS_TO_LAND[e.features?.[0]?.properties?.nuts] || "";
+        map.getCanvas().style.cursor = "pointer";
+        if (hoverLand.current !== land) { hoverLand.current = land; repaint(); }
+      });
+      map.on("mouseleave", "cz-fill", () => {
+        map.getCanvas().style.cursor = "";
+        if (hoverLand.current) { hoverLand.current = ""; repaint(); }
+      });
+      // hover Německo
+      map.on("mousemove", "de-fill", (e) => {
+        const id = e.features?.[0]?.properties?.id || "";
+        map.getCanvas().style.cursor = "pointer";
+        if (hoverDe.current !== id) { hoverDe.current = id; repaint(); }
+      });
+      map.on("mouseleave", "de-fill", () => {
+        map.getCanvas().style.cursor = "";
+        if (hoverDe.current) { hoverDe.current = ""; repaint(); }
       });
 
-      // klik → výběr
-      map.on("click", "regions-fill", (e) => {
-        if (!e.features?.length) return;
-        onSelectRef.current?.(e.features[0].id);
+      // klik
+      map.on("click", "cz-fill", (e) => {
+        const land = NUTS_TO_LAND[e.features?.[0]?.properties?.nuts];
+        if (land) onSelectRef.current?.(land);
+      });
+      map.on("click", "de-fill", (e) => {
+        const id = e.features?.[0]?.properties?.id;
+        if (id && DE_LAND[id]) onSelectRef.current?.(id);
+      });
+      map.on("click", "world-fill", (e) => {
+        const iso = e.features?.[0]?.properties?.iso;
+        if (!iso || iso === "CZ" || iso === "DE") return; // řeší vrstvy krajů / spolkových zemí
+        const key = regionKeyForCountry(iso);
+        if (key) onSelectRef.current?.(key);
       });
 
       loadedRef.current = true;
-      // aplikuj případný počáteční výběr
-      if (selected) applySelection(selected);
+      repaint();
     });
 
-    return () => {
-      map.remove();
-      mapRef.current = null;
-      loadedRef.current = false;
-    };
+    return () => { map.remove(); mapRef.current = null; loadedRef.current = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // promítnutí externího `selected` do feature-state + fitBounds
-  const applySelection = React.useCallback((id) => {
-    const map = mapRef.current;
-    if (!map || !loadedRef.current) return;
-    const prev = prevSelectedRef.current;
-    if (prev && prev !== id) map.setFeatureState({ source: "regions", id: prev }, { selected: false });
-    if (id) {
-      map.setFeatureState({ source: "regions", id }, { selected: true });
-      const bb = bboxRef.current[id];
-      if (bb) map.fitBounds(bb, { padding: 64, duration: 700, maxZoom: 9 });
-    }
-    prevSelectedRef.current = id ?? null;
-  }, []);
-
-  React.useEffect(() => {
-    applySelection(selected);
-  }, [selected, applySelection]);
+  React.useEffect(() => { repaint(); }, [selected, repaint]);
 
   return <div ref={containerRef} className={className} />;
 }

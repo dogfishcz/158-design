@@ -26,7 +26,7 @@ const ResourceCard = ({ item }) => (
     href={item.link}
     target="_blank"
     rel="noopener noreferrer"
-    className="tile group relative bg-white hairline overflow-hidden flex flex-col transition-shadow hover:shadow-lg"
+    className="tile group relative bg-white overflow-hidden flex flex-col shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent"
   >
     <span className="tile-bar" style={{ background: "#26d07c" }} />
     {item.image_link && (

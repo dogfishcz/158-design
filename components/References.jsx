@@ -27,11 +27,8 @@ export const ReferencesScreen = ({ onNav }) => {
         <div className="max-w-[1320px] mx-auto px-10 py-16">
           <div className="grid grid-cols-12 gap-10 items-end">
             <div className="col-span-7">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="w-2 h-2 bg-accent" />
-                <span className="h-label text-xs text-accent">Reference</span>
-              </div>
-              <h1 className="h-display text-[72px] leading-[0.95]">1 280 referencí.<br/>32 zemí. 33 let.</h1>
+              <h1 className="h-display text-[72px] leading-[0.95]">Reference</h1>
+              <div className="mt-4 h-1 w-16 bg-accent" />
               <p className="mt-6 text-white/75 text-[16px] max-w-lg leading-relaxed">
                 Mapa dodávek MANDÍK po Evropě. Klikněte na špendlík — zobrazíte případovou studii a&nbsp;stáhnete podrobný protokol.
               </p>

@@ -99,7 +99,7 @@ export const Button = ({ children, variant = "primary", href = "#", icon, onClic
 };
 
 export const Tile = ({ catColor = "#506077", title, subtitle, meta, href = "#", children, className = "" }) => (
-  <a href={href} className={`tile group relative block bg-white hairline overflow-hidden ${className}`}>
+  <a href={href} style={{ "--tile-color": catColor }} className={`tile group relative block bg-white overflow-hidden shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[color:var(--tile-color)] ${className}`}>
     <span className="tile-bar" style={{ background: catColor }} />
     {children}
     {(title || subtitle || meta) && (

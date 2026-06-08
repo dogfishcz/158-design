@@ -12,7 +12,8 @@ const GroupCard = ({ group, categorySlug, accentColor }) => {
   return (
     <a
       href={`/vyroba/${categorySlug}/${group.slug}`}
-      className="tile group relative bg-white hairline overflow-hidden flex flex-col transition-shadow hover:shadow-lg"
+      style={{ "--tile-color": accentColor }}
+      className="tile group relative bg-white overflow-hidden flex flex-col shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[color:var(--tile-color)]"
     >
       <span className="tile-bar" style={{ background: accentColor }} />
       <div className="relative aspect-[4/3] bg-mandik-paper-soft">

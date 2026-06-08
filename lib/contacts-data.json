@@ -1,0 +1,1033 @@
+{
+  "_note": "Generováno z WEB_CONTACTS_CATEGORY_Vacek upraveno_v2.xlsx. Dočasná data — později nahradit API z mandik.info.",
+  "divisionOrder": [
+    "Vzduchotechnické jednotky",
+    "Vzduchotechnické komponenty",
+    "Partner",
+    "Management",
+    "Ředitel pro oblast DACH",
+    "Průmyslové vytápění",
+    "Speciální HVAC aplikace",
+    "Servis",
+    "Adresa kanceláře",
+    "Asistentka ředitele",
+    "Školení",
+    "Ústředna | nákup | doprava"
+  ],
+  "regionLabels": {
+    "cechy": "Čechy",
+    "morava": "Morava",
+    "slezsko": "Slezsko",
+    "sk": "Slovensko",
+    "at": "Rakousko",
+    "de": "Německo",
+    "uk": "Velká Británie",
+    "fr": "Francie",
+    "cis": "SNS (Rusko a okolí)",
+    "export": "Ostatní export",
+    "all": "Všechny oblasti",
+    "ch": "Švýcarsko a Lichtenštejnsko"
+  },
+  "people": [
+    {
+      "lastName": "MANDÍK, a.s.",
+      "firstName": "",
+      "position": "Asistentka ředitele",
+      "email": "mandik@mandik.cz",
+      "phone": "",
+      "mobile": "420777789205",
+      "divisions": [
+        "Asistentka ředitele"
+      ],
+      "regions": [
+        "all"
+      ],
+      "rawRegion": "CZ"
+    },
+    {
+      "lastName": "ŠKOLENÍ",
+      "firstName": "",
+      "position": "",
+      "email": "skoleni@mandik.cz",
+      "phone": "420311706700",
+      "mobile": "",
+      "divisions": [
+        "Školení"
+      ],
+      "regions": [
+        "all"
+      ],
+      "rawRegion": "CZ"
+    },
+    {
+      "lastName": "ÚSTŘEDNA | NÁKUP | DOPRAVA",
+      "firstName": "",
+      "position": "",
+      "email": "mandik@mandik.cz",
+      "phone": "420311706706",
+      "mobile": "",
+      "divisions": [
+        "Ústředna | nákup | doprava"
+      ],
+      "regions": [
+        "all"
+      ],
+      "rawRegion": "CZ"
+    },
+    {
+      "lastName": "Fišer",
+      "firstName": "Matěj",
+      "position": "Obchodně technický manažer",
+      "email": "matej.fiser@mandik.cz",
+      "phone": "+420 601 263 262",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "sk"
+      ],
+      "rawRegion": "SK"
+    },
+    {
+      "lastName": "Svobodová",
+      "firstName": "Iva",
+      "position": "Nabídky",
+      "email": "svobodová@mandik.cz",
+      "phone": "311706718",
+      "mobile": "777789227",
+      "divisions": [
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko"
+      ],
+      "rawRegion": "C + MO"
+    },
+    {
+      "lastName": "Gončár",
+      "firstName": "Ing. Martin",
+      "position": "Obchodně technický manažer",
+      "email": "goncar@mandik.cz",
+      "phone": "+420 777 362 003",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "slezsko"
+      ],
+      "rawRegion": "SMO"
+    },
+    {
+      "lastName": "Grubnerová",
+      "firstName": "Tereza",
+      "position": "Objednávky",
+      "email": "grubnerova@mandik.cz",
+      "phone": "420311706715",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko"
+      ],
+      "rawRegion": "C + MO"
+    },
+    {
+      "lastName": "Činovec",
+      "firstName": "David",
+      "position": "Obchodně technický manažer",
+      "email": "cinovec.david@mandik.cz",
+      "phone": "+420 601 263 248",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "cechy"
+      ],
+      "rawRegion": "C"
+    },
+    {
+      "lastName": "Grunt",
+      "firstName": "Karel",
+      "position": "Objednávky",
+      "email": "grunt@mandik.cz",
+      "phone": "+420 311 706 780",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko",
+        "sk"
+      ],
+      "rawRegion": "C + MO + SK"
+    },
+    {
+      "lastName": "Samcová",
+      "firstName": "Martina",
+      "position": "Objednávky",
+      "email": "martina.samcova@mandik.cz",
+      "phone": "+420 311 706 716",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko"
+      ],
+      "rawRegion": "C + MO"
+    },
+    {
+      "lastName": "Hájek",
+      "firstName": "Jan",
+      "position": "Obchodně technický manažer",
+      "email": "hajek@mandik.cz",
+      "phone": "+420 311 706 854",
+      "mobile": "+420 777 362 000",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "cechy"
+      ],
+      "rawRegion": "C"
+    },
+    {
+      "lastName": "Slavíček",
+      "firstName": "Jindřich",
+      "position": "Nabídky",
+      "email": "slavicek@mandik.cz",
+      "phone": "+420 311 706 714",
+      "mobile": "+420 777 789 232",
+      "divisions": [
+        "Průmyslové vytápění"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko"
+      ],
+      "rawRegion": "C + MO"
+    },
+    {
+      "lastName": "Irhovcij",
+      "firstName": "Vasyl",
+      "position": "Obchodně technický manažer",
+      "email": "vasyl@mandik.cz",
+      "phone": "+420 311 706 753",
+      "mobile": "+420 777 789 204",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "cechy"
+      ],
+      "rawRegion": "C"
+    },
+    {
+      "lastName": "Čermák",
+      "firstName": "Ing. arch Dominik",
+      "position": "Obchodně technický manažer",
+      "email": "cermak.dominik@mandik.cz",
+      "phone": "+420 777 362 002",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "morava"
+      ],
+      "rawRegion": "JMO"
+    },
+    {
+      "lastName": "Byčan",
+      "firstName": "Ing. Milan",
+      "position": "Oblastní manažer pro Moravu a SK",
+      "email": "bycan@mandik.cz",
+      "phone": "+420 702 206 755",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "morava",
+        "slezsko",
+        "sk"
+      ],
+      "rawRegion": "MO + SK"
+    },
+    {
+      "lastName": "Tobola",
+      "firstName": "Jiří",
+      "position": "Nabídky",
+      "email": "tobola.jiri@mandik.cz",
+      "phone": "+420 777 789 209",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "morava",
+        "slezsko",
+        "sk"
+      ],
+      "rawRegion": "MO + SK"
+    },
+    {
+      "lastName": "Hyspecký",
+      "firstName": "Jan",
+      "position": "Obchodně technický manažer",
+      "email": "hyspecky.jan@mandik.cz",
+      "phone": "+420 311 706 717",
+      "mobile": "+420 602 390 914",
+      "divisions": [
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko"
+      ],
+      "rawRegion": "C + MO"
+    },
+    {
+      "lastName": "Volfíková",
+      "firstName": "Lenka",
+      "position": "Nabídky",
+      "email": "lenka.volfikova@mandik.cz",
+      "phone": "+420 311 706 864",
+      "mobile": "+420 606 506 099",
+      "divisions": [
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko"
+      ],
+      "rawRegion": "C + MO"
+    },
+    {
+      "lastName": "Fišer",
+      "firstName": "Petr",
+      "position": "Obchodně technický manažer",
+      "email": "fiser@mandik.cz",
+      "phone": "+420 311 706 712",
+      "mobile": "+420 777 789 225",
+      "divisions": [
+        "Průmyslové vytápění"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko"
+      ],
+      "rawRegion": "C + MO"
+    },
+    {
+      "lastName": "Veselý",
+      "firstName": "Karel",
+      "position": "Obchodní ředitel CZ/SK",
+      "email": "vesely@mandik.cz",
+      "phone": "+420 311 706 720",
+      "mobile": "+420 602 390 914",
+      "divisions": [
+        "Management",
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "cechy",
+        "morava",
+        "slezsko",
+        "sk"
+      ],
+      "rawRegion": "C + MO + SK"
+    },
+    {
+      "lastName": "Novák",
+      "firstName": "Tomáš",
+      "position": "Vedoucí oddělení speciálních aplikací",
+      "email": "novak.sa@mandik.cz",
+      "phone": "+420 311 706 748",
+      "mobile": "+420 736 757 779",
+      "divisions": [
+        "Speciální HVAC aplikace"
+      ],
+      "regions": [
+        "all"
+      ],
+      "rawRegion": "ALL"
+    },
+    {
+      "lastName": "Ledvinka",
+      "firstName": "Bořivoj",
+      "position": "Servisní manažer",
+      "email": "ledvinka@mandik.cz",
+      "phone": "+420 311 706 977",
+      "mobile": "420777789224",
+      "divisions": [
+        "Servis"
+      ],
+      "regions": [
+        "all"
+      ],
+      "rawRegion": "ALL"
+    },
+    {
+      "lastName": "Drahoš",
+      "firstName": "Petr",
+      "position": "Vedoucí oddělení servisu",
+      "email": "drahos.petr@mandik.cz",
+      "phone": "+420 311 706 745",
+      "mobile": "420777789224",
+      "divisions": [
+        "Servis"
+      ],
+      "regions": [
+        "all"
+      ],
+      "rawRegion": "ALL"
+    },
+    {
+      "lastName": "Schano",
+      "firstName": "Mario",
+      "position": "Managing director",
+      "email": "mario.schano@mandik.at",
+      "phone": "+43 664 22 32 023",
+      "mobile": "",
+      "divisions": [
+        "Management"
+      ],
+      "regions": [
+        "at"
+      ],
+      "rawRegion": "AT"
+    },
+    {
+      "lastName": "",
+      "firstName": "",
+      "position": "",
+      "email": "office@mandik.at",
+      "phone": "+43 664 2232023",
+      "mobile": "",
+      "divisions": [
+        "Adresa kanceláře"
+      ],
+      "regions": [
+        "at"
+      ],
+      "rawRegion": "AT"
+    },
+    {
+      "lastName": "",
+      "firstName": "",
+      "position": "",
+      "email": "anfragen@mandik.at",
+      "phone": "",
+      "mobile": "",
+      "divisions": [
+        "Adresa kanceláře"
+      ],
+      "regions": [
+        "at"
+      ],
+      "rawRegion": "AT"
+    },
+    {
+      "lastName": "Švabovský",
+      "firstName": "Filip",
+      "position": "Ředitel pro oblast DACH",
+      "email": "filip.svabovsky@mandik.de",
+      "phone": "+420 311 706 760",
+      "mobile": "420777789226",
+      "divisions": [
+        "Ředitel pro oblast DACH"
+      ],
+      "regions": [
+        "at"
+      ],
+      "rawRegion": "AT"
+    },
+    {
+      "lastName": "IGT - Berlin",
+      "firstName": "",
+      "position": "Partner",
+      "email": "t.mattias@igt-vertrieb.de",
+      "phone": "+49 30 814573480",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_nord"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "IGT - Hamburg",
+      "firstName": "",
+      "position": "Partner",
+      "email": "d.reimer@igt-vertrieb.de",
+      "phone": "+49 40 226384120",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_nord"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "IGT - Mecklenburg-Vorpommern",
+      "firstName": "",
+      "position": "Partner",
+      "email": "m.eckartsberg@igt-vertrieb.de",
+      "phone": "+49 172 2726813",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_nord"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Hesterberg",
+      "firstName": "Frank",
+      "position": "Partner",
+      "email": "info@ipc-hesterberg.de",
+      "phone": "+49 57 25709827",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_mitte"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Wolf",
+      "firstName": "Jonas",
+      "position": "Technický obchodní zástupce",
+      "email": "wolf.jonas@mandik.de",
+      "phone": "+49 1578 0508944",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Anderhofstadt",
+      "firstName": "Andreas",
+      "position": "Technický specialista",
+      "email": "anderhofstadt.andreas@mandik.de",
+      "phone": "",
+      "mobile": "49 157 806 056 81",
+      "divisions": [
+        "Vzduchotechnické jednotky"
+      ],
+      "regions": [
+        "de"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Wöhrmann",
+      "firstName": "Thomas",
+      "position": "Technický obchodní zástupce",
+      "email": "woehrmann.thomas@mandik.de",
+      "phone": "+49 1578 3053604",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_nrw"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Hertwig",
+      "firstName": "Toralf",
+      "position": "Partner",
+      "email": "toralf-hertwig@t-online.de",
+      "phone": "+49 3588 204694",
+      "mobile": "+49 172 9761546",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_sn"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "& Klára Šerhaklová",
+      "firstName": "Naďa Spoustová",
+      "position": "Nabídky",
+      "email": "anfragen@mandik.de",
+      "phone": "+420 311 706 741",
+      "mobile": "+420 777 789 201",
+      "divisions": [
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Wöhrle",
+      "firstName": "Valentin",
+      "position": "Technický obchodní zástupce",
+      "email": "woehrle.valentin@mandik.de",
+      "phone": "+49 1761 0141684",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Kolleck",
+      "firstName": "Jörn",
+      "position": "Vedoucí prodeje Německo",
+      "email": "joern.kolleck@mandik.de",
+      "phone": "+49 176 899 01 782",
+      "mobile": "",
+      "divisions": [
+        "Management"
+      ],
+      "regions": [
+        "de"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Jirochová",
+      "firstName": "Ivana",
+      "position": "Vedoucí Back Office DACH",
+      "email": "jirochova.ivana@mandik.de",
+      "phone": "420311706782",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Švabovský",
+      "firstName": "Filip",
+      "position": "Ředitel pro oblast DACH",
+      "email": "filip.svabovsky@mandik.de",
+      "phone": "+420 311 706 760",
+      "mobile": "420777789226",
+      "divisions": [
+        "Ředitel pro oblast DACH"
+      ],
+      "regions": [
+        "de"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Šimsa",
+      "firstName": "Jan",
+      "position": "Vedoucí rozvoje obchodu | Export",
+      "email": "simsa@mandik.cz",
+      "phone": "+420 311 706 882",
+      "mobile": "",
+      "divisions": [
+        "Management",
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "export"
+      ],
+      "rawRegion": "EX"
+    },
+    {
+      "lastName": "",
+      "firstName": "",
+      "position": "",
+      "email": "help@mandik.co.uk",
+      "phone": "+44 11 7452 6376",
+      "mobile": "",
+      "divisions": [
+        "Ostatní"
+      ],
+      "regions": [
+        "uk"
+      ],
+      "rawRegion": "UK"
+    },
+    {
+      "lastName": "Armstrong",
+      "firstName": "Alfie",
+      "position": "Technický vedoucí",
+      "email": "alfiearmstrong@mandik.co.uk",
+      "phone": "+44 11 7452 6376",
+      "mobile": "+44 79 9083 4298",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "uk"
+      ],
+      "rawRegion": "UK"
+    },
+    {
+      "lastName": "Yallop",
+      "firstName": "Anna",
+      "position": "Nabídky",
+      "email": "annayallop@mandik.co.uk",
+      "phone": "+44 11 7452 6376",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "uk"
+      ],
+      "rawRegion": "UK"
+    },
+    {
+      "lastName": "Johnston",
+      "firstName": "Danielle",
+      "position": "Koordinátor projetků",
+      "email": "daniellejohnston@mandik.co.uk",
+      "phone": "+44 11 7452 6376",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "uk"
+      ],
+      "rawRegion": "UK"
+    },
+    {
+      "lastName": "Robinson",
+      "firstName": "Hayden",
+      "position": "Obchodně technický manažer",
+      "email": "haydenrobinson@mandik.co.uk",
+      "phone": "+44 11 7452 6376",
+      "mobile": "+44 79 9027 5842",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "uk"
+      ],
+      "rawRegion": "UK"
+    },
+    {
+      "lastName": "Fackrell",
+      "firstName": "Martin",
+      "position": "Managing director",
+      "email": "martinfackrell@mandik.co.uk",
+      "phone": "+44 11 7452 6376",
+      "mobile": "+44 77 8056 8453",
+      "divisions": [
+        "Management"
+      ],
+      "regions": [
+        "uk"
+      ],
+      "rawRegion": "UK"
+    },
+    {
+      "lastName": "Ирговций",
+      "firstName": "Василий",
+      "position": "Oddělení zahraničního obchodu",
+      "email": "vasyl@mandik.cz",
+      "phone": "+420 311 706 753",
+      "mobile": "+420 777 789 204",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "cis"
+      ],
+      "rawRegion": "CIS"
+    },
+    {
+      "lastName": "Лонская",
+      "firstName": "Евгения",
+      "position": "Oddělení zahraničního obchodu",
+      "email": "lonska@mandik.cz",
+      "phone": "+420 311 706 752",
+      "mobile": "+420 777 789 196",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "cis"
+      ],
+      "rawRegion": "CIS"
+    },
+    {
+      "lastName": "Vejsada",
+      "firstName": "Jiří",
+      "position": "Prodej",
+      "email": "vejsada@mandik.cz",
+      "phone": "+420 311 706 995",
+      "mobile": "+420 702 247 956",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Kolčava",
+      "firstName": "Karel",
+      "position": "Prodej",
+      "email": "kolcava.karel@mandik.cz",
+      "phone": "+420 311 706 722",
+      "mobile": "+420 601 263 253",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Baumann",
+      "firstName": "Martin",
+      "position": "Prodej",
+      "email": "baumann.martin@mandik.cz",
+      "phone": "+420 311 706 994",
+      "mobile": "+420 702 248 074",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Duraj",
+      "firstName": "Michal",
+      "position": "Prodej",
+      "email": "duraj.michal@mandik.cz",
+      "phone": "+420 601 571 638",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Kozel",
+      "firstName": "Pavel",
+      "position": "Prodej",
+      "email": "kozel@mandik.cz",
+      "phone": "+420 311 706 884",
+      "mobile": "+420 724 125 492",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Dunker",
+      "firstName": "Ludovic",
+      "position": "Managing director",
+      "email": "dunker.ludovic@mandik.fr",
+      "phone": "+33 7 57 67 44 32",
+      "mobile": "",
+      "divisions": [
+        "Management"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Laurent",
+      "firstName": "Marion",
+      "position": "Technický obchodní zástupce",
+      "email": "laurent.marion@mandik.fr",
+      "phone": "+33 6 67 43 61 29",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Viaud",
+      "firstName": "Maxime",
+      "position": "Technický obchodní zástupce",
+      "email": "viaud.maxime@mandik.fr",
+      "phone": "+33 7 87 97 14 42",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Laredová",
+      "firstName": "Blanka",
+      "position": "Prodej",
+      "email": "laredova@mandik.cz",
+      "phone": "+420 311 706 886",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "fr"
+      ],
+      "rawRegion": "FR"
+    },
+    {
+      "lastName": "Kolčava",
+      "firstName": "Karel",
+      "position": "Prodej",
+      "email": "kolcava.karel@mandik.cz",
+      "phone": "+420 311 706 722",
+      "mobile": "+420 601 263 253",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "export"
+      ],
+      "rawRegion": "EX"
+    },
+    {
+      "lastName": "Schabbach",
+      "firstName": "Peter",
+      "position": "Obchodní zástupce (oblast od 1. 7. 2026)",
+      "email": "",
+      "phone": "",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_sw"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Radat",
+      "firstName": "Milko",
+      "position": "Obchodní zástupce",
+      "email": "",
+      "phone": "",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_bw"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "Conrad",
+      "firstName": "Albrecht",
+      "position": "Obchodní zástupce",
+      "email": "",
+      "phone": "",
+      "mobile": "",
+      "divisions": [
+        "Vzduchotechnické jednotky",
+        "Vzduchotechnické komponenty"
+      ],
+      "regions": [
+        "de_bb"
+      ],
+      "rawRegion": "DE"
+    },
+    {
+      "lastName": "UNIAIR AG",
+      "firstName": "",
+      "position": "Partner",
+      "email": "info@uniair.li",
+      "phone": "+423 380 08 80",
+      "mobile": "",
+      "divisions": [
+        "Partner"
+      ],
+      "regions": [
+        "ch"
+      ],
+      "rawRegion": "CH"
+    }
+  ]
+}

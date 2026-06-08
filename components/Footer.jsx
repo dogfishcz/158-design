@@ -2,9 +2,38 @@
 
 import React from "react";
 import { Logo } from "./Primitives";
+import { DIVISIONS } from "@/lib/divisions";
 
 export const Footer = ({ onNav, categories = [] }) => {
   const year = new Date().getFullYear();
+
+  // Hierarchie výrobků (stejná jako mega-menu v hlavičce):
+  // AHC = divize (nadpis) + podkategorie (level 1); ostatní divize = jejich jediná kategorie (level 0).
+  const catBySlug = Object.fromEntries(categories.map((c) => [c.slug, c]));
+  const builtProducts = [];
+  ["vzduchotechnicke-komponenty", "vzduchotechnicke-jednotky", "prumyslove-vytapeni", "specialni-aplikace"].forEach((dkey) => {
+    const d = DIVISIONS[dkey];
+    if (!d) return;
+    const memberCats = d.categorySlugs.map((s) => catBySlug[s]).filter(Boolean);
+    if (dkey === "vzduchotechnicke-komponenty") {
+      builtProducts.push({ label: d.name, href: `/vyroba/divize/${d.slug}`, level: 0 });
+      memberCats.forEach((c) => builtProducts.push({ label: c.name, href: `/vyroba/${c.slug}`, level: 1 }));
+    } else if (memberCats[0]) {
+      builtProducts.push({ label: memberCats[0].name, href: `/vyroba/${memberCats[0].slug}`, level: 0 });
+    }
+  });
+  const FALLBACK_PRODUCTS = [
+    { label: "Vzduchotechnické komponenty", href: "/vyroba/divize/vzduchotechnicke-komponenty", level: 0 },
+    { label: "Požární technika", href: "/vyroba/pozarni-technika", level: 1 },
+    { label: "Technika odvodu kouře a tepla", href: "/vyroba/technika-odvodu-koure-a-tepla", level: 1 },
+    { label: "Regulační technika", href: "/vyroba/regulacni-technika", level: 1 },
+    { label: "Distribuční elementy", href: "/vyroba/distribucni-elementy", level: 1 },
+    { label: "Doplňkové prvky VZT", href: "/vyroba/doplnkove-prvky-vzt", level: 1 },
+    { label: "Vzduchotechnické jednotky", href: "/vyroba/vzduchotechnicke-jednotky", level: 0 },
+    { label: "Průmyslové vytápění a chlazení", href: "/vyroba/prumyslove-vytapeni-a-chlazeni", level: 0 },
+    { label: "Speciální aplikace", href: "/vyroba/specialni-aplikace", level: 0 },
+  ];
+  const productLinks = builtProducts.length > 1 ? builtProducts : FALLBACK_PRODUCTS;
 
   return (
     <footer className="bg-mandik-steel text-white mt-auto">
@@ -73,7 +102,7 @@ export const Footer = ({ onNav, categories = [] }) => {
 
           {/* Sloupec 2 — Společnost + Výrobky */}
           <div className="pb-10 lg:pb-0 lg:px-12">
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div>
                 <p className="h-label text-[10px] text-white/45 mb-4">Naše společnost</p>
                 <ul className="space-y-2.5 text-sm text-white/75">
@@ -81,7 +110,7 @@ export const Footer = ({ onNav, categories = [] }) => {
                     { label: "O nás",                   href: "/" },
                     { label: "Reference",                href: "/" },
                     { label: "Novinky",                  href: "/" },
-                    { label: "Kariéra",                  href: "/" },
+                    { label: "Kariéra",                  href: "/kariera" },
                     { label: "Certifikace a dokumenty",  href: "/certifikace-a-dokumenty" },
                   ].map((item) => (
                     <li key={item.label}>
@@ -93,23 +122,17 @@ export const Footer = ({ onNav, categories = [] }) => {
 
               <div>
                 <p className="h-label text-[10px] text-white/45 mb-4">Výrobky</p>
-                <ul className="space-y-2.5 text-sm text-white/75">
-                  {categories.length > 0 ? (
-                    categories.map((cat) => (
-                      <li key={cat.slug}>
-                        <a href={`/vyroba/${cat.slug}`} className="hover:text-white transition-colors">
-                          {cat.name}
-                        </a>
-                      </li>
-                    ))
-                  ) : (
-                    <>
-                      <li><a href="/vyroba/divize/vzduchotechnicke-komponenty" className="hover:text-white transition-colors">AHC komponenty</a></li>
-                      <li><a href="/vyroba/divize/vzduchotechnicke-jednotky" className="hover:text-white transition-colors">AHU jednotky</a></li>
-                      <li><a href="/vyroba/divize/prumyslove-vytapeni" className="hover:text-white transition-colors">Průmyslové topné systémy</a></li>
-                      <li><a href="/vyroba/divize/specialni-aplikace" className="hover:text-white transition-colors">Speciální aplikace</a></li>
-                    </>
-                  )}
+                <ul className="text-sm">
+                  {productLinks.map((item, i) => (
+                    <li key={item.href + i} className={item.level === 1 ? "pl-4 mt-1.5" : (i > 0 ? "mt-3" : "")}>
+                      <a
+                        href={item.href}
+                        className={`transition-colors hover:text-white ${item.level === 1 ? "text-[13px] text-white/55" : "text-white/80"}`}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -132,7 +155,7 @@ export const Footer = ({ onNav, categories = [] }) => {
 
       {/* Spodní strip — copyright + právní */}
       <div className="bg-mandik-steel-90 border-t border-white/10">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-white/45">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-4 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-2 text-xs text-white/45">
           <p>© 1990–{year} MANDÍK, a.s. Všechna práva vyhrazena.</p>
           <div className="flex items-center gap-4">
             <a href="/ochrana-osobnich-udaju" className="hover:text-white/70 transition-colors">Zásady zpracování osobních údajů</a>

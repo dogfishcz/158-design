@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { SectionLabel } from "./Primitives";
 
 function formatSize(bytes) {
   if (!bytes) return "";
@@ -29,7 +28,7 @@ const DownloadCard = ({ item }) => {
   const badge = isZip ? "ZIP" : isPdf ? "PDF" : isExe ? "EXE" : null;
 
   return (
-    <div className="tile relative bg-white hairline overflow-hidden flex flex-col transition-shadow hover:shadow-lg">
+    <div className="tile group relative bg-white overflow-hidden flex flex-col shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent">
       <span className="tile-bar" style={{ background: "#26d07c" }} />
       {item.image_link && (
         <div className="relative aspect-[4/3] bg-mandik-paper-soft">
@@ -53,7 +52,7 @@ const DownloadCard = ({ item }) => {
           </h3>
         </div>
         {item.subtitle && (
-          <p className="text-[11px] text-accent font-medium mb-2">{item.subtitle}</p>
+          <p className="text-[11px] text-mandik-ink font-medium mb-2">{item.subtitle}</p>
         )}
         {item.description && (
           <p className="text-[12px] text-mandik-steel-80 leading-relaxed flex-1 line-clamp-3">
@@ -83,8 +82,8 @@ const DownloadCard = ({ item }) => {
 };
 
 const ManselCard = () => (
-  <div className="tile relative bg-white hairline overflow-hidden flex flex-col transition-shadow hover:shadow-lg">
-    <span className="tile-bar" style={{ background: "#74d1ea" }} />
+  <div className="tile group relative bg-white overflow-hidden flex flex-col shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-accent">
+    <span className="tile-bar" style={{ background: "#26d07c" }} />
     <div className="relative aspect-[4/3] bg-mandik-paper-soft">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -98,7 +97,7 @@ const ManselCard = () => (
         <span className="shrink-0 mt-0.5 mono text-[10px] font-bold px-1.5 py-0.5 bg-cat-vzt/20 text-cat-vzt">WEB</span>
         <h3 className="h-display text-[14px] leading-tight text-mandik-ink">MANSEL</h3>
       </div>
-      <p className="text-[11px] text-accent font-medium mb-2">
+      <p className="text-[11px] text-mandik-ink font-medium mb-2">
         Online nástroj pro výběr a výpočty vzduchotechnických komponent MANDÍK
       </p>
       <ul className="text-[12px] text-mandik-steel-80 leading-relaxed flex-1 space-y-1">
@@ -112,7 +111,7 @@ const ManselCard = () => (
           href="https://mansel.online/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-cat-vzt text-mandik-ink h-label text-[10px] hover:bg-[#5fc0d8] transition-colors"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent text-mandik-ink h-label text-[10px] hover:bg-[#1ec170] transition-colors"
         >
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -144,7 +143,6 @@ export const DownloadsPage = ({ downloads = [] }) => {
 
         {/* Hlavička */}
         <div className="mb-14">
-          <SectionLabel>Centrum dokumentace</SectionLabel>
           <h1 className="h-display text-[48px] leading-[1.05] text-mandik-ink mb-5">
             Ke stažení
           </h1>
@@ -163,14 +161,12 @@ export const DownloadsPage = ({ downloads = [] }) => {
           <div className="space-y-14">
             {Object.entries(byType).map(([typeName, items]) => (
               <section key={typeName}>
-                <h2 className="h-display text-[26px] text-mandik-ink mb-2 flex items-center gap-3">
-                  <span className="w-1 h-7 bg-accent inline-block" />
-                  {typeName}
-                </h2>
-                <p className="mono text-[12px] text-mandik-steel-70 mb-6 ml-4">
+                <h2 className="h-display text-[26px] text-mandik-ink">{typeName}</h2>
+                <div className="mt-2 h-1 w-12 bg-accent" />
+                <p className="mono text-[12px] text-mandik-steel-70 mt-3 mb-6">
                   {items.length} {fileLabel(items.length)}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 ml-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {typeName === "Aplikace" && <ManselCard />}
                   {items.map((item, i) => (
                     <DownloadCard key={i} item={item} />

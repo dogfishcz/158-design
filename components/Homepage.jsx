@@ -124,7 +124,7 @@ const HOMEPAGE_STATS = [
 
 // Jedna statistika = obdélník v šedém pruhu. Hover: zesvětlení pozadí,
 // zelená linka vyjede zespodu, číslo se zvětší, popisek se projasní.
-const StatBox = ({ value, suffix, label, inView }) => {
+const StatBox = ({ value, suffix, label, inView, isFirst, isLast }) => {
   const [n, setN] = React.useState(0);
   React.useEffect(() => {
     if (!inView) return;
@@ -141,7 +141,7 @@ const StatBox = ({ value, suffix, label, inView }) => {
     return () => cancelAnimationFrame(raf);
   }, [inView, value]);
   return (
-    <div className="group relative bg-mandik-steel flex flex-col items-center justify-center text-center px-6 py-9 overflow-hidden transition-colors duration-300 hover:bg-mandik-steel-90">
+    <div className={`group relative bg-mandik-steel flex flex-col items-center justify-center text-center px-6 py-9 overflow-hidden transition-colors duration-300 hover:bg-mandik-steel-90 border-y border-transparent hover:border-white/10 ${isFirst ? "border-l" : ""} ${isLast ? "border-r" : ""}`}>
       <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] w-0 bg-accent transition-all duration-300 ease-out group-hover:w-1/2" />
       <div className="h-display text-[40px] lg:text-[52px] leading-none text-white tabular-nums transition-transform duration-300 group-hover:scale-110">
         {n.toLocaleString("cs-CZ")}<span className="text-accent">{suffix}</span>
@@ -160,8 +160,8 @@ const StatsStrip = () => {
     <section ref={ref} className="bg-mandik-steel border-b-4 border-accent">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
-          {HOMEPAGE_STATS.map((s) => (
-            <StatBox key={s.label} {...s} inView={inView} />
+          {HOMEPAGE_STATS.map((s, i) => (
+            <StatBox key={s.label} {...s} inView={inView} isFirst={i === 0} isLast={i === HOMEPAGE_STATS.length - 1} />
           ))}
         </div>
       </div>
