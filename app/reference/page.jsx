@@ -7,7 +7,7 @@ import { ReferencesScreen } from "@/components/References";
 
 // /reference používá ReferencesScreen (mapa dodávek, případové studie).
 // ReferencesScreen má vlastní `pt-[108px]` pro fixed-header offset, proto ho
-// montujeme bez Shell wrapperu (který by padding zdvojil) — stejně jako /o-nas.
+// montujeme bez Shell wrapperu (který by padding zdvojil), stejně jako /o-nas.
 export default function Page() {
   const [lang, setLang] = React.useState("cs");
   const [categories, setCategories] = React.useState([]);

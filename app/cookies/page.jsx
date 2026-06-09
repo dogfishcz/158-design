@@ -6,9 +6,9 @@ import { fetchPortfolio } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Cookies — MANDÍK a.s.",
+  title: "Cookies, MANDÍK a.s.",
   description:
-    "Zásady používání cookies na webu MANDÍK a.s. — jaké cookies používáme, k čemu slouží a jak je můžete spravovat nebo deaktivovat.",
+    "Zásady používání cookies na webu MANDÍK a.s., jaké cookies používáme, k čemu slouží a jak je můžete spravovat nebo deaktivovat.",
 };
 
 export default async function Page() {
@@ -40,10 +40,10 @@ export default async function Page() {
           <p>Používáme cookies k různým účelům:</p>
           <LegalList
             items={[
-              <><strong>Technické cookies</strong> – nezbytné pro fungování webu, nevyžadují váš souhlas</>,
-              <><strong>Preferenční cookies</strong> – zapamatují si vaše nastavení a preference</>,
-              <><strong>Analytické cookies</strong> – pomáhají nám analyzovat, jak web používáte</>,
-              <><strong>Marketingové cookies</strong> – slouží k zobrazování vám relevantního obsahu a reklam</>,
+              <><strong>Technické cookies</strong>, nezbytné pro fungování webu, nevyžadují váš souhlas</>,
+              <><strong>Preferenční cookies</strong>, zapamatují si vaše nastavení a preference</>,
+              <><strong>Analytické cookies</strong>, pomáhají nám analyzovat, jak web používáte</>,
+              <><strong>Marketingové cookies</strong>, slouží k zobrazování vám relevantního obsahu a reklam</>,
             ]}
           />
           <p>
@@ -57,19 +57,19 @@ export default async function Page() {
           <LegalList
             items={[
               <>
-                <strong>Google Analytics</strong> – analýza návštěvnosti webu{" "}
+                <strong>Google Analytics</strong>, analýza návštěvnosti webu{" "}
                 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                   (Zásady ochrany osobních údajů)
                 </a>
               </>,
               <>
-                <strong>Microsoft (Bing)</strong> – sledování konverzí a analýza{" "}
+                <strong>Microsoft (Bing)</strong>, sledování konverzí a analýza{" "}
                 <a href="https://privacy.microsoft.com/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                   (Zásady ochrany osobních údajů)
                 </a>
               </>,
               <>
-                <strong>Facebook Pixel</strong> – sledování konverzí a cílení{" "}
+                <strong>Facebook Pixel</strong>, sledování konverzí a cílení{" "}
                 <a href="https://www.facebook.com/policy.php" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
                   (Zásady ochrany osobních údajů)
                 </a>

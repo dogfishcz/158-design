@@ -2,7 +2,7 @@
 
 import React from "react";
 
-// Kariéra — rozklikávací (accordion) seznam otevřených pozic.
+// Kariéra, rozklikávací (accordion) seznam otevřených pozic.
 // Detail pozic přebrán z inzerátů na jobs.cz (MANDÍK, a.s.).
 const POSITIONS = [
   {
@@ -30,7 +30,7 @@ const POSITIONS = [
           "VŠ vzdělání technického směru (strojírenství, TZB nebo příbuzný obor)",
           "Angličtinu na komunikativní úrovni",
           "Zkušenost s 3D CAD softwarem (SolidWorks výhodou)",
-          "Modelování proudění (např. Fluent) – výhodou",
+          "Modelování proudění (např. Fluent), výhodou",
           "Orientaci v technické dokumentaci a normách",
           "Analytické a systematické myšlení",
           "Samostatnost, zodpovědnost a ochotu učit se",
@@ -51,7 +51,7 @@ const POSITIONS = [
     ],
   },
   {
-    title: "R&D Engineer – Heat Transfer & Fluid Dynamics",
+    title: "R&D Engineer, Heat Transfer & Fluid Dynamics",
     subtitle: "Výpočty a návrh vzduchotechnických jednotek (AHU)",
     location: "Hostomice (okr. Beroun)",
     type: "Plný úvazek · HPP",
@@ -214,7 +214,7 @@ const HR_CONTACTS = [
   { name: "Vojnová Lenka", role: "personální asistentka", tel: "+420 311 706 901", mob: "+420 777 789 229", email: "lenka.vojnova@mandik.cz" },
 ];
 
-// Formulář pro zájemce (v8 design). Klientský stub – stejně jako ostatní formuláře zatím neodesílá na backend.
+// Formulář pro zájemce (v8 design). Klientský stub, stejně jako ostatní formuláře zatím neodesílá na backend.
 function KarieraForm() {
   const [sent, setSent] = React.useState(false);
   const [fileName, setFileName] = React.useState("");
@@ -317,7 +317,7 @@ export function KarieraScreen() {
               {HR_CONTACTS.map((p) => (
                 <div key={p.email}>
                   <div className="h-display text-[18px] text-mandik-ink">
-                    {p.name} <span className="text-mandik-steel-70 font-normal">— {p.role}</span>
+                    {p.name} <span className="text-mandik-steel-70 font-normal">- {p.role}</span>
                   </div>
                   <div className="mt-2 space-y-1 text-[14px] text-mandik-steel-80">
                     <div>tel.: <a href={`tel:${p.tel.replace(/\s/g, "")}`} className="hover:text-accent transition-colors">{p.tel}</a></div>
@@ -327,7 +327,7 @@ export function KarieraScreen() {
                 </div>
               ))}
               <p className="text-[13px] text-mandik-steel-70 leading-relaxed pt-2">
-                Nenašli jste vhodnou pozici? Ozvěte se i&nbsp;tak – rádi se na vás podíváme i&nbsp;mimo aktuálně vypsané pozice.
+                Nenašli jste vhodnou pozici? Ozvěte se i&nbsp;tak, rádi se na vás podíváme i&nbsp;mimo aktuálně vypsané pozice.
               </p>
             </div>
 

@@ -37,13 +37,13 @@ export const Footer = ({ onNav, categories = [] }) => {
 
   return (
     <footer className="bg-mandik-steel text-white mt-auto">
-      {/* Pomyslné světlé rozdělení sekcí — výška odpovídá spodnímu stripu níže (border-t + py-4 + text-xs ≈ 49 px) */}
+      {/* Pomyslné světlé rozdělení sekcí, výška odpovídá spodnímu stripu níže (border-t + py-4 + text-xs ≈ 49 px) */}
       <div className="bg-mandik-paper-soft h-[49px]" aria-hidden="true" />
 
       {/* Hlavní tělo */}
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 pt-12 lg:pt-16 pb-10 lg:pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1px_1.6fr_1px_1fr] gap-0">
-          {/* Sloupec 1 — logo + adresa + kontakt */}
+          {/* Sloupec 1, logo + adresa + kontakt */}
           <div className="pb-10 lg:pb-0 lg:pr-12">
             {/* -ml-3 (= -12px): zarovnání s levou hranou rozbalovacího menu v hlavičce.
                 Hodnotu lze měnit (-ml-2 = -8px, -ml-4 = -16px, …). */}
@@ -100,16 +100,16 @@ export const Footer = ({ onNav, categories = [] }) => {
           {/* Svislý oddělovač */}
           <div className="hidden lg:block bg-white/15" />
 
-          {/* Sloupec 2 — Společnost + Výrobky */}
+          {/* Sloupec 2, Společnost + Výrobky */}
           <div className="pb-10 lg:pb-0 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div>
                 <p className="h-label text-[10px] text-white/45 mb-4">Naše společnost</p>
                 <ul className="space-y-2.5 text-sm text-white/75">
                   {[
-                    { label: "O nás",                   href: "/" },
-                    { label: "Reference",                href: "/" },
-                    { label: "Novinky",                  href: "/" },
+                    { label: "O nás",                   href: "/o-nas" },
+                    { label: "Reference",                href: "/reference" },
+                    { label: "Novinky",                  href: "/novinky" },
                     { label: "Kariéra",                  href: "/kariera" },
                     { label: "Certifikace a dokumenty",  href: "/certifikace-a-dokumenty" },
                   ].map((item) => (
@@ -141,7 +141,7 @@ export const Footer = ({ onNav, categories = [] }) => {
           {/* Svislý oddělovač */}
           <div className="hidden lg:block bg-white/15" />
 
-          {/* Sloupec 3 — Podpora (Kontakt, Servis, Ke stažení) */}
+          {/* Sloupec 3, Podpora (Kontakt, Servis, Ke stažení) */}
           <div className="lg:pl-12">
             <p className="h-label text-[10px] text-white/45 mb-4">Podpora</p>
             <ul className="space-y-2.5 text-sm text-white/75">
@@ -153,10 +153,10 @@ export const Footer = ({ onNav, categories = [] }) => {
         </div>
       </div>
 
-      {/* Spodní strip — copyright + právní */}
+      {/* Spodní strip - copyright + právní */}
       <div className="bg-mandik-steel-90 border-t border-white/10">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-4 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-2 text-xs text-white/45">
-          <p>© 1990–{year} MANDÍK, a.s. Všechna práva vyhrazena.</p>
+          <p>© 1990-{year} MANDÍK, a.s. Všechna práva vyhrazena.</p>
           <div className="flex items-center gap-4">
             <a href="/ochrana-osobnich-udaju" className="hover:text-white/70 transition-colors">Zásady zpracování osobních údajů</a>
             <span className="text-white/25">|</span>

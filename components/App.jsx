@@ -14,7 +14,7 @@ const DEFAULT_TWEAKS = {
 };
 
 // SPA-style routing pro homepage. Reálné Next.js stránky (např. /vyroba/[category],
-// /ke-stazeni, /certifikace-a-dokumenty, /o-nas) běží mimo tento App komponent —
+// /ke-stazeni, /certifikace-a-dokumenty, /o-nas) běží mimo tento App komponent -
 // navigace se vždy provádí přes <a href> a browser provede full-page navigaci.
 //
 // Tady zůstávají jen SPA stuby pro routy, které ještě nemají vlastní Next.js stránku:

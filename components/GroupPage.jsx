@@ -19,25 +19,50 @@ const TYPE_COLORS = {
   BACnet: "#f2a900",
 };
 
-const DownloadLink = ({ file }) => (
-  <li>
-    <a
-      href={file.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center gap-3 p-3 hairline bg-white hover:bg-mandik-paper-soft transition-colors group"
-    >
-      <svg className="w-5 h-5 text-red-500 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z" />
-      </svg>
-      <span className="text-sm text-mandik-ink group-hover:text-accent transition-colors flex-1 leading-snug">
-        {file.name}
-      </span>
-      <svg className="w-4 h-4 text-mandik-steel-70 group-hover:text-accent transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-      </svg>
-    </a>
-  </li>
+// Ikony kategorií (štít pro certifikáty, dokument pro ostatní) + ikona stažení.
+const DocIcon = ({ className }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M14 2v6h6M9 13h6M9 17h6" />
+  </svg>
+);
+const ShieldIcon = ({ className }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 3l7 3v5c0 4.418-2.985 8.55-7 9.75C7.985 19.55 5 15.418 5 11V6l7-3z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9.4 11.6l1.9 1.9 3.3-3.7" />
+  </svg>
+);
+const DownloadIcon = ({ className }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+  </svg>
+);
+const categoryIcon = (type, className) =>
+  /certifik|prohlá/i.test(type) ? <ShieldIcon className={className} /> : <DocIcon className={className} />;
+
+// Přátelské názvy sekcí (jinak se použije přímo typ).
+const SECTION_TITLE = { "Návody a ostatní": "Ostatní" };
+const sectionTitle = (t) => SECTION_TITLE[t] || t;
+
+// Dlaždice jednoho souboru: kroužek s ikonou, popisek kategorie, název, ikona stažení.
+// Při najetí myší se dlaždice zabarví zeleně (rámeček, ikona, název).
+const DownloadCard = ({ file, type, accentColor = "#26d07c" }) => (
+  <a
+    href={file.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ "--acc": accentColor, "--acc-tint": `${accentColor}1a` }}
+    className="group flex items-center gap-4 bg-white border border-mandik-rule rounded-xl p-4 transition-all duration-200 hover:border-[color:var(--acc)] hover:shadow-md"
+  >
+    <span className="shrink-0 w-11 h-11 rounded-full bg-mandik-paper-soft text-mandik-steel-70 flex items-center justify-center transition-colors group-hover:bg-[color:var(--acc-tint)] group-hover:text-[color:var(--acc)]">
+      {categoryIcon(type, "w-5 h-5")}
+    </span>
+    <span className="flex-1 min-w-0">
+      <span className="block h-label text-[10px] text-mandik-steel-70 mb-0.5">{type}</span>
+      <span className="block text-[15px] text-mandik-ink leading-snug transition-colors group-hover:text-[color:var(--acc)]">{file.name}</span>
+    </span>
+    <DownloadIcon className="w-5 h-5 text-mandik-steel-70 group-hover:text-[color:var(--acc)] transition-colors shrink-0" />
+  </a>
 );
 
 export const GroupPage = ({ category, group, subcategoryName, accentColor = "#26d07c" }) => {
@@ -77,7 +102,7 @@ export const GroupPage = ({ category, group, subcategoryName, accentColor = "#26
 
         {/* Galerie + info */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 mb-16">
-          <ImageGallery images={group.gallery ?? []} name={group.name} />
+          <ImageGallery images={group.gallery ?? []} name={group.name} accentColor={accentColor} />
 
           <div>
             <h1 className="h-display text-[40px] sm:text-[52px] leading-[1.0] text-mandik-ink">
@@ -148,16 +173,16 @@ export const GroupPage = ({ category, group, subcategoryName, accentColor = "#26
           <section>
             <h2 className="h-display text-[28px] text-mandik-ink mb-3">Ke stažení</h2>
             <div className="w-12 h-1 mb-8" style={{ background: accentColor }} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="space-y-6">
               {Object.entries(downloadsByType).map(([type, files]) => (
-                <div key={type}>
-                  <h3 className="h-label text-[12px] text-mandik-ink mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 shrink-0" style={{ background: accentColor }} />
-                    {type}
+                <div key={type} className="bg-mandik-paper-soft border border-mandik-rule rounded-2xl p-6 lg:p-8">
+                  <h3 className="flex items-center gap-3 mb-5">
+                    <span className="shrink-0" style={{ color: accentColor }}>{categoryIcon(type, "w-6 h-6")}</span>
+                    <span className="h-display text-[20px] text-mandik-ink">{sectionTitle(type)}</span>
                   </h3>
-                  <ul className="space-y-2">
-                    {files.map((file, i) => <DownloadLink key={i} file={file} />)}
-                  </ul>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {files.map((file, i) => <DownloadCard key={i} file={file} type={type} accentColor={accentColor} />)}
+                  </div>
                 </div>
               ))}
             </div>

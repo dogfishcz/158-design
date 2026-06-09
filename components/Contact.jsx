@@ -67,7 +67,7 @@ export const ContactStub = ({ onNav }) => (
           <div className="mt-3 mono text-[13px]">49.8569° N, 14.0376° E</div>
 
           <div className="mt-10">
-            <Photo label="LEAFLET MAPA — HOSTOMICE" ratio="4/3" />
+            <Photo label="LEAFLET MAPA, HOSTOMICE" ratio="4/3" />
           </div>
         </div>
       </div>

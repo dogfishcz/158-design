@@ -6,9 +6,9 @@ import { fetchPortfolio } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Whistleblowing — MANDÍK a.s.",
+  title: "Whistleblowing, MANDÍK a.s.",
   description:
-    "Oznamovací systém společnosti MANDÍK, a.s. dle zákona č. 171/2023 Sb. o ochraně oznamovatelů — kdo může oznamovat, co a jak se oznamuje, komunikační kanály a ochrana oznamovatelů.",
+    "Oznamovací systém společnosti MANDÍK, a.s. dle zákona č. 171/2023 Sb. o ochraně oznamovatelů, kdo může oznamovat, co a jak se oznamuje, komunikační kanály a ochrana oznamovatelů.",
 };
 
 export default async function Page() {
@@ -23,7 +23,7 @@ export default async function Page() {
       >
         <LegalSection title="Kdo může oznamovat">
           <p>
-            Oznámení může podat kdokoliv – učinit jej lze i anonymně. Oznamovatelem (whistleblowerem) je
+            Oznámení může podat kdokoliv, učinit jej lze i anonymně. Oznamovatelem (whistleblowerem) je
             osoba, která se v souvislosti s prací nebo jinou obdobnou činností pro společnost dozvěděla
             o možném protiprávním jednání a upozorní na něj.
           </p>
@@ -41,7 +41,7 @@ export default async function Page() {
           <p>
             Oznámení se podává komunikačním kanálem, který zajišťuje důvěrnost poskytovaných informací
             a ochranu oznamovatelů i nahlášených osob a jejich osobních údajů. Oznámení přijímá a posuzuje
-            <strong> pověřená osoba – personální manažerka</strong>, která je vázána mlčenlivostí.
+            <strong> pověřená osoba, personální manažerka</strong>, která je vázána mlčenlivostí.
           </p>
         </LegalSection>
 
@@ -51,7 +51,7 @@ export default async function Page() {
             items={[
               <>
                 <strong>Písemně poštou:</strong> MANDÍK, a.s., Dobříšská 550, 267 24 Hostomice
-                (obálku označte „WHISTLEBLOWING – NEOTVÍRAT“ a adresujte k rukám pověřené osoby)
+                (obálku označte „WHISTLEBLOWING, NEOTVÍRAT“ a adresujte k rukám pověřené osoby)
               </>,
               <>
                 <strong>Elektronicky:</strong>{" "}

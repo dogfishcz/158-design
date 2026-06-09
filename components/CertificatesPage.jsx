@@ -2,7 +2,7 @@
 
 import React from "react";
 
-// Opravy odkazů — přebijí špatné URL z API (převzato z v5).
+// Opravy odkazů, přebijí špatné URL z API (převzato z v5).
 const LINK_OVERRIDES = [
   { match: "INDESEN", url: "https://www.indesen.cz/" },
   { match: "RLT",     url: "https://rlt-geraete.de/" },

@@ -24,7 +24,7 @@ const STYLE = MAPTILER_KEY
 // match: nuts kód kraje → historická země
 const LAND_EXPR = ["match", ["get", "nuts"], ...Object.entries(NUTS_TO_LAND).flatMap(([n, l]) => [n, l]), ""];
 
-// Zvýraznění je řešené POUZE výplní (fill) nad hranicemi základní mapy —
+// Zvýraznění je řešené POUZE výplní (fill) nad hranicemi základní mapy -
 // nekreslíme vlastní obrysové čáry, aby nevznikaly zdvojené hranice.
 const worldColor = (hoverIso, selIso) => ["case",
   ["==", ["get", "iso"], hoverIso || NONE], ACCENT,

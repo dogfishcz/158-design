@@ -2,7 +2,7 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
-import { getRegionContacts } from "@/lib/contacts";
+import { getRegionContacts, getCentralContacts, CENTRAL_DIVISIONS } from "@/lib/contacts";
 
 // maplibre-gl sahá na window → načítat jen na klientu
 const ContactsMap = dynamic(() => import("./ContactsMap").then((m) => m.ContactsMap), {
@@ -25,12 +25,12 @@ const PhoneIcon = () => (
   </svg>
 );
 
-const PersonCard = ({ person }) => {
+const PersonCard = ({ person, className = "" }) => {
   const name = person.firstName ? `${person.firstName} ${person.lastName}` : person.lastName;
   const telHref = (n) => `tel:${n.replace(/[^\d+]/g, "")}`;
   const hasContact = person.email || person.phone || person.mobile;
   return (
-    <div className="border border-mandik-rule bg-mandik-paper-soft p-4">
+    <div className={`border border-mandik-rule bg-mandik-paper-soft p-4 ${className}`}>
       {name && <div className="h-display text-[16px] leading-tight text-mandik-ink">{name}</div>}
       {person.position && <div className="mono text-[11px] text-mandik-steel-70 mt-0.5">{person.position}</div>}
       <div className="mt-3 space-y-1.5">
@@ -57,9 +57,6 @@ const PersonCard = ({ person }) => {
   );
 };
 
-// Centrální / obecné kontakty – zobrazují se kompaktně vedle sebe na konci.
-const CENTRAL_DIVISIONS = ["Asistentka ředitele", "Školení", "Ústředna | nákup | doprava"];
-
 const DivisionHeading = ({ name }) => (
   <>
     <h3 className="flex items-center gap-2 h-display text-[18px] text-mandik-ink">
@@ -70,10 +67,12 @@ const DivisionHeading = ({ name }) => (
 );
 
 export function ContactsScreen() {
-  const [selected, setSelected] = React.useState("cechy");
+  const [selected, setSelected] = React.useState(null);
   const region = getRegionContacts(selected);
   const mainDivs = region.divisions.filter((d) => !CENTRAL_DIVISIONS.includes(d.name));
-  const centralDivs = region.divisions.filter((d) => CENTRAL_DIVISIONS.includes(d.name));
+  // Centrální kontakty jsou nezávislé na oblasti, zobrazují se vždy: defaultně samostatně,
+  // po výběru oblasti se posunou pod obchodní kontakty (na konec).
+  const centralDivs = getCentralContacts();
 
   return (
     <div data-screen-label="Kontakt" className="page-enter">
@@ -88,20 +87,20 @@ export function ContactsScreen() {
               <div className="mt-4 h-1 w-16 bg-accent" />
             </div>
             <div className="col-span-12 lg:col-span-4 text-mandik-steel-80 text-[15px] leading-relaxed">
-              Vyberte oblast nebo zemi na mapě — zobrazíme kontakty rozdělené po divizích.
+              Vyberte oblast nebo zemi na mapě, zobrazíme kontakty rozdělené po divizích.
               ČR je rozdělená na Čechy, Moravu a&nbsp;Slezsko, Německo po spolkových zemích.
             </div>
           </div>
         </div>
       </section>
 
-      {/* MAPA + KONTAKTY — světlá sekce */}
+      {/* MAPA + KONTAKTY, světlá sekce */}
       <section className="bg-white border-t border-mandik-rule">
         <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-14 lg:py-20">
-          {/* Mapa — přes celou šířku */}
+          {/* Mapa, přes celou šířku */}
           <div className="flex items-center gap-3 mb-4">
             <span className="w-2 h-2 bg-accent" />
-            <span className="h-label text-[11px] text-mandik-steel-70">Mapa kontaktů — svět</span>
+            <span className="h-label text-[11px] text-mandik-steel-70">Mapa kontaktů, svět</span>
           </div>
           <div className="h-[440px] sm:h-[560px] overflow-hidden border border-mandik-rule">
             <ContactsMap selected={selected} onSelect={setSelected} className="h-full w-full" />
@@ -111,19 +110,22 @@ export function ContactsScreen() {
             Přiblížení kolečkem myši nad mapou.
           </p>
 
-          {/* Kontakty pod mapou — mřížka, bez scrollu */}
+          {/* Kontakty pod mapou, mřížka, bez scrollu */}
           <div className="mt-12 lg:mt-16">
             <div className="flex items-center justify-between gap-3 mb-6">
               <h2 className="h-display text-[30px] sm:text-[38px] leading-tight text-mandik-ink">
-                {region.label ? `Kontakty — ${region.label}` : "Vyberte oblast"}
+                {region.label ? `Kontakty, ${region.label}` : "Vyberte oblast"}
               </h2>
               {selected && (
                 <button
                   type="button"
                   onClick={() => setSelected(null)}
-                  className="mono text-[11px] text-mandik-steel-70 hover:text-mandik-ink transition-colors shrink-0"
+                  className="shrink-0 inline-flex items-center gap-1.5 bg-mandik-rule hover:bg-mandik-steel text-mandik-steel-90 hover:text-white mono text-[11px] px-3 py-1.5 transition-colors"
                 >
-                  ✕ zrušit výběr
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  zrušit výběr
                 </button>
               )}
             </div>
@@ -134,45 +136,35 @@ export function ContactsScreen() {
               </div>
             )}
 
-            {region.divisions.length ? (
-              <>
-                {/* Hlavní divize (obchodní zástupci atd.) — přes celou šířku */}
-                {mainDivs.length > 0 && (
-                  <div className="space-y-12">
-                    {mainDivs.map((div) => (
-                      <div key={div.name}>
-                        <DivisionHeading name={div.name} />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {div.people.map((p, i) => (
-                            <PersonCard key={(p.email || p.lastName) + i} person={p} />
-                          ))}
-                        </div>
-                      </div>
-                    ))}
+            {/* Hlavní divize (obchodní zástupci atd.) jen po výběru oblasti, přes celou šířku */}
+            {mainDivs.length > 0 && (
+              <div className="space-y-12">
+                {mainDivs.map((div) => (
+                  <div key={div.name}>
+                    <DivisionHeading name={div.name} />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {div.people.map((p, i) => (
+                        <PersonCard key={(p.email || p.lastName) + i} person={p} />
+                      ))}
+                    </div>
                   </div>
-                )}
+                ))}
+              </div>
+            )}
 
-                {/* Centrální kontakty — kompaktně vedle sebe, na konci */}
-                {centralDivs.length > 0 && (
-                  <div className={`${mainDivs.length > 0 ? "mt-16 pt-12 border-t border-mandik-rule" : ""} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8`}>
-                    {centralDivs.map((div) => (
-                      <div key={div.name}>
-                        <DivisionHeading name={div.name} />
-                        <div className="space-y-4">
-                          {div.people.map((p, i) => (
-                            <PersonCard key={(p.email || p.lastName) + i} person={p} />
-                          ))}
-                        </div>
-                      </div>
-                    ))}
+            {/* Centrální kontakty, vždy; stejně vysoké dlaždice; po výběru oblasti odděleny a na konci */}
+            {centralDivs.length > 0 && (
+              <div className={`${mainDivs.length > 0 ? "mt-16 pt-12 border-t border-mandik-rule" : ""} grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 items-stretch`}>
+                {centralDivs.map((div) => (
+                  <div key={div.name} className="flex flex-col">
+                    <DivisionHeading name={div.name} />
+                    <div className="flex-1 flex flex-col gap-4">
+                      {div.people.map((p, i) => (
+                        <PersonCard key={(p.email || p.lastName) + i} person={p} className="flex-1" />
+                      ))}
+                    </div>
                   </div>
-                )}
-              </>
-            ) : (
-              <div className="border border-dashed border-mandik-rule p-8 text-center">
-                <p className="text-mandik-steel-80 text-[14px] leading-relaxed">
-                  Vyberte zemi nebo oblast v&nbsp;mapě a zobrazíme kontakty rozdělené po divizích.
-                </p>
+                ))}
               </div>
             )}
           </div>

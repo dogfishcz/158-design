@@ -8,7 +8,7 @@ import { DIVISIONS } from "@/lib/divisions";
 const COMPANY_ITEMS = [
   { slug: "o-nas",       label: "O nás",                    href: "/o-nas",                    photo: "/assets/header-o-nas.jpg" },
   { slug: "reference",   label: "Reference",                href: "/reference",                photo: "/assets/header-reference.jpg" },
-  { slug: "novinky",     label: "Novinky",                  href: "/",                         photo: "/assets/header-novinky.jpg" },
+  { slug: "novinky",     label: "Novinky",                  href: "/novinky",                  photo: "/assets/header-novinky.jpg" },
   { slug: "kariera",     label: "Kariéra",                  href: "/kariera",                  photo: "/assets/header-kariera.jpg" },
   { slug: "certifikaty", label: "Certifikace a dokumenty",  href: "/certifikace-a-dokumenty",  photo: "/assets/header-certifikaty.jpg" },
 ];
@@ -85,8 +85,8 @@ const LangSwitcher = ({ value = "cs", onChange }) => {
 
 // --- Mega menu (3 sloupce: popis | seznam | foto, s green hover scrubberem mezi sloupci) ---
 // imageFit:
-//   "cover"   — celoplošná fotka vyplní pravý sloupec (např. Naše společnost — landscape fotky)
-//   "contain" — produktová fotka (default) — proporčně zmenšená, vystředěná, beze ořezu
+//   "cover"  , celoplošná fotka vyplní pravý sloupec (např. Naše společnost, landscape fotky)
+//   "contain", produktová fotka (default), proporčně zmenšená, vystředěná, beze ořezu
 const MegaMenu = ({
   open,
   label,
@@ -225,7 +225,7 @@ const MegaMenu = ({
                 )}
               </div>
             ) : (
-              /* Produktová fotka — vystředěná, zmenšená beze ořezu (Výrobky) */
+              /* Produktová fotka, vystředěná, zmenšená beze ořezu (Výrobky) */
               <div className="relative overflow-hidden flex items-center justify-center p-8">
                 {photo ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
@@ -251,7 +251,7 @@ const MegaMenu = ({
 
 // --- Hlavní Header ---
 // Když je předán `onNav`, používá se SPA navigace (homepage).
-// Bez `onNav` se z odkazů stanou reálné <a href="..."> — pro statické routy.
+// Bez `onNav` se z odkazů stanou reálné <a href="...">, pro statické routy.
 export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) => {
   const t = NAV_LABELS[lang] ?? NAV_LABELS.cs;
 
@@ -339,7 +339,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
 
   // Helper: navigace přes onNav (SPA mode), nebo přes reálné URL (fallback).
   // Když položka nemá spaRoute (např. "Ke stažení" má vlastní Next.js stránku /ke-stazeni),
-  // necháme browser provést běžnou navigaci přes href — nikdy se nezobrazí starý SPA stub.
+  // necháme browser provést běžnou navigaci přes href, nikdy se nezobrazí starý SPA stub.
   const navigateOrLink = (e, spaRoute, href = "/") => {
     if (onNav && spaRoute) {
       e.preventDefault();
@@ -427,7 +427,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 pointer-events-none">
-      {/* Vnitřní obal s max-w-[1320px] — vlastní vizuální "kostka" hlavičky.
+      {/* Vnitřní obal s max-w-[1320px], vlastní vizuální "kostka" hlavičky.
           Background a hover handler jsou na něm, ne na <header>, aby se efekt projevil jen v rozsahu šířky mega menu. */}
       <div
         className={`pointer-events-auto max-w-[1320px] mx-auto transition-[background-color,backdrop-filter] duration-200 ${
@@ -440,7 +440,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
           setHeaderHovered(true);
         }}
       >
-      {/* Top utility row — schová se při scroll dolů, vrátí se na hero */}
+      {/* Top utility row, schová se při scroll dolů, vrátí se na hero */}
       <div
         className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
           atTop ? "max-h-9 opacity-100" : "max-h-0 opacity-0"
@@ -496,13 +496,13 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
 
       {/* Hlavní lišta (v5 layout) */}
       <div className="relative">
-        <nav className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 h-16 lg:h-20 flex items-center justify-between">
-          {/* Logo — vede vždy na "/" (homepage)
+        <nav className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 h-16 lg:h-20 flex items-center gap-7 lg:gap-9">
+          {/* Logo, vede vždy na "/" (homepage)
               -ml-3 (= -12px): posune logo k levé hraně rozbalovacích menu.
               Zvyš na -ml-4 (-16px) / sniž na -ml-2 (-8px) podle potřeby. */}
-          <Logo invert size={78} onNav={onNav} className="-ml-2" />
+          <Logo invert size={78} onNav={onNav} className="-ml-2 mr-auto" />
 
-          {/* Primary nav — self-stretch protáhne <ul> na plnou výšku nav baru (h-20),
+          {/* Primary nav, self-stretch protáhne <ul> na plnou výšku nav baru (h-20),
               takže sliding green bar uvnitř s absolute bottom-0 sedí přesně na dolní hraně. */}
           <ul
             ref={navRef}
@@ -514,7 +514,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
               onMouseEnter={(e) => { companyEnter(); trackBar(e); }}
               onMouseLeave={companyLeave}
             >
-              {/* NAŠE SPOLEČNOST není odkaz — mega menu se otevírá hoverem,
+              {/* NAŠE SPOLEČNOST není odkaz, mega menu se otevírá hoverem,
                   konkrétní podstránka se vybírá v rozbaleném seznamu. */}
               <span
                 className="flex items-center gap-1.5 h-label text-[13px] text-white/85 hover:text-white transition-colors duration-150 py-6 cursor-default select-none"
@@ -530,7 +530,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
               onMouseEnter={(e) => { productsEnter(); trackBar(e); }}
               onMouseLeave={productsLeave}
             >
-              {/* VÝROBKY není odkaz — kategorie se vybírá z mega menu. */}
+              {/* VÝROBKY není odkaz, kategorie se vybírá z mega menu. */}
               <span
                 className="flex items-center gap-1.5 h-label text-[13px] text-white/85 hover:text-white transition-colors duration-150 py-6 cursor-default select-none"
               >
@@ -643,17 +643,9 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
             </div>
 
             <LangSwitcher value={lang} onChange={onLang} />
-
-            <button
-              type="button"
-              onClick={(e) => { e.preventDefault(); if (onNav) onNav("contact"); else window.location.href = "/kontakt"; closeAll(); }}
-              className="inline-flex h-9 items-center px-4 bg-accent text-mandik-ink h-label text-[11px] hover:bg-[#1ec170] transition-colors"
-            >
-              {t.inquiry}
-            </button>
           </div>
 
-          {/* Mobilní hamburger — jen do md breakpointu */}
+          {/* Mobilní hamburger, jen do md breakpointu */}
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -679,7 +671,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
           activeSlug={activeCompanySlug}
           onActiveChange={setActiveCompanySlug}
           /* Když má položka vlastní href (např. /certifikace-a-dokumenty), browser navigace
-             přes <a href> už proběhla — nesmíme spustit SPA route jinak by se kratince
+             přes <a href> už proběhla, nesmíme spustit SPA route jinak by se kratince
              zobrazil špatný stub. */
           onItemClick={(it) => { if (it.route && !it.href) onNav(it.route); closeAll(); }}
           onMouseEnter={companyEnter}
@@ -695,7 +687,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
           items={productsItems}
           activeSlug={activeCategorySlug}
           onActiveChange={setActiveCategorySlug}
-          /* Klik na kategorii vede přes <a href="/vyroba/[slug]"> (browser navigace) — onNav by
+          /* Klik na kategorii vede přes <a href="/vyroba/[slug]"> (browser navigace), onNav by
              v SPA módu zbytečně rendroval ProductDetail před tím, než dojde k full-page navigaci. */
           onItemClick={() => closeAll()}
           onMouseEnter={productsEnter}
@@ -704,7 +696,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
       </div>
       </div>
 
-      {/* Mobilní drawer — překryv s odkazy. Otevírá se klikem na hamburger. */}
+      {/* Mobilní drawer, překryv s odkazy. Otevírá se klikem na hamburger. */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-50 pointer-events-auto bg-mandik-steel text-white overflow-y-auto">
           <div className="flex items-center justify-between h-16 px-4 border-b border-white/15">
@@ -724,7 +716,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
               tam, kde je vizuálně písmeno "M" v logu. Pokud chceš víc/méně,
               změň pl-6 (24px) na pl-5 (20px), pl-7 (28px), pl-8 (32px), atd. */}
           <nav className="pl-6 pr-4 py-6 space-y-1">
-            {/* NAŠE SPOLEČNOST — expandable */}
+            {/* NAŠE SPOLEČNOST, expandable */}
             <div className="border-b border-white/10">
               <button
                 type="button"
@@ -757,7 +749,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
               )}
             </div>
 
-            {/* VÝROBKY — expandable */}
+            {/* VÝROBKY, expandable */}
             <div className="border-b border-white/10">
               <button
                 type="button"
@@ -799,18 +791,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
             <a href="/ke-stazeni" className="block h-label text-[14px] py-4 border-b border-white/10" onClick={() => setMobileOpen(false)}>{t.downloads}</a>
             <a href="/kontakt" className="block h-label text-[14px] py-4 border-b border-white/10" onClick={() => setMobileOpen(false)}>{t.contact}</a>
 
-            {/* Poptávka CTA */}
-            <div className="pt-6">
-              <a
-                href="/"
-                onClick={(e) => { if (onNav) { e.preventDefault(); onNav("contact"); } setMobileOpen(false); }}
-                className="inline-flex h-11 items-center px-5 bg-accent text-mandik-ink h-label text-[13px] hover:bg-[#1ec170] transition-colors"
-              >
-                {t.inquiry}
-              </a>
-            </div>
-
-            {/* Výběr jazyka — rozbalovací seznam (stejně jako Naše společnost / Výrobky) */}
+            {/* Výběr jazyka, rozbalovací seznam (stejně jako Naše společnost / Výrobky) */}
             <div className="pt-6 border-t border-white/15 mt-6">
               {(() => {
                 const current = LOCALES.find((l) => l.code === lang) ?? LOCALES[0];

@@ -12,7 +12,7 @@ export const Logo = ({ invert = false, size = 36, onNav, className = "" }) => {
       onClick={(e) => { if (onNav) { e.preventDefault(); onNav("home"); } }}
       data-route="home"
       className={`inline-flex items-center select-none shrink-0 hover:opacity-80 transition-opacity ${className}`}
-      aria-label="MANDÍK — domů"
+      aria-label="MANDÍK, domů"
       style={{ height: size }}
     >
       <span
@@ -71,14 +71,17 @@ export const Photo = ({ src, label, ratio = "4/3", className = "", priority = fa
 };
 
 export const Button = ({ children, variant = "primary", href = "#", icon, onClick, target, rel, className = "" }) => {
-  const base = "inline-flex items-center gap-3 h-11 px-5 h-label text-[11px] transition-colors duration-150";
+  const base = "relative overflow-hidden group/btn inline-flex items-center gap-3 h-11 px-5 h-label text-[11px] transition-colors duration-150";
   const styles = {
     primary: "bg-accent text-mandik-ink hover:bg-[#1ec170]",
-    secondary: "bg-mandik-steel text-white hover:bg-[#3e4d61]",
+    secondary: "bg-mandik-steel text-white hover:text-mandik-ink",
     vzt: "bg-cat-vzt text-mandik-ink hover:bg-[#5fc0d8]",
-    ghost: "bg-transparent text-mandik-ink ring-1 ring-mandik-rule hover:ring-mandik-steel hover:text-mandik-steel",
-    invertGhost: "bg-transparent text-white ring-1 ring-white/40 hover:ring-white",
+    ghost: "bg-transparent text-mandik-ink ring-1 ring-mandik-rule hover:ring-accent",
+    invertGhost: "bg-transparent text-white ring-1 ring-white/40 hover:ring-accent hover:text-mandik-ink",
   };
+  // Bílé / obrysové (a steel) varianty: hover = zelená výplň zdola nahoru (jako "Přidat do poptávky").
+  const fillVariants = ["secondary", "ghost", "invertGhost"];
+  const hasFill = fillVariants.includes(variant);
   const isExternal = href && /^https?:\/\//.test(href);
   return (
     <a
@@ -88,9 +91,15 @@ export const Button = ({ children, variant = "primary", href = "#", icon, onClic
       rel={rel ?? (isExternal ? "noopener noreferrer" : undefined)}
       className={`${base} ${styles[variant]} ${className}`}
     >
-      <span>{children}</span>
+      {hasFill && (
+        <span
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-0 group-hover/btn:h-full bg-accent transition-[height] duration-300 ease-out"
+        />
+      )}
+      <span className="relative z-10">{children}</span>
       {icon !== false && (
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+        <svg className="relative z-10" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
           <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.4" />
         </svg>
       )}
@@ -140,7 +149,7 @@ export const Stat = ({ value, suffix = "", label, sub, inView }) => {
   );
 };
 
-// Scroll-reveal wrapper — fade-in + slide-up když se element dostane do viewportu.
+// Scroll-reveal wrapper, fade-in + slide-up když se element dostane do viewportu.
 // Použij přímo: <Reveal><MujKus /></Reveal>
 // Volitelně delay (ms) pro stagger u sourozenců.
 export const Reveal = ({ children, delay = 0, className = "" }) => {

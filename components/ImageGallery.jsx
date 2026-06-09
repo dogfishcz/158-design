@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export const ImageGallery = ({ images = [], name }) => {
+export const ImageGallery = ({ images = [], name, accentColor = "#26d07c" }) => {
   const [active, setActive] = React.useState(0);
 
   if (!images || images.length === 0) {
@@ -31,8 +31,9 @@ export const ImageGallery = ({ images = [], name }) => {
             <button
               key={i}
               onClick={() => setActive(i)}
+              style={active === i ? { borderColor: accentColor } : undefined}
               className={`relative w-16 h-16 overflow-hidden border-2 transition-colors ${
-                active === i ? "border-accent" : "border-mandik-rule hover:border-mandik-steel"
+                active === i ? "" : "border-mandik-rule hover:border-mandik-steel"
               }`}
               aria-label={`Obrázek ${i + 1}`}
             >

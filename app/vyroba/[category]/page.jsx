@@ -10,8 +10,8 @@ export async function generateMetadata({ params }) {
   const categories = await fetchPortfolio("cs").catch(() => []);
   const cat = categories.find((c) => c.slug === params.category);
   return {
-    title: cat ? `${cat.name} — MANDÍK a.s.` : "Výrobek nenalezen",
-    description: cat?.description ?? "MANDÍK a.s. — výrobní portfolio.",
+    title: cat ? `${cat.name}, MANDÍK a.s.` : "Výrobek nenalezen",
+    description: cat?.description ?? "MANDÍK a.s., výrobní portfolio.",
   };
 }
 

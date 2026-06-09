@@ -5,9 +5,9 @@ import { fetchPortfolio } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Ochrana osobních údajů — MANDÍK a.s.",
+  title: "Ochrana osobních údajů, MANDÍK a.s.",
   description:
-    "Zásady zpracování a ochrany osobních údajů společnosti MANDÍK, a.s. v souladu s nařízením GDPR — kategorie údajů, právní důvody, doba uložení a vaše práva.",
+    "Zásady zpracování a ochrany osobních údajů společnosti MANDÍK, a.s. v souladu s nařízením GDPR, kategorie údajů, právní důvody, doba uložení a vaše práva.",
 };
 
 export default async function Page() {
@@ -48,13 +48,13 @@ export default async function Page() {
           <p>Při zpracování osobních údajů se řídíme těmito sedmi základními zásadami:</p>
           <LegalList
             items={[
-              <><strong>Zákonnost a transparentnost</strong> – zpracování je vždy v souladu se zákonem a jasně vám sdělujeme, co s vašimi údaji děláme</>,
-              <><strong>Účelové omezení</strong> – údaje zpracováváme pouze pro jasně definované účely</>,
-              <><strong>Minimalizace údajů</strong> – sbíráme pouze údaje, které jsou pro daný účel nezbytné</>,
-              <><strong>Přesnost</strong> – zajišťujeme, aby údaje byly správné a aktuální</>,
-              <><strong>Omezení doby uložení</strong> – údaje neuchováváme déle, než je nutné</>,
-              <><strong>Integrita a důvěrnost</strong> – chráníme údaje před neoprávněným přístupem a zneužitím</>,
-              <><strong>Odpovědnost</strong> – provádíme technická a organizační opatření k ochraně údajů</>,
+              <><strong>Zákonnost a transparentnost</strong>, zpracování je vždy v souladu se zákonem a jasně vám sdělujeme, co s vašimi údaji děláme</>,
+              <><strong>Účelové omezení</strong>, údaje zpracováváme pouze pro jasně definované účely</>,
+              <><strong>Minimalizace údajů</strong>, sbíráme pouze údaje, které jsou pro daný účel nezbytné</>,
+              <><strong>Přesnost</strong>, zajišťujeme, aby údaje byly správné a aktuální</>,
+              <><strong>Omezení doby uložení</strong>, údaje neuchováváme déle, než je nutné</>,
+              <><strong>Integrita a důvěrnost</strong>, chráníme údaje před neoprávněným přístupem a zneužitím</>,
+              <><strong>Odpovědnost</strong>, provádíme technická a organizační opatření k ochraně údajů</>,
             ]}
           />
         </LegalSection>
@@ -88,11 +88,11 @@ export default async function Page() {
           <LegalList
             ordered
             items={[
-              <><strong>Plnění smlouvy</strong> – zpracování je nezbytné pro plnění smlouvy, kterou s námi máte (např. objednávka, služba)</>,
-              <><strong>Plnění právní povinnosti</strong> – zpracování je vyžadováno právními předpisy (daňové, účetní povinnosti)</>,
-              <><strong>Oprávněné zájmy</strong> – zpracování slouží našim oprávněným zájmům nebo zájmům třetích stran (marketing, bezpečnost)</>,
-              <><strong>Souhlas subjektu údajů</strong> – udělili jste nám svůj výslovný souhlas se zpracováním (cookies, newsletter)</>,
-              <><strong>Ochrana životně důležitých zájmů</strong> – zpracování je nezbytné pro ochranu života nebo zdraví</>,
+              <><strong>Plnění smlouvy</strong>, zpracování je nezbytné pro plnění smlouvy, kterou s námi máte (např. objednávka, služba)</>,
+              <><strong>Plnění právní povinnosti</strong>, zpracování je vyžadováno právními předpisy (daňové, účetní povinnosti)</>,
+              <><strong>Oprávněné zájmy</strong>, zpracování slouží našim oprávněným zájmům nebo zájmům třetích stran (marketing, bezpečnost)</>,
+              <><strong>Souhlas subjektu údajů</strong>, udělili jste nám svůj výslovný souhlas se zpracováním (cookies, newsletter)</>,
+              <><strong>Ochrana životně důležitých zájmů</strong>, zpracování je nezbytné pro ochranu života nebo zdraví</>,
             ]}
           />
         </LegalSection>
@@ -101,10 +101,10 @@ export default async function Page() {
           <p>Vaše osobní údaje mohou být předány následujícím kategoriím třetích osob:</p>
           <LegalList
             items={[
-              <><strong>Zpracovatelé</strong> – třetí strany, které údaje zpracovávají na náš účet (hostingové služby, platební brány)</>,
-              <><strong>Samostatní správci</strong> – organizace, které jsou samostatnými správci údajů (finanční úřad, zákonem pověřené orgány)</>,
-              <><strong>Právní nástupci</strong> – v případě prodeje nebo fúze společnosti</>,
-              <><strong>Orgány činné v trestním řízení</strong> – pokud vyžadují údaje pro vyšetřování trestného činu</>,
+              <><strong>Zpracovatelé</strong>, třetí strany, které údaje zpracovávají na náš účet (hostingové služby, platební brány)</>,
+              <><strong>Samostatní správci</strong>, organizace, které jsou samostatnými správci údajů (finanční úřad, zákonem pověřené orgány)</>,
+              <><strong>Právní nástupci</strong>, v případě prodeje nebo fúze společnosti</>,
+              <><strong>Orgány činné v trestním řízení</strong>, pokud vyžadují údaje pro vyšetřování trestného činu</>,
             ]}
           />
           <p>
@@ -117,10 +117,10 @@ export default async function Page() {
           <p>Vaše osobní údaje uchováváme pouze po dobu, která je pro daný účel nezbytná:</p>
           <LegalList
             items={[
-              <><strong>Právní povinnosti</strong> – určeno právními předpisy (např. účetní doklady se archivují po dobu až 11 let)</>,
-              <><strong>Smluvní údaje</strong> – uchováváme po dobu trvání smlouvy a dalších 10 let</>,
-              <><strong>Oprávněné zájmy</strong> – od 1 týdne do 10 let v závislosti na účelu zpracování</>,
-              <><strong>Souhlas</strong> – do odvolání souhlasu a následného smazání</>,
+              <><strong>Právní povinnosti</strong>, určeno právními předpisy (např. účetní doklady se archivují po dobu až 11 let)</>,
+              <><strong>Smluvní údaje</strong>, uchováváme po dobu trvání smlouvy a dalších 10 let</>,
+              <><strong>Oprávněné zájmy</strong>, od 1 týdne do 10 let v závislosti na účelu zpracování</>,
+              <><strong>Souhlas</strong>, do odvolání souhlasu a následného smazání</>,
             ]}
           />
           <p>Po skončení doby uložení údaje smažeme nebo anonymizujeme.</p>
@@ -130,15 +130,15 @@ export default async function Page() {
           <p>V souladu s GDPR máte následující práva:</p>
           <LegalList
             items={[
-              <><strong>Právo na přístup</strong> – máte právo vědět, jaké údaje o vás zpracováváme</>,
-              <><strong>Právo na opravu</strong> – můžete nás požádat o opravu nepřesných údajů</>,
-              <><strong>Právo na výmaz</strong> – máte právo být zapomenut (právo na výmaz)</>,
-              <><strong>Právo na omezení zpracování</strong> – můžete požádat o omezení zpracování vašich údajů</>,
-              <><strong>Právo na přenositelnost údajů</strong> – máte právo obdržet své údaje ve strojově čitelné podobě</>,
-              <><strong>Právo vznést námitku</strong> – v určitých případech můžete vznést námitku proti zpracování vašich údajů</>,
-              <><strong>Právo odvolat souhlas</strong> – souhlas se zpracováním můžete kdykoliv odvolat</>,
-              <><strong>Právo na náhradu újmy</strong> – máte právo na náhradu újmy způsobené nezákonným zpracováním</>,
-              <><strong>Právo podat stížnost</strong> – stížnost můžete podat Úřadu pro ochranu osobních údajů</>,
+              <><strong>Právo na přístup</strong>, máte právo vědět, jaké údaje o vás zpracováváme</>,
+              <><strong>Právo na opravu</strong>, můžete nás požádat o opravu nepřesných údajů</>,
+              <><strong>Právo na výmaz</strong>, máte právo být zapomenut (právo na výmaz)</>,
+              <><strong>Právo na omezení zpracování</strong>, můžete požádat o omezení zpracování vašich údajů</>,
+              <><strong>Právo na přenositelnost údajů</strong>, máte právo obdržet své údaje ve strojově čitelné podobě</>,
+              <><strong>Právo vznést námitku</strong>, v určitých případech můžete vznést námitku proti zpracování vašich údajů</>,
+              <><strong>Právo odvolat souhlas</strong>, souhlas se zpracováním můžete kdykoliv odvolat</>,
+              <><strong>Právo na náhradu újmy</strong>, máte právo na náhradu újmy způsobené nezákonným zpracováním</>,
+              <><strong>Právo podat stížnost</strong>, stížnost můžete podat Úřadu pro ochranu osobních údajů</>,
             ]}
           />
         </LegalSection>

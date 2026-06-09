@@ -35,7 +35,7 @@ export const PressureCalc = () => {
     </div>
   );
 
-  const warn = v > 8 ? "Rychlost překračuje 8 m/s — zvažte větší průměr." : v > 6 ? "Pozn.: rychlost nad 6 m/s zvyšuje hluk." : null;
+  const warn = v > 8 ? "Rychlost překračuje 8 m/s, zvažte větší průměr." : v > 6 ? "Pozn.: rychlost nad 6 m/s zvyšuje hluk." : null;
 
   return (
     <div className="grid grid-cols-12 gap-px bg-mandik-rule hairline">
@@ -97,7 +97,7 @@ export const PressureCalc = () => {
         )}
 
         <div className="absolute bottom-4 right-4 mono text-[10px] text-white/40">
-          výpočet: Swamee–Jain · ρ 1,2 kg/m³ · k 0,15 mm
+          výpočet: Swamee-Jain · ρ 1,2 kg/m³ · k 0,15 mm
         </div>
       </div>
     </div>

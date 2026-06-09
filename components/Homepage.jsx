@@ -2,7 +2,9 @@
 
 import React from "react";
 import { SectionTitle, Button, useInView, Reveal } from "./Primitives";
-import { EuropeMap, PINS, AREA_COLOR } from "./EuropeMap";
+import { EuropeMap, PINS, AREA_COLOR, referencePhotos } from "./EuropeMap";
+import { ReferencePanel } from "./ReferencePanel";
+import { NEWS } from "@/lib/news";
 
 const HERO_VIDEO = "/assets/hero.webm";
 
@@ -16,7 +18,7 @@ const HOMEPAGE_TILES = [
     code: "AHC",
     title: "Vzduchotechnické komponenty",
     sub: "Protipožární a regulační klapky, mřížky, tlumiče, anemostaty.",
-    spec: "EI 30 — EI 240 · do 1 600 × 1 000 mm",
+    spec: "EI 30, EI 240 · do 1 600 × 1 000 mm",
     qty: "1 240+ položek",
     photo: "VZDUCHOTECHNICKÉ KOMPONENTY",
     img: "/assets/division-vzt.jpg",
@@ -38,7 +40,7 @@ const HOMEPAGE_TILES = [
     code: "HEAT",
     title: "Průmyslové vytápění",
     sub: "Teplovzdušné agregáty, sálavé panely, plynová tepelná čerpadla.",
-    spec: "5 — 1 200 kW",
+    spec: "5, 1 200 kW",
     qty: "MONZUN · HEATWING",
     photo: "PRŮMYSLOVÉ VYTÁPĚNÍ",
     img: "/assets/division-heat.jpg",
@@ -57,11 +59,7 @@ const HOMEPAGE_TILES = [
   },
 ];
 
-const NEWS = [
-  { date: "12. 5. 2026", cat: "Vývoj", title: "Nová generace PKTM IV+ s protokolem BACnet vstupuje do certifikace EI 240", img: "VÝVOJ" },
-  { date: "30. 4. 2026", cat: "Reference", title: "Dodávka 1 340 kusů PKI-EI pro 22 Bishopsgate v Londýně dokončena", img: "REFERENCE" },
-  { date: "14. 4. 2026", cat: "Výroba", title: "Otevíráme novou výrobní halu Hostomice III — +18 000 m² pro AHU", img: "VÝROBA" },
-];
+// NEWS je importováno z lib/news.js (3 novinky se slugem, fotkami a popisem).
 
 const Hero = ({ onNav, mediaStyle = "video", parallax = true }) => {
   const [y, setY] = React.useState(0);
@@ -237,52 +235,10 @@ const RefMapPreview = ({ onNav }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-mandik-rule hairline">
           <div className="lg:col-span-8 bg-mandik-paper-soft">
-            <EuropeMap revealed={inView} selectedId={selected?.id} onSelect={setSelected} height={560} variant="light" />
+            <EuropeMap revealed={inView} selectedId={selected?.id} onSelect={setSelected} height={560} variant="light" fill />
           </div>
-          <div className="lg:col-span-4 bg-white p-6 lg:p-7 flex flex-col">
-            <div className="flex items-center justify-between mb-4">
-              <div className="h-label text-[11px] text-mandik-steel-70">Vybraná reference</div>
-              <div className="mono text-[11px] text-mandik-steel-70">#{String(selected.id).padStart(3, "0")} / 1 280</div>
-            </div>
-
-            <div className="h-display text-[28px] leading-tight text-mandik-ink">{selected.project}</div>
-            <div className="mt-2 flex items-center gap-2 mono text-[12px] text-mandik-steel-80">
-              <span>{selected.city}, {selected.country}</span>
-              <span className="opacity-50">·</span>
-              <span>{selected.year}</span>
-              <span className="opacity-50">·</span>
-              <span className="tabular-nums">{selected.lat.toFixed(2)}° {selected.lat >= 0 ? "N" : "S"}, {selected.lon.toFixed(2)}° {selected.lon >= 0 ? "E" : "W"}</span>
-            </div>
-
-            <div className="mt-7 grid grid-cols-2 gap-px bg-mandik-rule">
-              <div className="bg-white p-4">
-                <div className="mono text-[10px] text-mandik-steel-70 uppercase tracking-wider">Dodáno</div>
-                <div className="h-display text-[28px] mt-1 tabular-nums text-mandik-ink">{selected.units}</div>
-                <div className="text-[11px] text-mandik-steel-80">jednotek</div>
-              </div>
-              <div className="bg-white p-4">
-                <div className="mono text-[10px] text-mandik-steel-70 uppercase tracking-wider">Sektor</div>
-                <div className="h-display text-[18px] mt-1 leading-tight text-mandik-ink">{selected.sector}</div>
-                <div className="h-1 w-6 mt-2" style={{ background: accentColor }} />
-              </div>
-              <div className="bg-white p-4 col-span-2">
-                <div className="mono text-[10px] text-mandik-steel-70 uppercase tracking-wider">Výrobní oblast</div>
-                <div className="flex items-center gap-3 mt-2">
-                  <span className="block h-2 w-8" style={{ background: accentColor }} />
-                  <span className="h-display text-[18px] leading-tight text-mandik-ink">{selected.area}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 mono text-[11px] text-mandik-steel-80 leading-relaxed">
-              {selected.special
-                ? "Speciální zakázka s certifikací KTA 1401 / 10CFR APP10. Detail dostupný na vyžádání."
-                : "Standardní dodávka — kompletní balíček dokumentace v centru ke stažení."}
-            </div>
-
-            <div className="mt-auto pt-7">
-              <Button variant="primary" href="/reference">Otevřít všechny reference</Button>
-            </div>
+          <div className="lg:col-span-4">
+            <ReferencePanel reference={selected} accent={accentColor} />
           </div>
         </div>
 
@@ -300,7 +256,7 @@ const RefMapPreview = ({ onNav }) => {
                 className={`px-3 py-1.5 hairline flex items-center gap-2 mono text-[11px] transition-colors ${isSel ? "bg-mandik-ink text-white" : "bg-white text-mandik-steel-80 hover:text-mandik-ink"}`}
               >
                 <span className="block w-1.5 h-1.5" style={{ background: c }} />
-                {p.city} — {p.project.split("—")[0].trim()}
+                {p.city}, {p.project.split("-")[0].trim()}
               </button>
             );
           })}
@@ -318,9 +274,9 @@ const CERT_LOGOS = [
   { src: "/assets/cert/CCPI_SCD.png", alt: "CCPI Smoke Control Dampers", note: "UK kouř a teplo", url: "https://www.cpicode.org.uk/" },
   { src: "/assets/cert/Efectis.jpg", alt: "Efectis", note: "Požární zkoušky", url: "https://efectis.com/en/" },
   { src: "/assets/cert/PAVUS.png", alt: "PAVUS", note: "Akreditovaná zkušebna", url: "https://www.pavus.cz/" },
-  { src: "/assets/cert/FTZU.jpg", alt: "FTZÚ — Ex", note: "ATEX zkušebna", url: "https://www.ftzu.cz/cs/" },
+  { src: "/assets/cert/FTZU.jpg", alt: "FTZÚ, Ex", note: "ATEX zkušebna", url: "https://www.ftzu.cz/cs/" },
   { src: "/assets/cert/VUPS.png", alt: "VÚPS", note: "Stavební zkušebna", url: "https://www.vups.cz/" },
-  { src: "/assets/cert/DIvB.png", alt: "DIvB — Ich bin dabei!", note: "Asociace D-A-CH", url: "https://divb.org/" },
+  { src: "/assets/cert/DIvB.png", alt: "DIvB, Ich bin dabei!", note: "Asociace D-A-CH", url: "https://divb.org/" },
   { src: "/assets/cert/EPD.png", alt: "EPD Verified", note: "Env. prohlášení", url: "https://www.ekoznacka.cz/databaze-epd-v-cr/" },
   { src: "/assets/cert/INDESEN.png", alt: "INDESEN", note: "Inženýring · průmysl", url: "https://www.indesen.cz/" },
   { src: "/assets/cert/MagiCAD.jpg", alt: "MagiCAD", note: "BIM rodiny pro Revit", url: "https://www.magicad.com/en/" },
@@ -372,9 +328,9 @@ const Certifications = () => (
             </div>
           </a>
         ))}
-        {/* Filler A — mobile + sm + md (hidden lg) */}
+        {/* Filler A, mobile + sm + md (hidden lg) */}
         <div aria-hidden="true" className="bg-white h-[160px] block lg:hidden" />
-        {/* Filler B — jen sm */}
+        {/* Filler B, jen sm */}
         <div aria-hidden="true" className="bg-white h-[160px] hidden sm:block md:hidden" />
        </div>
       </div>
@@ -391,21 +347,31 @@ const News = () => (
           <div className="mt-4 h-1 w-16 bg-accent" />
         </div>
         <div className="lg:col-span-5 flex items-end lg:justify-end">
-          <Button variant="ghost" href="#">Otevřít archiv (216 článků)</Button>
+          <Button variant="ghost" href="/novinky">Všechny novinky</Button>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-mandik-rule hairline">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {NEWS.map((n) => (
-          <a key={n.title} href="#" className="tile relative bg-white">
-            <span className="tile-bar" style={{ background: "#26d07c" }} />
-            <div className="aspect-[4/3] img-placeholder relative">
-              <span>{n.img}</span>
-              <span className="absolute top-3 left-3 mono text-[10px] bg-white px-2 py-0.5 text-mandik-ink">{n.cat}</span>
+          <a
+            key={n.slug}
+            href={`/novinky/${n.slug}`}
+            style={{ "--tile-color": "#26d07c" }}
+            className="tile group relative flex flex-col bg-white overflow-hidden shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[color:var(--tile-color)]"
+          >
+            <span className="tile-bar z-10" style={{ background: "#26d07c" }} />
+            <div className="relative aspect-[4/3] bg-mandik-paper-soft overflow-hidden">
+              <img src={n.photos[0]} alt={n.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onError={(e) => { e.currentTarget.style.display = "none"; }} />
             </div>
-            <div className="p-6">
-              <div className="mono text-[11px] text-mandik-steel-70 mb-3">{n.date}</div>
-              <div className="h-display text-[20px] leading-tight">{n.title}</div>
-              <div className="mt-5 h-label text-[10px] text-mandik-steel">Číst dál →</div>
+            <div className="p-6 flex flex-col flex-1">
+              <div className="mono text-[11px] text-mandik-steel-70 mb-2">{n.date}</div>
+              <div className="h-display text-[20px] leading-tight text-mandik-ink">{n.title}</div>
+              <div className="mt-3 text-[13px] text-mandik-steel-80 leading-relaxed">{n.perex}</div>
+              <div className="mt-auto pt-4 border-t border-mandik-rule flex items-center gap-2">
+                <span className="h-label text-[11px] text-mandik-steel transition-colors group-hover:text-[var(--tile-color)]">Číst dál</span>
+                <svg className="w-4 h-4 text-mandik-steel-70 transition-all duration-200 group-hover:translate-x-1 group-hover:text-[var(--tile-color)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </div>
             </div>
           </a>
         ))}
@@ -447,7 +413,7 @@ const Showroom = ({ onNav }) => (
 
 export const Homepage = ({ onNav, tweaks = { heroMedia: "video", parallax: true } }) => (
   <div data-screen-label="Homepage" className="page-enter">
-    {/* Hero zůstává bez Reveal — uživatel ho vidí ihned po načtení. */}
+    {/* Hero zůstává bez Reveal, uživatel ho vidí ihned po načtení. */}
     <Hero onNav={onNav} mediaStyle={tweaks.heroMedia} parallax={tweaks.parallax} />
     {/* Všechny ostatní sekce: scroll reveal (fade-in + slide-up při vstupu do viewportu) */}
     <Reveal><StatsStrip /></Reveal>

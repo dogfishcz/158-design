@@ -75,7 +75,7 @@ export function WhistleblowingForm() {
               }}
             >
               <p className="text-[13px] text-mandik-steel-80 leading-relaxed mb-5">
-                Jméno i e-mail jsou nepovinné – oznámení můžete podat i anonymně. Pokud chcete být vyrozuměni
+                Jméno i e-mail jsou nepovinné, oznámení můžete podat i anonymně. Pokud chcete být vyrozuměni
                 o výsledku, uveďte prosím kontakt.
               </p>
 

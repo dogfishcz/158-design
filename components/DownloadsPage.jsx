@@ -102,7 +102,7 @@ const ManselCard = () => (
       </p>
       <ul className="text-[12px] text-mandik-steel-80 leading-relaxed flex-1 space-y-1">
         <li>✔️ Rychlý přístup z jakéhokoliv zařízení (PC, tablet, mobil)</li>
-        <li>✔️ Bez starostí s aktualizacemi — vše je vždy aktuální</li>
+        <li>✔️ Bez starostí s aktualizacemi, vše je vždy aktuální</li>
         <li>✔️ Jednoduché sdílení výsledků a projektů</li>
         <li>✔️ Stabilní a intuitivní prostředí</li>
       </ul>

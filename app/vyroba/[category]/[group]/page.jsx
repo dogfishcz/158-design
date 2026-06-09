@@ -11,8 +11,8 @@ export async function generateMetadata({ params }) {
   const cat = categories.find((c) => c.slug === params.category);
   const group = findGroup(cat, params.group);
   return {
-    title: group ? `${group.name} — ${cat?.name ?? "MANDÍK a.s."}` : "Výrobek nenalezen",
-    description: group?.description ?? group?.subtitle ?? "MANDÍK a.s. — detail výrobku.",
+    title: group ? `${group.name}, ${cat?.name ?? "MANDÍK a.s."}` : "Výrobek nenalezen",
+    description: group?.description ?? group?.subtitle ?? "MANDÍK a.s., detail výrobku.",
   };
 }
 

@@ -9,8 +9,8 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata({ params }) {
   const division = DIVISIONS[params.division];
   return {
-    title: division ? `${division.name} — MANDÍK a.s.` : "Divize nenalezena",
-    description: division?.description ?? "MANDÍK a.s. — výrobní portfolio.",
+    title: division ? `${division.name}, MANDÍK a.s.` : "Divize nenalezena",
+    description: division?.description ?? "MANDÍK a.s., výrobní portfolio.",
   };
 }
 

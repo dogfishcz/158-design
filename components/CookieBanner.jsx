@@ -136,7 +136,7 @@ export function CookieBanner() {
                   <div className="flex-1 pr-4">
                     <p className="font-semibold text-mandik-steel text-sm">Technické (nutné)</p>
                     <p className="text-xs text-mandik-steel-70 mt-1">
-                      Zajišťují základní funkčnost webu – přihlášení, bezpečnost, jazykové nastavení. Nelze je vypnout.
+                      Zajišťují základní funkčnost webu, přihlášení, bezpečnost, jazykové nastavení. Nelze je vypnout.
                     </p>
                   </div>
                   <div className="shrink-0">
@@ -194,7 +194,7 @@ export function CookieBanner() {
         </div>
       )}
 
-      {/* Plovoucí pill tlačítko – rozjíždí se doprava */}
+      {/* Plovoucí pill tlačítko, rozjíždí se doprava */}
       <button
         type="button"
         onClick={() => setSettingsOpen(true)}
