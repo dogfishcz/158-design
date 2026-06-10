@@ -7,7 +7,7 @@ export const NewsScreen = () => {
   return (
     <div data-screen-label="News" className="page-enter pt-[100px] lg:pt-[116px]">
       <section className="bg-white">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 pt-12 pb-12">
+        <div className="max-w-site mx-auto px-6 lg:px-10 pt-12 pb-12">
           <div className="grid grid-cols-12 gap-8 lg:gap-10 items-end">
             <div className="col-span-12 lg:col-span-8">
               <h1 className="h-display text-[40px] sm:text-[56px] lg:text-[72px] leading-[0.95] text-mandik-ink">Novinky</h1>
@@ -21,7 +21,7 @@ export const NewsScreen = () => {
       </section>
 
       <section className="bg-mandik-paper-soft border-t border-mandik-rule">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-14 lg:py-16">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-14 lg:py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {NEWS.map((n) => (
               <a

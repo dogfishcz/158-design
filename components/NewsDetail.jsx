@@ -9,7 +9,7 @@ export const NewsDetail = ({ item }) => {
   if (!item) {
     return (
       <div data-screen-label="NewsDetail" className="page-enter pt-[120px] lg:pt-[140px] pb-32">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 text-center">
+        <div className="max-w-site mx-auto px-6 lg:px-10 text-center">
           <h1 className="h-display text-[40px] text-mandik-ink">Novinka nenalezena</h1>
           <p className="mt-4 text-mandik-steel-80">Tento článek neexistuje nebo byl přesunut.</p>
           <div className="mt-8 flex justify-center">
@@ -25,7 +25,7 @@ export const NewsDetail = ({ item }) => {
   return (
     <div data-screen-label="NewsDetail" className="page-enter pt-[100px] lg:pt-[116px]">
       <section className="bg-white">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-10 lg:py-14">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-10 lg:py-14">
           <a href="/novinky" className="inline-flex items-center gap-2 mono text-[11px] text-mandik-steel-70 hover:text-mandik-ink transition-colors mb-8">
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             Zpět na novinky
@@ -54,7 +54,7 @@ export const NewsDetail = ({ item }) => {
 
       {others.length > 0 && (
         <section className="bg-mandik-paper-soft border-t border-mandik-rule">
-          <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-14">
+          <div className="max-w-site mx-auto px-6 lg:px-10 py-14">
             <div className="h-label text-[11px] text-mandik-steel-70 mb-6">Další novinky</div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {others.map((n) => (

@@ -427,10 +427,10 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 pointer-events-none">
-      {/* Vnitřní obal s max-w-[1320px], vlastní vizuální "kostka" hlavičky.
+      {/* Vnitřní obal s max-w-site, vlastní vizuální "kostka" hlavičky.
           Background a hover handler jsou na něm, ne na <header>, aby se efekt projevil jen v rozsahu šířky mega menu. */}
       <div
-        className={`pointer-events-auto max-w-[1320px] mx-auto transition-[background-color,backdrop-filter] duration-200 ${
+        className={`pointer-events-auto max-w-site mx-auto transition-[background-color,backdrop-filter] duration-200 ${
           isOpaque ? "bg-mandik-steel" : "header-blur"
         }`}
         onMouseLeave={() => { companyLeave(); productsLeave(); setHeaderHovered(false); }}
@@ -448,7 +448,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
         aria-hidden={!atTop}
       >
        <div className="border-b border-white/15">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 h-9 flex items-center justify-between text-white/70 text-[11px] gap-3">
+        <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 h-9 flex items-center justify-between text-white/70 text-[11px] gap-3">
           <div className="flex items-center gap-5">
             <a
               href="/#showroom"
@@ -496,7 +496,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
 
       {/* Hlavní lišta (v5 layout) */}
       <div className="relative">
-        <nav className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 h-16 lg:h-20 flex items-center gap-7 lg:gap-9">
+        <nav className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 h-16 lg:h-20 flex items-center gap-7 lg:gap-9">
           {/* Logo, vede vždy na "/" (homepage)
               -ml-3 (= -12px): posune logo k levé hraně rozbalovacích menu.
               Zvyš na -ml-4 (-16px) / sniž na -ml-2 (-8px) podle potřeby. */}

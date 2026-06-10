@@ -33,6 +33,10 @@ module.exports = {
       letterSpacing: {
         hair: "0.18em",
       },
+      maxWidth: {
+        // Sirka obsahu celeho webu (puvodne 1320px). Zmena zde se propise vsude.
+        site: "1440px",
+      },
     },
   },
   plugins: [],

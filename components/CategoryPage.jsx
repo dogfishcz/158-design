@@ -59,7 +59,7 @@ export const CategoryPage = ({ category, accentColor = "#26d07c" }) => {
 
   return (
     <div className="bg-white">
-      <div className="max-w-[1320px] mx-auto px-10 py-16">
+      <div className="max-w-site mx-auto px-10 py-16">
         {/* Breadcrumb */}
         <nav className="flex flex-wrap items-center gap-2 mono text-[11px] text-mandik-steel-70 mb-10">
           <a href="/" className="hover:text-mandik-ink transition-colors">Domů</a>

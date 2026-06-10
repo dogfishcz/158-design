@@ -51,7 +51,7 @@ const Scene = ({ label, img, h = 540, big, tint = 0.5 }) => {
 
 const Timeline = () => (
   <section className="bg-white border-t border-mandik-rule">
-    <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-20 lg:py-24">
+    <div className="max-w-site mx-auto px-6 lg:px-10 py-20 lg:py-24">
       <SectionLabel>Časová osa</SectionLabel>
       <SectionTitle className="mb-14">Tři dekády české výroby<span className="text-mandik-steel">.</span></SectionTitle>
 
@@ -115,7 +115,7 @@ const Numbers = () => {
   const inView = useInView(ref);
   return (
     <section ref={ref} className="bg-mandik-steel border-y-4 border-accent">
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
         <SectionLabel color="#26d07c">Výroba v číslech</SectionLabel>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/10 mt-4">
           {ABOUT_STATS.map((s, i) => (
@@ -129,7 +129,7 @@ const Numbers = () => {
 
 const Family = () => (
   <section className="bg-mandik-paper-soft">
-    <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-20 lg:py-24 grid grid-cols-12 gap-10 items-center">
+    <div className="max-w-site mx-auto px-6 lg:px-10 py-20 lg:py-24 grid grid-cols-12 gap-10 items-center">
       <div className="col-span-12 lg:col-span-5 relative">
         <div className="relative overflow-hidden hairline" style={{ aspectRatio: "4 / 3" }}>
           <img src="/assets/about/interier.jpg" alt="Vstupní hala a recepce MANDÍK a.s." loading="lazy" className="w-full h-full object-cover"
@@ -163,7 +163,7 @@ const Family = () => (
 
 const History = () => (
   <section className="bg-white border-t border-mandik-rule">
-    <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-20 lg:py-24 grid grid-cols-12 gap-10 lg:gap-14 items-start">
+    <div className="max-w-site mx-auto px-6 lg:px-10 py-20 lg:py-24 grid grid-cols-12 gap-10 lg:gap-14 items-start">
       <div className="col-span-12 lg:col-span-5">
         <SectionTitle className="mb-8">Naše historie<span className="text-mandik-steel">.</span></SectionTitle>
         <div className="space-y-5 text-[15px] lg:text-[16px] text-mandik-steel-80 leading-relaxed max-w-2xl">
@@ -186,7 +186,7 @@ export const AboutScreen = () => {
   return (
     <div data-screen-label="About" className="page-enter pt-[108px]">
       <section className="bg-white">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 pt-12 pb-10">
+        <div className="max-w-site mx-auto px-6 lg:px-10 pt-12 pb-10">
           <div className="grid grid-cols-12 gap-8 lg:gap-10 items-end">
             <div className="col-span-12 lg:col-span-8">
               <SectionLabel>O společnosti</SectionLabel>
@@ -201,7 +201,7 @@ export const AboutScreen = () => {
         </div>
 
         {/* Full-bleed headquarters hero */}
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 pb-14">
+        <div className="max-w-site mx-auto px-6 lg:px-10 pb-14">
           <div className="relative">
             <Scene
               h={620}
@@ -221,7 +221,7 @@ export const AboutScreen = () => {
       {/* Production storytelling - real machines */}
       <Reveal>
       <section className="bg-white border-t border-mandik-rule">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 pt-14 lg:pt-20">
+        <div className="max-w-site mx-auto px-6 lg:px-10 pt-14 lg:pt-20">
           <SectionLabel>Strojový park</SectionLabel>
           <SectionTitle className="mb-3">Malá ukázka<br/>našeho vybavení<span className="text-mandik-steel">.</span></SectionTitle>
           <p className="mb-10 text-[15px] text-mandik-steel-80 leading-relaxed max-w-2xl">
@@ -229,7 +229,7 @@ export const AboutScreen = () => {
           </p>
         </div>
 
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 pb-6 lg:pb-10 grid grid-cols-12 gap-px bg-mandik-rule hairline">
+        <div className="max-w-site mx-auto px-6 lg:px-10 pb-6 lg:pb-10 grid grid-cols-12 gap-px bg-mandik-rule hairline">
           {/* 01 - punching */}
           <div className="col-span-12 lg:col-span-7 bg-white">
             <Scene h={560} img="/assets/about/vysekavac.jpg" label="VYSEKÁVACÍ LIS TRUMPF · LINKA Č. 4"

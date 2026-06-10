@@ -92,7 +92,7 @@ const Hero = ({ onNav, mediaStyle = "video", parallax = true }) => {
       <div className="absolute inset-0 hero-tint" />
       <div className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: "linear-gradient(to top, rgba(26,26,26,0.55), transparent)" }} />
 
-      <div className="relative h-full max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col justify-end pb-12 sm:pb-20 text-white">
+      <div className="relative h-full max-w-site mx-auto px-4 sm:px-6 lg:px-10 flex flex-col justify-end pb-12 sm:pb-20 text-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
           <div className="lg:col-span-7">
             <h1 className="h-display text-[36px] sm:text-[48px] lg:text-[64px] leading-[1.05] lg:leading-[1.0] text-white">
@@ -156,7 +156,7 @@ const StatsStrip = () => {
   const inView = useInView(ref);
   return (
     <section ref={ref} className="bg-mandik-steel border-b-4 border-accent">
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
           {HOMEPAGE_STATS.map((s, i) => (
             <StatBox key={s.label} {...s} inView={inView} isFirst={i === 0} isLast={i === HOMEPAGE_STATS.length - 1} />
@@ -169,7 +169,7 @@ const StatsStrip = () => {
 
 const CategoryGrid = ({ onNav }) => (
   <section id="vyrobky" className="bg-mandik-paper-soft scroll-mt-[120px]">
-    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
+    <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-10 lg:mb-12">
         <div className="lg:col-span-8">
           <SectionTitle>Výrobky</SectionTitle>
@@ -222,7 +222,7 @@ const RefMapPreview = ({ onNav }) => {
   const accentColor = "#26d07c";
   return (
     <section ref={ref} className="bg-mandik-paper-soft text-mandik-ink">
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
+      <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
           <div className="lg:col-span-7">
             <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-mandik-ink">Reference</h2>
@@ -285,7 +285,7 @@ const CERT_LOGOS = [
 
 const Certifications = () => (
   <section className="bg-white border-t border-mandik-rule">
-    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-14 lg:py-20">
+    <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 py-14 lg:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
         <div className="lg:col-span-7">
           <SectionTitle>Certifikace & partneři</SectionTitle>
@@ -340,7 +340,7 @@ const Certifications = () => (
 
 const News = () => (
   <section className="bg-white border-t border-mandik-rule">
-    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
+    <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end mb-8 lg:mb-10">
         <div className="lg:col-span-7">
           <SectionTitle>Novinky</SectionTitle>
@@ -382,7 +382,7 @@ const News = () => (
 
 const Showroom = ({ onNav }) => (
   <section id="showroom" className="bg-mandik-paper-soft text-mandik-ink relative overflow-hidden scroll-mt-[120px]">
-    <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+    <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
       <div className="lg:col-span-6">
         <h2 className="h-display text-[32px] sm:text-[40px] lg:text-[44px] leading-[1.05] text-mandik-ink">Virtuální showroom</h2>
         <div className="mt-4 h-1 w-16 bg-accent" />

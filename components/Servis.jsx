@@ -324,7 +324,7 @@ export const ServisScreen = () => {
     <div data-screen-label="Servis" className="page-enter">
       {/* HERO */}
       <section className="bg-white">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 pt-12 pb-12">
+        <div className="max-w-site mx-auto px-6 lg:px-10 pt-12 pb-12">
           <div className="grid grid-cols-12 gap-8 lg:gap-10 items-end">
             <div className="col-span-12 lg:col-span-8">
               <h1 className="h-display text-[40px] sm:text-[56px] lg:text-[72px] leading-[0.95] text-mandik-ink">
@@ -347,7 +347,7 @@ export const ServisScreen = () => {
 
       {/* SLUŽBY */}
       <section id="sluzby" className="bg-mandik-paper-soft scroll-mt-[132px] border-t border-mandik-rule">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-16 lg:py-20">
           <div className="mb-12">
             <SectionTitle>Naše služby</SectionTitle>
             <div className="mt-4 h-1 w-16 bg-accent" />
@@ -368,7 +368,7 @@ export const ServisScreen = () => {
 
       {/* KONTAKT */}
       <section id="kontakt" className="bg-white scroll-mt-[132px] border-t border-mandik-rule">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-16 lg:py-20">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-16 lg:py-20">
           <div className="mb-10">
             <SectionTitle>Kontakt na servis</SectionTitle>
             <div className="mt-4 h-1 w-16 bg-accent" />

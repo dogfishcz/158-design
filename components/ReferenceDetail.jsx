@@ -9,7 +9,7 @@ export const ReferenceDetail = ({ reference }) => {
   if (!reference) {
     return (
       <div data-screen-label="ReferenceDetail" className="page-enter pt-[120px] lg:pt-[140px] pb-32">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 text-center">
+        <div className="max-w-site mx-auto px-6 lg:px-10 text-center">
           <h1 className="h-display text-[40px] text-mandik-ink">Reference nenalezena</h1>
           <p className="mt-4 text-mandik-steel-80">Tato reference neexistuje nebo byla přesunuta.</p>
           <div className="mt-8 flex justify-center">
@@ -33,7 +33,7 @@ export const ReferenceDetail = ({ reference }) => {
   return (
     <div data-screen-label="ReferenceDetail" className="page-enter pt-[100px] lg:pt-[116px]">
       <section className="bg-white">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-10 lg:py-14">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-10 lg:py-14">
           <a href="/reference" className="inline-flex items-center gap-2 mono text-[11px] text-mandik-steel-70 hover:text-mandik-ink transition-colors mb-8">
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             Zpět na reference
@@ -81,7 +81,7 @@ export const ReferenceDetail = ({ reference }) => {
 
       {related.length > 0 && (
         <section className="bg-mandik-paper-soft border-t border-mandik-rule">
-          <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-14">
+          <div className="max-w-site mx-auto px-6 lg:px-10 py-14">
             <div className="h-label text-[11px] text-mandik-steel-70 mb-6">Další reference</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {related.map((x) => (

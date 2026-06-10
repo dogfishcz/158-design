@@ -18,7 +18,7 @@ export const ReferencesScreen = ({ onNav }) => {
   return (
     <div data-screen-label="References" className="page-enter pt-[100px] lg:pt-[116px]">
       <section className="bg-mandik-paper-soft">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-16">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-16">
           <div className="grid grid-cols-12 gap-10 items-end">
             <div className="col-span-12 lg:col-span-7">
               <h1 className="h-display text-[48px] sm:text-[64px] lg:text-[72px] leading-[0.95] text-mandik-ink">Reference</h1>
@@ -44,7 +44,7 @@ export const ReferencesScreen = ({ onNav }) => {
       </section>
 
       <section ref={ref} className="bg-white">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-10 lg:py-14">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-10 lg:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-mandik-rule hairline">
             <div className="lg:col-span-8 bg-mandik-paper-soft">
               <EuropeMap revealed={inView} selectedId={selected?.id} onSelect={setSelected} fill />
@@ -57,7 +57,7 @@ export const ReferencesScreen = ({ onNav }) => {
       </section>
 
       <section className="bg-mandik-paper-soft border-t border-mandik-rule">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-16">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-16">
           <div className="grid grid-cols-12 gap-6 lg:gap-10 items-end mb-8">
             <div className="col-span-12 lg:col-span-7">
               <SectionLabel>Případové studie</SectionLabel>

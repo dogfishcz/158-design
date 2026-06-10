@@ -210,7 +210,7 @@ export function CookieBanner() {
       {/* Banner při prvním načtení */}
       {bannerVisible && (
         <div className="fixed bottom-0 left-0 right-0 z-[9999] bg-white border-t-2 border-accent shadow-2xl">
-          <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-5">
+          <div className="max-w-site mx-auto px-4 sm:px-6 lg:px-10 py-4 sm:py-5">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-mandik-steel-80 leading-relaxed">

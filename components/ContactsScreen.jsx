@@ -78,7 +78,7 @@ export function ContactsScreen() {
     <div data-screen-label="Kontakt" className="page-enter">
       {/* HERO */}
       <section className="bg-white">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 pt-12 pb-12">
+        <div className="max-w-site mx-auto px-6 lg:px-10 pt-12 pb-12">
           <div className="grid grid-cols-12 gap-8 lg:gap-10 items-end">
             <div className="col-span-12 lg:col-span-8">
               <h1 className="h-display text-[40px] sm:text-[56px] lg:text-[72px] leading-[0.95] text-mandik-ink">
@@ -96,7 +96,7 @@ export function ContactsScreen() {
 
       {/* MAPA + KONTAKTY, světlá sekce */}
       <section className="bg-white border-t border-mandik-rule">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10 py-14 lg:py-20">
+        <div className="max-w-site mx-auto px-6 lg:px-10 py-14 lg:py-20">
           {/* Mapa, přes celou šířku */}
           <div className="flex items-center gap-3 mb-4">
             <span className="w-2 h-2 bg-accent" />

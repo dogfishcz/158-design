@@ -19,7 +19,7 @@ export const ContactStub = ({ onNav }) => {
 
   return (
   <div data-screen-label="Contact" className="page-enter pt-[140px] pb-32 min-h-screen bg-mandik-paper-soft">
-    <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
+    <div className="max-w-site mx-auto px-6 lg:px-10">
       <h1 className="h-display text-[40px] sm:text-[56px] lg:text-[72px] leading-[0.95] text-mandik-ink">Poptávka</h1>
       <div className="mt-4 h-1 w-16 bg-accent" />
       <div className="mt-10 grid grid-cols-12 gap-px bg-mandik-rule hairline">
