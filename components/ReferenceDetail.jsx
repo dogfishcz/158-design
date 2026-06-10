@@ -71,7 +71,7 @@ export const ReferenceDetail = ({ reference }) => {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <Button variant="primary" href="/kontakt">Poptat podobné řešení</Button>
+                <Button variant="primary" href="/poptavka">Poptat podobné řešení</Button>
                 <Button variant="ghost" href="/reference">Všechny reference</Button>
               </div>
             </div>

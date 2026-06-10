@@ -90,12 +90,19 @@ export function ContactsMap({ selected, onSelect, className = "" }) {
       style: STYLE,
       center: [13, 49],
       zoom: 3.3,
-      attributionControl: true,
+      attributionControl: { compact: true }, // atribuce sbalená do "i" tlačítka
       cooperativeGestures: false, // scroll-zoom přímo kolečkem nad mapou (bez Ctrl)
       preserveDrawingBuffer: true,
     });
     mapRef.current = map;
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+
+    // Kompaktní atribuce startuje rozbalená; po prvním vykreslení (idle, atribuce už je
+    // naplněná) ji sbalíme do "i". Klik na summary = stejná cesta jako ruční sbalení.
+    map.once("idle", () => {
+      const d = containerRef.current?.querySelector("details.maplibregl-ctrl-attrib");
+      if (d && d.open) d.querySelector("summary")?.click();
+    });
 
     map.on("load", async () => {
       let world, cz, de;

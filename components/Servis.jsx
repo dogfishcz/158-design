@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SectionTitle } from "./Primitives";
+import { SectionTitle, Button } from "./Primitives";
 
 // --- Data služeb dle divizí (barvy z lib/divisions.js) ---
 // AHC #74d1ea · AHU #26d07c · HEAT #f2a900
@@ -338,14 +338,7 @@ export const ServisScreen = () => {
               zařízení, v České republice i v zahraničí. Naším cílem je, aby vaše vzduchotechnické
               a topné zařízení fungovalo správně, spolehlivě a dlouhodobě.
               <div className="mt-6 flex flex-wrap gap-2.5">
-                <a
-                  href="#kontakt"
-                  onClick={goTo("kontakt")}
-                  className="relative overflow-hidden group/btn inline-flex items-center gap-2 px-4 py-2.5 bg-mandik-steel text-white hover:text-mandik-ink h-label text-[11px] transition-colors"
-                >
-                  <span aria-hidden className="absolute inset-x-0 bottom-0 h-0 group-hover/btn:h-full bg-accent transition-[height] duration-300 ease-out" />
-                  <span className="relative z-10">Kontakt a požadavek</span>
-                </a>
+                <Button variant="primary" href="#kontakt" onClick={goTo("kontakt")}>Kontakt a požadavek</Button>
               </div>
             </div>
           </div>

@@ -46,7 +46,7 @@ export const NewsDetail = ({ item }) => {
           </div>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <Button variant="primary" href="/kontakt">Mám zájem o produkt</Button>
+            <Button variant="primary" href="/poptavka">Mám zájem o produkt</Button>
             <Button variant="ghost" href="/novinky">Všechny novinky</Button>
           </div>
         </div>

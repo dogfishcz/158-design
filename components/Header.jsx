@@ -225,18 +225,18 @@ const MegaMenu = ({
                 )}
               </div>
             ) : (
-              /* Produktová fotka, vystředěná, zmenšená beze ořezu (Výrobky) */
-              <div className="relative overflow-hidden flex items-center justify-center p-8">
+              /* Produktová fotka, vystředěná, beze ořezu vyplní sloupec (Výrobky) */
+              <div className="relative overflow-hidden flex items-center justify-center p-6">
                 {photo ? (
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
                     src={photo}
                     alt={active?.label ?? ""}
-                    className="max-w-[300px] max-h-[300px] w-auto h-auto object-contain transition-opacity duration-300"
+                    className="w-full h-full max-h-[460px] object-contain transition-opacity duration-300"
                     onError={(e) => { e.currentTarget.style.display = "none"; }}
                   />
                 ) : (
-                  <div className="w-full max-w-[220px] aspect-square bg-white/10 flex items-center justify-center">
+                  <div className="w-full max-w-[300px] aspect-square bg-white/10 flex items-center justify-center">
                     <span className="text-white/30 text-5xl h-display">M</span>
                   </div>
                 )}
@@ -453,7 +453,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
             <a
               href="/#showroom"
               onClick={(e) => { const el = document.getElementById("showroom"); if (el) { e.preventDefault(); el.scrollIntoView({ behavior: "smooth", block: "start" }); } }}
-              className="hidden md:flex items-center gap-2 hover:text-white transition-colors mono"
+              className="flex items-center gap-2 hover:text-white transition-colors mono"
             >
               <svg className="w-3.5 h-3.5 text-accent flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z" />
@@ -467,7 +467,7 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="hidden md:flex items-center gap-2 hover:text-white transition-colors mono"
+              className="flex items-center gap-2 hover:text-white transition-colors mono"
             >
               <svg className="w-3.5 h-3.5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
@@ -476,13 +476,13 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
             </a>
           </div>
           <div className="flex items-center gap-6">
-            <a href="tel:+420318697111" className="flex items-center gap-2 hover:text-white mono">
+            <a href="tel:+420318697111" className="hidden md:flex items-center gap-2 hover:text-white mono">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
               +420 311 706 706
             </a>
-            <a href="mailto:mandik@mandik.cz" className="flex items-center gap-2 hover:text-white mono">
+            <a href="mailto:mandik@mandik.cz" className="hidden md:flex items-center gap-2 hover:text-white mono">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
@@ -643,6 +643,14 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
             </div>
 
             <LangSwitcher value={lang} onChange={onLang} />
+
+            <a
+              href="/poptavka"
+              onClick={() => closeAll()}
+              className="inline-flex h-9 items-center px-4 bg-accent text-mandik-ink h-label text-[11px] hover:bg-[#1ec170] transition-colors"
+            >
+              {t.inquiry}
+            </a>
           </div>
 
           {/* Mobilní hamburger, jen do md breakpointu */}
@@ -790,6 +798,17 @@ export const Header = ({ route, onNav, lang = "cs", onLang, categories = [] }) =
             <a href="/servis" className="block h-label text-[14px] py-4 border-b border-white/10" onClick={() => setMobileOpen(false)}>{t.service}</a>
             <a href="/ke-stazeni" className="block h-label text-[14px] py-4 border-b border-white/10" onClick={() => setMobileOpen(false)}>{t.downloads}</a>
             <a href="/kontakt" className="block h-label text-[14px] py-4 border-b border-white/10" onClick={() => setMobileOpen(false)}>{t.contact}</a>
+
+            {/* Poptávka CTA */}
+            <div className="pt-6">
+              <a
+                href="/poptavka"
+                onClick={() => setMobileOpen(false)}
+                className="inline-flex h-11 items-center px-5 bg-accent text-mandik-ink h-label text-[13px] hover:bg-[#1ec170] transition-colors"
+              >
+                {t.inquiry}
+              </a>
+            </div>
 
             {/* Výběr jazyka, rozbalovací seznam (stejně jako Naše společnost / Výrobky) */}
             <div className="pt-6 border-t border-white/15 mt-6">
