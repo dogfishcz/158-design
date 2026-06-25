@@ -1,31 +1,23 @@
-"use client";
-
-import React from "react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { PageChrome } from "@/components/PageChrome";
 import { ReferencesScreen } from "@/components/References";
+import { fetchPortfolio } from "@/lib/api";
 
-// /reference používá ReferencesScreen (mapa dodávek, případové studie).
-// ReferencesScreen má vlastní `pt-[108px]` pro fixed-header offset, proto ho
-// montujeme bez Shell wrapperu (který by padding zdvojil), stejně jako /o-nas.
-export default function Page() {
-  const [lang, setLang] = React.useState("cs");
-  const [categories, setCategories] = React.useState([]);
+export const dynamic = "force-dynamic";
 
-  React.useEffect(() => {
-    fetch("/api/portfolio?locale=cs")
-      .then((r) => (r.ok ? r.json() : []))
-      .then(setCategories)
-      .catch(() => {});
-  }, []);
+export const metadata = {
+  title: "Reference, MANDÍK a.s.",
+  description:
+    "Naše výrobky a řešení jsou součástí tisíců projektů po celém světě. Od průmyslových hal přes nemocnice a datová centra až po jaderné elektrárny a výškové budovy.",
+  alternates: { canonical: "/reference" },
+};
 
+// /reference používá ReferencesScreen (mapa dodávek, dlaždice referencí).
+// Obsah má vlastní pt offset pro fixed header, proto PageChrome bez paddingu.
+export default async function Page() {
+  const categories = await fetchPortfolio("cs").catch(() => []);
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header lang={lang} onLang={setLang} categories={categories} />
-      <main className="flex-1">
-        <ReferencesScreen />
-      </main>
-      <Footer categories={categories} />
-    </div>
+    <PageChrome categories={categories}>
+      <ReferencesScreen />
+    </PageChrome>
   );
 }

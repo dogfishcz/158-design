@@ -1,35 +1,33 @@
-"use client";
-
-import React from "react";
-import { useParams } from "next/navigation";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { notFound } from "next/navigation";
+import { PageChrome } from "@/components/PageChrome";
 import { ReferenceDetail } from "@/components/ReferenceDetail";
-import { getReferenceBySlug } from "@/components/EuropeMap";
+import { getReferenceBySlug, referencePhotos } from "@/lib/references";
+import { fetchPortfolio } from "@/lib/api";
+
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }) {
+  const slug = decodeURIComponent(String(params?.slug || ""));
+  const r = getReferenceBySlug(slug);
+  if (!r) return { title: "Reference nenalezena, MANDÍK a.s." };
+  return {
+    title: `${r.project}, reference MANDÍK a.s.`,
+    description: `${r.project}, ${r.city} (${r.country}), ${r.year}. Dodávka MANDÍK: ${r.units} jednotek, sektor ${r.sector}.`,
+    alternates: { canonical: `/reference/${r.slug}` },
+    openGraph: { images: [{ url: referencePhotos(r)[0] }] },
+  };
+}
 
 // Detail jedné reference: /reference/<slug> (např. /reference/22-bishopsgate).
-export default function Page() {
-  const params = useParams();
+export default async function Page({ params }) {
   const slug = decodeURIComponent(String(params?.slug || ""));
-  const [lang, setLang] = React.useState("cs");
-  const [categories, setCategories] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch("/api/portfolio?locale=cs")
-      .then((r) => (r.ok ? r.json() : []))
-      .then(setCategories)
-      .catch(() => {});
-  }, []);
-
   const reference = getReferenceBySlug(slug);
+  if (!reference) notFound();
 
+  const categories = await fetchPortfolio("cs").catch(() => []);
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header lang={lang} onLang={setLang} categories={categories} />
-      <main className="flex-1">
-        <ReferenceDetail reference={reference} />
-      </main>
-      <Footer categories={categories} />
-    </div>
+    <PageChrome categories={categories}>
+      <ReferenceDetail reference={reference} />
+    </PageChrome>
   );
 }

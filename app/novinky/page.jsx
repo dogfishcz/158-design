@@ -1,28 +1,21 @@
-"use client";
-
-import React from "react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { PageChrome } from "@/components/PageChrome";
 import { NewsScreen } from "@/components/NewsScreen";
+import { fetchPortfolio } from "@/lib/api";
 
-export default function Page() {
-  const [lang, setLang] = React.useState("cs");
-  const [categories, setCategories] = React.useState([]);
+export const dynamic = "force-dynamic";
 
-  React.useEffect(() => {
-    fetch("/api/portfolio?locale=cs")
-      .then((r) => (r.ok ? r.json() : []))
-      .then(setCategories)
-      .catch(() => {});
-  }, []);
+export const metadata = {
+  title: "Novinky, MANDÍK a.s.",
+  description:
+    "Nové produkty, certifikace a aktuální dění ve společnosti MANDÍK. Tepelná čerpadla, rooftop jednotky, certifikované požární a regulační klapky.",
+  alternates: { canonical: "/novinky" },
+};
 
+export default async function Page() {
+  const categories = await fetchPortfolio("cs").catch(() => []);
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header lang={lang} onLang={setLang} categories={categories} />
-      <main className="flex-1">
-        <NewsScreen />
-      </main>
-      <Footer categories={categories} />
-    </div>
+    <PageChrome categories={categories}>
+      <NewsScreen />
+    </PageChrome>
   );
 }

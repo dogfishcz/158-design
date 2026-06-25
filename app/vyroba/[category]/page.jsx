@@ -12,6 +12,7 @@ export async function generateMetadata({ params }) {
   return {
     title: cat ? `${cat.name}, MANDÍK a.s.` : "Výrobek nenalezen",
     description: cat?.description ?? "MANDÍK a.s., výrobní portfolio.",
+    alternates: cat ? { canonical: `/vyroba/${cat.slug}` } : undefined,
   };
 }
 

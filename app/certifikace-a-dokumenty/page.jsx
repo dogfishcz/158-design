@@ -5,6 +5,7 @@ import { fetchCertificates, fetchDocuments, fetchEpd, fetchPortfolio } from "@/l
 export const dynamic = "force-dynamic";
 
 export const metadata = {
+  alternates: { canonical: "/certifikace-a-dokumenty" },
   title: "Certifikace a dokumenty, MANDÍK a.s.",
   description: "Aktuální platné certifikáty, environmentální prohlášení (EPD) a firemní dokumenty MANDÍK.",
 };

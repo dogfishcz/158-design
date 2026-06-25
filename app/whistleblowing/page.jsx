@@ -6,6 +6,7 @@ import { fetchPortfolio } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
+  alternates: { canonical: "/whistleblowing" },
   title: "Whistleblowing, MANDÍK a.s.",
   description:
     "Oznamovací systém společnosti MANDÍK, a.s. dle zákona č. 171/2023 Sb. o ochraně oznamovatelů, kdo může oznamovat, co a jak se oznamuje, komunikační kanály a ochrana oznamovatelů.",

@@ -5,6 +5,7 @@ import { fetchDownloads, fetchPortfolio } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
+  alternates: { canonical: "/ke-stazeni" },
   title: "Ke stažení, MANDÍK a.s.",
   description: "Programy, manuály, BIM rodiny a další podklady pro projekty MANDÍK.",
 };

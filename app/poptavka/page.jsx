@@ -1,30 +1,23 @@
-"use client";
-
-import React from "react";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { PageChrome } from "@/components/PageChrome";
 import { ContactStub } from "@/components/Contact";
+import { fetchPortfolio } from "@/lib/api";
+
+export const dynamic = "force-dynamic";
+
+export const metadata = {
+  title: "Poptávka, MANDÍK a.s.",
+  description:
+    "Pošlete nám poptávku na vzduchotechnické komponenty, jednotky, průmyslové vytápění nebo speciální aplikace. Ozveme se s technickým návrhem a cenovou nabídkou.",
+  alternates: { canonical: "/poptavka" },
+};
 
 // Poptávkový formulář: cíl tlačítka "Poptávka" v hlavičce
 // a "Poptat podobné řešení" na detailu reference.
-export default function Page() {
-  const [lang, setLang] = React.useState("cs");
-  const [categories, setCategories] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch("/api/portfolio?locale=cs")
-      .then((r) => (r.ok ? r.json() : []))
-      .then(setCategories)
-      .catch(() => {});
-  }, []);
-
+export default async function Page() {
+  const categories = await fetchPortfolio("cs").catch(() => []);
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header lang={lang} onLang={setLang} categories={categories} />
-      <main className="flex-1">
-        <ContactStub />
-      </main>
-      <Footer categories={categories} />
-    </div>
+    <PageChrome categories={categories}>
+      <ContactStub />
+    </PageChrome>
   );
 }

@@ -6,6 +6,7 @@ import { fetchPortfolio } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
+  alternates: { canonical: "/cookies" },
   title: "Cookies, MANDÍK a.s.",
   description:
     "Zásady používání cookies na webu MANDÍK a.s., jaké cookies používáme, k čemu slouží a jak je můžete spravovat nebo deaktivovat.",

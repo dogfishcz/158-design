@@ -5,6 +5,7 @@ import { fetchPortfolio } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
+  alternates: { canonical: "/kariera" },
   title: "Kariéra, MANDÍK a.s.",
   description:
     "Otevřené pracovní pozice ve společnosti MANDÍK, a.s., vývoj, konstrukce a automatizace vzduchotechniky v Hostomicích.",

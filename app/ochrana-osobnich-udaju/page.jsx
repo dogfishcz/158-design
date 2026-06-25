@@ -5,6 +5,7 @@ import { fetchPortfolio } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
+  alternates: { canonical: "/ochrana-osobnich-udaju" },
   title: "Ochrana osobních údajů, MANDÍK a.s.",
   description:
     "Zásady zpracování a ochrany osobních údajů společnosti MANDÍK, a.s. v souladu s nařízením GDPR, kategorie údajů, právní důvody, doba uložení a vaše práva.",

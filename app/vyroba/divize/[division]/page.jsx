@@ -11,6 +11,7 @@ export async function generateMetadata({ params }) {
   return {
     title: division ? `${division.name}, MANDÍK a.s.` : "Divize nenalezena",
     description: division?.description ?? "MANDÍK a.s., výrobní portfolio.",
+    alternates: division ? { canonical: `/vyroba/divize/${division.slug}` } : undefined,
   };
 }
 
