@@ -1,4 +1,4 @@
-# MANDIK web v7
+# MANDIK web v8
 
 Web společnosti MANDÍK a.s. — Next.js 14 (App Router) + Tailwind CSS.
 
