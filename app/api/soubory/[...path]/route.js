@@ -36,8 +36,6 @@ PbXUPhTjsKO2m3F6009Gf4bQgBL60rzBOuo1Wp6fSlDEb9J1nSdKq7qIj1IJ5icFCDhzV+P1LjVv
 77My5Rw=
 -----END CERTIFICATE-----
 `;
-// Z iad1 (USA) mandik.online nedostupný (ETIMEDOUT), zkouška z EU.
-export const preferredRegion = "fra1";
 
 const CA = [...tls.rootCertificates, GODADDY_R1];
 const UPSTREAM = "https://mandik.online/api/v1/downloads/";
