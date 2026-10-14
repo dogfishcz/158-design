@@ -60,7 +60,7 @@ export default async function Page({ params }) {
     "@type": "Product",
     name: group.name,
     description: group.description ?? group.subtitle ?? undefined,
-    image: group.gallery?.length ? group.gallery.map((g) => g.url) : undefined,
+    image: group.gallery?.length ? group.gallery.map((g) => absUrl(g.url)) : undefined,
     brand: { "@type": "Brand", name: "MANDÍK" },
     manufacturer: { "@type": "Organization", name: "MANDÍK, a.s.", url: SITE_URL },
     url: absUrl(`/vyroba/${cat.slug}/${group.slug}`),

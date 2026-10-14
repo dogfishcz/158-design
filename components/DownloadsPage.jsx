@@ -87,7 +87,7 @@ const ManselCard = () => (
     <div className="relative aspect-[4/3] bg-mandik-paper-soft">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://mandik.info/api/v1/downloads/gallery/460aac85-a56e-4d96-b221-0c9c897c0466"
+        src="/api/soubory/gallery/460aac85-a56e-4d96-b221-0c9c897c0466"
         alt="MANSEL"
         className="absolute inset-0 w-full h-full object-contain p-3"
       />
