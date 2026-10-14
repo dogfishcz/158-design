@@ -56,6 +56,9 @@ export async function GET(_req, { params }) {
         for (const h of PASS_HEADERS) if (res.headers[h]) headers[h] = res.headers[h];
         resolve(new Response(Readable.toWeb(res), { headers }));
       })
-      .on("error", () => resolve(new Response("Bad gateway", { status: 502 })));
+      .on("error", (e) => {
+        console.error("soubory proxy", path, e.code, e.message);
+        resolve(new Response(`Bad gateway: ${e.code ?? e.message}`, { status: 502 }));
+      });
   });
 }
